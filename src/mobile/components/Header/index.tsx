@@ -12,9 +12,9 @@ const HeaderComponent: React.FC = () => {
     const intl = useIntl();
 
     return (
-        <div className="pg-mobile-header">
+        <div className="pg-mobile-header" style={{margin:'0.5rem 0'}}>
             <Link to="/" className="pg-mobile-header__logo">
-                <LogoIcon className="pg-mobile-header__logo__icon" />
+                <img src='/images/logo_bankdex.png'/> 
             </Link>
             <div className="pg-mobile-header__account">
                 {userLoggedIn ? (
