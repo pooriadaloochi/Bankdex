@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link, RouteProps, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { IntlProps } from '../../';
-import { LogoIcon } from '../../assets/images/LogoIcon';
+// import { LogoIcon } from '../../assets/images/LogoIcon';
 import { MarketsTable } from '../../containers';
 import { toggleColorTheme } from '../../helpers';
 import {
@@ -62,7 +62,8 @@ class Landing extends React.Component<Props> {
                 <div className="pg-landing-screen__header">
                     <div className="pg-landing-screen__header__wrap">
                         <div className="pg-landing-screen__header__wrap__left" onClick={e => this.handleScrollTop()}>
-                            <LogoIcon />
+                            {/* <LogoIcon /> */}
+                            <img src='/images/logo_BankDex.png'/> 
                         </div>
                         <div className="pg-landing-screen__header__wrap__right">
                             <Link to="/profile" className="landing-button">
@@ -78,7 +79,8 @@ class Landing extends React.Component<Props> {
             <div className="pg-landing-screen__header">
                 <div className="pg-landing-screen__header__wrap">
                     <div className="pg-landing-screen__header__wrap__left" onClick={e => this.handleScrollTop()}>
-                        <LogoIcon />
+                        {/* <LogoIcon /> */} 
+                        <img src='/images/logo_BankDex.png'/> 
                     </div>
                     <div className="pg-landing-screen__header__wrap__right">
                         <Link to="/signin" className="landing-button landing-button--simple">
@@ -98,7 +100,7 @@ class Landing extends React.Component<Props> {
             <div className="pg-landing-screen__market-info">
                 <div className="pg-landing-screen__market-info__wrap">
                     <div className="pg-landing-screen__market-info__wrap__title">
-                        <h1>{this.translate('page.body.landing.marketInfo.title.text1')}</h1>
+                        <h1>Welcome to BankDex</h1>
                         <h1>{this.translate('page.body.landing.marketInfo.title.text2')}</h1>
                         <Link to="/trading" className="landing-button">
                             {this.translate('page.body.landing.marketInfo.title.button')}
@@ -116,7 +118,7 @@ class Landing extends React.Component<Props> {
                 <div className="pg-landing-screen__platform-info__wrap">
                     <div className="pg-landing-screen__platform-info__wrap__item">
                         <span>{this.translate('page.body.landing.platformInfo.item.first.value')}</span>
-                        <span>{this.translate('page.body.landing.platformInfo.item.first.title')}</span>
+                        <span>Welcome to BankDex</span>
                     </div>
                     <div className="pg-landing-screen__platform-info__wrap__item">
                         <span>{this.translate('page.body.landing.platformInfo.item.second.value')}</span>
@@ -136,8 +138,8 @@ class Landing extends React.Component<Props> {
             <div className="pg-landing-screen__register">
                 <div className="pg-landing-screen__register__wrap">
                     <div className="pg-landing-screen__register__wrap__item">
-                        <h1>{this.translate('page.body.landing.register.item.title')}</h1>
-                        <h2>{this.translate('page.body.landing.register.item.text')}</h2>
+                        <h1>Welcome to BankDex</h1>
+                        <h2>BankDex offers an intuitive interface with real time orderbooks, charting tools, trade history, and a simple order process so you can trade from day one.</h2>
                         <Link to="/signup" className="landing-button">
                             {this.translate('page.body.landing.register.item.button')}
                         </Link>
@@ -151,7 +153,7 @@ class Landing extends React.Component<Props> {
         return (
             <div className="pg-landing-screen__features">
                 <div className="pg-landing-screen__features__wrap">
-                    <h1>{this.translate('page.body.landing.features.title')}</h1>
+                    <h1>BankDex platform features</h1>
                     <div className="pg-landing-screen__features__content">
                         <div className="pg-landing-screen__features__content__row">
                             <div className="pg-landing-screen__features__content__row__item">
@@ -160,15 +162,15 @@ class Landing extends React.Component<Props> {
                                     alt={this.translate('page.body.landing.features.features.item1.title')}
                                 />
                                 <h2>{this.translate('page.body.landing.features.features.item1.title')}</h2>
-                                <span>{this.translate('page.body.landing.features.features.item1.text')}</span>
+                                <span>BankDex  offers the most liquid order book in the world, allowing users to easily exchange Bitcoin, Ethereum, EOS, Litecoin, Ripple, NEO and many other digital assets with minimal slippage.</span>
                             </div>
                             <div className="pg-landing-screen__features__content__row__item">
                                 <img
                                     src={FeaturesTypesIcon}
-                                    alt={this.translate('page.body.landing.features.features.item2.title')}
+                                    alt='BankDex'
                                 />
                                 <h2>{this.translate('page.body.landing.features.features.item2.title')}</h2>
-                                <span>{this.translate('page.body.landing.features.features.item2.text')}</span>
+                                <span>BankDex offers a suite of order types to give traders the tools they need for every scenario. Discover more about our most advanced Algorithmic orders types.</span>
                             </div>
                         </div>
                         <div className="pg-landing-screen__features__content__row">
@@ -222,7 +224,10 @@ class Landing extends React.Component<Props> {
                         <h1>{this.translate('page.body.landing.tradeOnTheGo.item.title')}</h1>
                         <h2>{this.translate('page.body.landing.tradeOnTheGo.item.text1')}</h2>
                         <h2>{this.translate('page.body.landing.tradeOnTheGo.item.text2')}</h2>
-                        <h2>{this.translate('page.body.landing.tradeOnTheGo.item.text3')}</h2>
+                        <h2>Our platform is optimized for trading on any device.
+                            And you don’t need to download any additional applications.
+                            All the power of BankDex cryptocurrency exchange, in the palm of your hand.
+                        </h2>
                         <Link to="/trading/" className="landing-button">
                             {this.translate('page.body.landing.tradeOnTheGo.item.button')}
                         </Link>
@@ -255,7 +260,8 @@ class Landing extends React.Component<Props> {
             <div className="pg-landing-screen__footer">
                 <div className="pg-landing-screen__footer__wrap">
                     <div className="pg-landing-screen__footer__wrap__left" onClick={e => this.handleScrollTop()}>
-                        <LogoIcon />
+                        {/* <LogoIcon /> */}
+                        <img src='/images/logo_BankDex.png'/> 
                     </div>
                     <div className="pg-landing-screen__footer__wrap__navigation">
                         <div className="pg-landing-screen__footer__wrap__navigation__col">
@@ -289,7 +295,7 @@ class Landing extends React.Component<Props> {
                         </div>
                     </div>
                 </div>
-                <span className="pg-landing-screen__footer__rights">{this.translate('page.body.landing.footer.rights')}</span>
+                <span className="pg-landing-screen__footer__rights">BankDex © All rights reserved.</span>
             </div>
         );
     }

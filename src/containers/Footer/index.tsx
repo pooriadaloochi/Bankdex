@@ -38,7 +38,7 @@ class FooterComponent extends React.Component<FooterProps> {
             <React.Fragment>
                 <footer className="pg-footer">
                     <span>{this.translate('pagy.body.footer.powered_by')}</span>
-                    <a href="https://www.openware.com">openware.com</a>
+                    <a href="https://bankdex.net/">bankdex.net</a>
                 </footer>
             </React.Fragment>
         );

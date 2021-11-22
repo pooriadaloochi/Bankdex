@@ -144,12 +144,7 @@
     "webpack": "4.42.0",
     "webpack-obfuscator": "^2.3.0"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "./scripts/validate_commit.js $HUSKY_GIT_PARAMS && (cd \"./$GIT_PREFIX\"; yarn lint)",
-      "pre-push": "yarn lint && CI=true yarn test --no-watch"
-    }
-  },
+  
   "browserslist": [
     ">0.2%",
     "not ie <= 11",
