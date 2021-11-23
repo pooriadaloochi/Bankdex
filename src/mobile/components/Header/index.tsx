@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { LogoIcon } from '../../../assets/images/LogoIcon';
 import { ProfileIcon } from '../../../assets/images/sidebar/ProfileIcon';
 import { selectUserLoggedIn } from '../../../modules';
 
@@ -14,7 +13,7 @@ const HeaderComponent: React.FC = () => {
     return (
         <div className="pg-mobile-header" style={{margin:'0.5rem 0'}}>
             <Link to="/" className="pg-mobile-header__logo">
-                <img src='/images/logo_bankdex.png'/> 
+                <img src='/images/logo_bankdex.png' alt='BankDex'/> 
             </Link>
             <div className="pg-mobile-header__account">
                 {userLoggedIn ? (
