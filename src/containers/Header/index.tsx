@@ -75,7 +75,7 @@ class Head extends React.Component<Props> {
                     </div>
                     <div onClick={e => this.redirectToLanding()} className="pg-header__logo">
                         <div>
-                            <img src='/images/logo_bankdex.png' style={{width:'88px',height:'52px'}}/> 
+                            <img src='/images/logo_bankdex.png' style={{width:'88px',height:'52px'}} alt='BankDex'/> 
                         </div>
                     </div>
                     {this.renderMarketToggler()}
