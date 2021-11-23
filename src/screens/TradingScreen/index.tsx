@@ -1,33 +1,38 @@
 import * as React from 'react';
-import { injectIntl } from 'react-intl';
+import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { connect, MapDispatchToPropsFunction, MapStateToProps } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { compose } from 'redux';
-import { IntlProps } from '../../';
 import { incrementalOrderBook } from '../../api';
 import { Decimal } from '../../components/Decimal';
-import { GridChildInterface, GridItem } from '../../components/GridItem';
+import { GridItem } from '../../components/GridItem';
 import {
-    Charts,
+    MarketDepthsComponent,
     MarketsComponent,
     OpenOrdersComponent,
     OrderBook,
     OrderComponent,
     RecentTrades,
     ToolBar,
+    TradingChart,
 } from '../../containers';
 import { getUrlPart, setDocumentTitle } from '../../helpers';
 import {
     RootState,
     selectCurrentMarket,
     selectMarketTickers,
+    selectUserInfo,
+    selectUserLoggedIn,
     setCurrentMarket,
     setCurrentPrice,
     Ticker,
+    User,
 } from '../../modules';
 import { GridLayoutState, saveLayouts, selectGridLayoutState } from '../../modules/public/gridLayout';
 import { Market, marketsFetch, selectMarkets } from '../../modules/public/markets';
 import { depthFetch } from '../../modules/public/orderBook';
+import { rangerConnectFetch, RangerConnectFetch } from '../../modules/public/ranger';
+import { RangerState } from '../../modules/public/ranger/reducer';
+import { selectRanger } from '../../modules/public/ranger/selectors';
 
 const { WidthProvider, Responsive } = require('react-grid-layout');
 
@@ -50,6 +55,9 @@ const cols = {
 interface ReduxProps {
     currentMarket: Market | undefined;
     markets: Market[];
+    user: User;
+    rangerState: RangerState;
+    userLoggedIn: boolean;
     rgl: GridLayoutState;
     tickers: {
         [pair: string]: Ticker,
@@ -59,6 +67,7 @@ interface ReduxProps {
 interface DispatchProps {
     depthFetch: typeof depthFetch;
     marketsFetch: typeof marketsFetch;
+    rangerConnect: typeof rangerConnectFetch;
     setCurrentPrice: typeof setCurrentPrice;
     setCurrentMarket: typeof setCurrentMarket;
     saveLayouts: typeof saveLayouts;
@@ -70,41 +79,46 @@ interface StateProps {
 }
 
 const ReactGridLayout = WidthProvider(Responsive);
-type Props = DispatchProps & ReduxProps & RouteComponentProps & IntlProps;
+type Props = DispatchProps & ReduxProps & RouteComponentProps & InjectedIntlProps;
 
 const TradingWrapper = props => {
-    const { orderComponentResized, orderBookComponentResized, layouts, handleResize, handeDrag } = props;
+    const { orderComponentResized, orderBookComponentResized, layouts, handleResize } = props;
     const children = React.useMemo(() => {
         const data = [
-            // {
-            //     i: 1,
-            //     render: () => <OrderComponent size={orderComponentResized} />,
-            // },
             {
                 i: 1,
-                render: () => <Charts />,
+                render: () => <OrderComponent size={orderComponentResized} />,
             },
             {
                 i: 2,
-                render: () => <OrderBook size={orderBookComponentResized} />,
+                render: () => <TradingChart />,
             },
             {
                 i: 3,
-                render: () => <RecentTrades/>,
+                render: () => <OrderBook size={orderBookComponentResized} />,
             },
             {
                 i: 4,
+                render: () => <MarketDepthsComponent />,
+            },
+            {
+                i: 5,
                 render: () => <OpenOrdersComponent/>,
             },
-            // {
-            //     i: 6,
-            //     render: () => <MarketsComponent/>,
-            // },
+            {
+                i: 6,
+                render: () => <RecentTrades/>,
+            },
+            {
+                i: 7,
+                render: () => <MarketsComponent/>,
+            },
         ];
 
+        // @ts-ignore
         return data.map((child: GridChildInterface) => (
             <div key={child.i}>
-                <GridItem>{child.render ? child.render() : `Child Body ${child.i}`}</GridItem>
+                <GridItem>{child.render ? child.render() : `Child Body ${child.i}`}</GridItem>}
             </div>
         ));
     }, [orderComponentResized, orderBookComponentResized]);
@@ -119,7 +133,6 @@ const TradingWrapper = props => {
             onLayoutChange={() => {return;}}
             margin={[5, 5]}
             onResize={handleResize}
-            onDrag={handeDrag}
         >
             {children}
         </ReactGridLayout>
@@ -134,7 +147,7 @@ class Trading extends React.Component<Props, StateProps> {
 
     public componentDidMount() {
         setDocumentTitle('Trading');
-        const { markets, currentMarket } = this.props;
+        const { markets, currentMarket, userLoggedIn, rangerState: { connected, withAuth } } = this.props;
 
         if (markets.length < 1) {
             this.props.marketsFetch();
@@ -142,6 +155,14 @@ class Trading extends React.Component<Props, StateProps> {
 
         if (currentMarket && !incrementalOrderBook()) {
             this.props.depthFetch(currentMarket);
+        }
+
+        if (!connected) {
+            this.props.rangerConnect({ withAuth: userLoggedIn });
+        }
+
+        if (userLoggedIn && !withAuth) {
+            this.props.rangerConnect({ withAuth: userLoggedIn });
         }
     }
 
@@ -153,7 +174,12 @@ class Trading extends React.Component<Props, StateProps> {
         const {
             history,
             markets,
+            userLoggedIn,
         } = this.props;
+
+        if (userLoggedIn !== nextProps.userLoggedIn) {
+            this.props.rangerConnect({ withAuth: nextProps.userLoggedIn });
+        }
 
         if (markets.length !== nextProps.markets.length) {
             this.setMarketFromUrlIfExists(nextProps.markets);
@@ -191,7 +217,6 @@ class Trading extends React.Component<Props, StateProps> {
                                 orderComponentResized={orderComponentResized}
                                 orderBookComponentResized={orderBookComponentResized}
                                 handleResize={this.handleResize}
-                                handeDrag={this.handeDrag}
                             />
                         </div>
                     </div>
@@ -211,7 +236,7 @@ class Trading extends React.Component<Props, StateProps> {
 
     private setTradingTitle = (market: Market, tickers: ReduxProps['tickers']) => {
         const tickerPrice = tickers[market.id] ? tickers[market.id].last : '0.0';
-        document.title = `${Decimal.format(tickerPrice, market.price_precision, ',')} ${market.name}`;
+        document.title = `${Decimal.format(tickerPrice, market.price_precision)} ${market.name}`;
     };
 
     private handleResize = (layout, oldItem, newItem) => {
@@ -230,19 +255,14 @@ class Trading extends React.Component<Props, StateProps> {
                 break;
         }
     };
-
-    private handeDrag = (layout, oldItem, newItem) => {
-        for (const elem of layout) {
-            if (elem.y < 0) {
-                elem.y = 0;
-            }
-        }
-    };
 }
 
 const mapStateToProps: MapStateToProps<ReduxProps, {}, RootState> = state => ({
     currentMarket: selectCurrentMarket(state),
     markets: selectMarkets(state),
+    user: selectUserInfo(state),
+    rangerState: selectRanger(state),
+    userLoggedIn: selectUserLoggedIn(state),
     rgl: selectGridLayoutState(state),
     tickers: selectMarketTickers(state),
 });
@@ -250,13 +270,15 @@ const mapStateToProps: MapStateToProps<ReduxProps, {}, RootState> = state => ({
 const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProps, {}> = dispatch => ({
     marketsFetch: () => dispatch(marketsFetch()),
     depthFetch: payload => dispatch(depthFetch(payload)),
+    rangerConnect: (payload: RangerConnectFetch['payload']) => dispatch(rangerConnectFetch(payload)),
     setCurrentPrice: payload => dispatch(setCurrentPrice(payload)),
     setCurrentMarket: payload => dispatch(setCurrentMarket(payload)),
     saveLayouts: payload => dispatch(saveLayouts(payload)),
 });
 
-export const TradingScreen = compose(
-    injectIntl,
-    withRouter,
-    connect(mapStateToProps, mapDispatchToProps),
-)(Trading) as React.ComponentClass;
+// tslint:disable-next-line no-any
+const TradingScreen = injectIntl(withRouter(connect(mapStateToProps, mapDispatchToProps)(Trading) as any));
+
+export {
+    TradingScreen,
+};
