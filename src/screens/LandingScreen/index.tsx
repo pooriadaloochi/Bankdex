@@ -261,7 +261,7 @@ class Landing extends React.Component<Props> {
                 <div className="pg-landing-screen__footer__wrap">
                     <div className="pg-landing-screen__footer__wrap__left" onClick={e => this.handleScrollTop()}>
                         {/* <LogoIcon /> */}
-                        <img src="/images/logo_BankDex.png" alt={"BankDex logo"}/>
+                        <img src='/images/logo_BankDex.png' alt="BankDex logo" />
                     </div>
                     <div className="pg-landing-screen__footer__wrap__navigation">
                         <div className="pg-landing-screen__footer__wrap__navigation__col">
