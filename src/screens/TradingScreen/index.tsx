@@ -76,30 +76,30 @@ const TradingWrapper = props => {
     const { orderComponentResized, orderBookComponentResized, layouts, handleResize, handeDrag } = props;
     const children = React.useMemo(() => {
         const data = [
+            // {
+            //     i: 1,
+            //     render: () => <OrderComponent size={orderComponentResized} />,
+            // },
             {
                 i: 1,
-                render: () => <OrderComponent size={orderComponentResized} />,
-            },
-            {
-                i: 2,
                 render: () => <Charts />,
             },
             {
-                i: 3,
+                i: 2,
                 render: () => <OrderBook size={orderBookComponentResized} />,
+            },
+            {
+                i: 3,
+                render: () => <RecentTrades/>,
             },
             {
                 i: 4,
                 render: () => <OpenOrdersComponent/>,
             },
-            {
-                i: 5,
-                render: () => <RecentTrades/>,
-            },
-            {
-                i: 6,
-                render: () => <MarketsComponent/>,
-            },
+            // {
+            //     i: 6,
+            //     render: () => <MarketsComponent/>,
+            // },
         ];
 
         return data.map((child: GridChildInterface) => (

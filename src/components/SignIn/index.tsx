@@ -233,7 +233,7 @@ const SignIn: React.FC<SignInProps> = ({
                         <Button
                             block={true}
                             type="button"
-                            disabled={isLoading || !email.match(EMAIL_REGEX) || !password || isButtonDisabled()}
+                            // disabled={isLoading || !email.match(EMAIL_REGEX) || !password || isButtonDisabled()}
                             onClick={handleClick as any}
                             size="lg"
                             variant="primary">
