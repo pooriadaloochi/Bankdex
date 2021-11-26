@@ -13,7 +13,7 @@ const HeaderComponent: React.FC = () => {
     return (
         <div className="pg-mobile-header" style={{margin:'0.5rem 0'}}>
             <Link to="/" className="pg-mobile-header__logo">
-                <img src='/images/logo_bankdex.png' alt='BankDex'/> 
+                <img src='/images/logo_bankdex.png' alt='BankDex' style={{cursor:'pointer'}}/> 
             </Link>
             <div className="pg-mobile-header__account">
                 {userLoggedIn ? (
