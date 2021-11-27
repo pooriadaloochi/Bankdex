@@ -62,7 +62,9 @@ class Landing extends React.Component<Props> {
                     <div className="pg-landing-screen__header__wrap">
                         <div className="pg-landing-screen__header__wrap__left" onClick={e => this.handleScrollTop()}>
                             {/* <LogoIcon /> */}
+
                             <img src='/images/logo_BankDex.png' alt='BankDex'/> 
+
                         </div>
                         <div className="pg-landing-screen__header__wrap__right">
                             <Link to="/profile" className="landing-button">
@@ -79,7 +81,9 @@ class Landing extends React.Component<Props> {
                 <div className="pg-landing-screen__header__wrap">
                     <div className="pg-landing-screen__header__wrap__left" onClick={e => this.handleScrollTop()}>
                         {/* <LogoIcon /> */} 
+
                         <img src='/images/logo_BankDex.png' alt='BankDex'/> 
+
                     </div>
                     <div className="pg-landing-screen__header__wrap__right">
                         <Link to="/signin" className="landing-button landing-button--simple">
@@ -260,7 +264,9 @@ class Landing extends React.Component<Props> {
                 <div className="pg-landing-screen__footer__wrap">
                     <div className="pg-landing-screen__footer__wrap__left" onClick={e => this.handleScrollTop()}>
                         {/* <LogoIcon /> */}
+
                         <img src='/images/logo_BankDex.png' alt='BankDex'/> 
+
                     </div>
                     <div className="pg-landing-screen__footer__wrap__navigation">
                         <div className="pg-landing-screen__footer__wrap__navigation__col">
