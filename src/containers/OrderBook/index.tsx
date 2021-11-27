@@ -5,7 +5,7 @@ import { injectIntl } from 'react-intl';
 import { connect, MapDispatchToPropsFunction } from 'react-redux';
 import { IntlProps } from '../../';
 import { CombinedOrderBook, Decimal } from '../../components';
-import { colors } from '../../constants';
+import { colors } from '../../constants/index';
 import { accumulateVolume, calcMaxVolume } from '../../helpers';
 import {
     Market,
@@ -159,14 +159,14 @@ class OrderBookContainer extends React.Component<Props, State> {
                         {Decimal.format(lastPrice, currentMarket.price_precision, ',')}&nbsp;
                         {isMobileDevice ? null : currentMarket.quote_unit.toUpperCase()}
                     </span>
-                    <span>{this.props.intl.formatMessage({id: 'page.body.trade.orderbook.lastMarket'})}</span>
+                    <span>{this.props.intl.formatMessage({ id: 'page.body.trade.orderbook.lastMarket' })}</span>
                 </React.Fragment>
             );
         } else {
             return (
                 <React.Fragment>
                     <span className={'cr-combined-order-book__market-negative'}>0</span>
-                    <span>{this.props.intl.formatMessage({id: 'page.body.trade.orderbook.lastMarket'})}</span>
+                    <span>{this.props.intl.formatMessage({ id: 'page.body.trade.orderbook.lastMarket' })}</span>
                 </React.Fragment>
             );
         }
@@ -191,7 +191,7 @@ class OrderBookContainer extends React.Component<Props, State> {
         return (
             <div className={cn} ref={this.orderRef}>
                 <div className={'cr-table-header__content'}>
-                    {this.props.intl.formatMessage({id: 'page.body.trade.orderbook'})}
+                    {this.props.intl.formatMessage({ id: 'page.body.trade.orderbook' })}
                 </div>
                 {orderBookLoading ? <div className="pg-combined-order-book-loader"><Spinner animation="border" variant="primary" /></div> : this.orderBook(bids, asks)}
             </div>
@@ -201,22 +201,21 @@ class OrderBookContainer extends React.Component<Props, State> {
     private orderBook = (bids, asks) => {
         const {
             forceLarge,
-            colorTheme,
+            // colorTheme,
             currentMarket,
         } = this.props;
 
         const isLarge = forceLarge || this.state.width > breakpoint;
         const asksData = isLarge ? asks : asks.slice(0).reverse();
-
         return (
             <CombinedOrderBook
                 maxVolume={calcMaxVolume(bids, asks)}
                 orderBookEntryAsks={accumulateVolume(asks)}
                 orderBookEntryBids={accumulateVolume(bids)}
-                rowBackgroundColorAsks={colors[colorTheme].orderBook.asks}
-                rowBackgroundColorBids={colors[colorTheme].orderBook.bids}
-                dataAsks={this.renderOrderBook(asksData, 'asks', this.props.intl.formatMessage({id: 'page.noDataToShow'}), currentMarket)}
-                dataBids={this.renderOrderBook(bids, 'bids', this.props.intl.formatMessage({id: 'page.noDataToShow'}), currentMarket)}
+                rowBackgroundColorAsks={colors.dark.orderBook.asks}
+                rowBackgroundColorBids={colors.dark.orderBook.bids}
+                dataAsks={this.renderOrderBook(asksData, 'asks', this.props.intl.formatMessage({ id: 'page.noDataToShow' }), currentMarket)}
+                dataBids={this.renderOrderBook(bids, 'bids', this.props.intl.formatMessage({ id: 'page.noDataToShow' }), currentMarket)}
                 headers={this.renderHeaders()}
                 lastPrice={this.lastPrice()}
                 onSelectAsks={this.handleOnSelectAsks}
@@ -237,15 +236,15 @@ class OrderBookContainer extends React.Component<Props, State> {
 
         if (isMobileDevice) {
             return [
-                `${intl.formatMessage({id: 'page.body.trade.orderbook.header.price'})}\n${formattedQuoteUnit}`,
-                `${intl.formatMessage({id: 'page.body.trade.orderbook.header.amount'})}\n${formattedBaseUnit}`,
+                `${intl.formatMessage({ id: 'page.body.trade.orderbook.header.price' })}\n${formattedQuoteUnit}`,
+                `${intl.formatMessage({ id: 'page.body.trade.orderbook.header.amount' })}\n${formattedBaseUnit}`,
             ];
         }
 
         return [
-            `${intl.formatMessage({id: 'page.body.trade.orderbook.header.price'})}\n${formattedQuoteUnit}`,
-            `${intl.formatMessage({id: 'page.body.trade.orderbook.header.amount'})}\n${formattedBaseUnit}`,
-            `${intl.formatMessage({id: 'page.body.trade.orderbook.header.volume'})}\n${formattedBaseUnit}`,
+            `${intl.formatMessage({ id: 'page.body.trade.orderbook.header.price' })}\n${formattedQuoteUnit}`,
+            `${intl.formatMessage({ id: 'page.body.trade.orderbook.header.amount' })}\n${formattedBaseUnit}`,
+            `${intl.formatMessage({ id: 'page.body.trade.orderbook.header.volume' })}\n${formattedBaseUnit}`,
         ];
     };
 

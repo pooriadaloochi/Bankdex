@@ -60,7 +60,7 @@ class Landing extends React.Component<Props> {
             return (
                 <div className="pg-landing-screen__header">
                     <div className="pg-landing-screen__header__wrap">
-                        <div className="pg-landing-screen__header__wrap__left" onClick={e => this.handleScrollTop()}>
+                        <div className="pg-landing-screen__header__wrap__left" style={{cursor:'pointer'}} onClick={e => this.handleScrollTop()}>
                             {/* <LogoIcon /> */}
 
                             <img src='/images/logo_BankDex.png' alt='BankDex'/> 
@@ -79,7 +79,7 @@ class Landing extends React.Component<Props> {
         return (
             <div className="pg-landing-screen__header">
                 <div className="pg-landing-screen__header__wrap">
-                    <div className="pg-landing-screen__header__wrap__left" onClick={e => this.handleScrollTop()}>
+                    <div className="pg-landing-screen__header__wrap__left" style={{cursor:'pointer'}} onClick={e => this.handleScrollTop()}>
                         {/* <LogoIcon /> */} 
 
                         <img src='/images/logo_BankDex.png' alt='BankDex'/> 
