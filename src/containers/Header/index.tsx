@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { IntlProps } from '../../';
 import { showLanding } from '../../api';
+import { Sidebar } from '../Sidebar';
+
 // import { LogoIcon } from '../../assets/images/LogoIcon';
 import {
     Market,
@@ -65,29 +67,31 @@ class Head extends React.Component<Props> {
         return (
             <header className={`pg-header`}>
                 <div className={`pg-container pg-header__content ${tradingCls}`}>
-                    <div
+                    {/* <div
                         className={`pg-sidebar__toggler ${mobileWallet && 'pg-sidebar__toggler-mobile'}`}
                         onClick={this.openSidebar}
                     >
-                        <span className="pg-sidebar__toggler-item"/>
-                        <span className="pg-sidebar__toggler-item"/>
-                        <span className="pg-sidebar__toggler-item"/>
-                    </div>
-                    <div onClick={e => this.redirectToLanding()}>
-                        <div>
-
-                            <img src='/images/logo_bankdex.png' style={{width:'88px',height:'52px'}} alt='BankDex'/> 
-
+                        <span className="pg-sidebar__toggler-item" />
+                        <span className="pg-sidebar__toggler-item" />
+                        <span className="pg-sidebar__toggler-item" />
+                    </div> */}
+                    <div className='d-flex'>
+                        <div style={{ cursor: 'pointer' }} onClick={e => this.redirectToLanding()}>
+                            <img src='/images/logo_bankdex.png' alt='BankDex' />
                         </div>
+                        <div style={{ width: '30px !important', marginTop: '1rem' }}> {this.renderMarketToggler()}</div>
                     </div>
-                    {this.renderMarketToggler()}
                     <div className="pg-header__location">
                         {mobileWallet ? <span>{mobileWallet}</span> : <span>{location.pathname.split('/')[1]}</span>}
                     </div>
                     {this.renderMobileWalletNav()}
                     <div className="pg-header__navbar">
                         {this.renderMarketToolbar()}
-                        <NavBar onLinkChange={this.closeMenu}/>
+                    </div>
+
+                    <div className="d-flex justify-content-end align-items-center mr-2">
+                        <Sidebar />
+                        <NavBar onLinkChange={this.closeMenu} />
                     </div>
                 </div>
             </header>
@@ -114,7 +118,7 @@ class Head extends React.Component<Props> {
             return null;
         }
 
-        return <HeaderToolbar/>;
+        return <HeaderToolbar />;
     };
 
     private renderMarketToggler = () => {
@@ -130,16 +134,16 @@ class Head extends React.Component<Props> {
                     {currentMarket && currentMarket.name}
                 </p>
                 {marketSelectorOpened ? (
-                    <img src={require(`./arrows/arrowBottom${isLight ? 'Light' : ''}.svg`)} alt="arrow"/>
+                    <img src={require(`./arrows/arrowBottom${isLight ? 'Light' : ''}.svg`)} alt="arrow" />
                 ) : (
-                    <img src={require(`./arrows/arrowRight${isLight ? 'Light' : ''}.svg`)} alt="arrow"/>
+                    <img src={require(`./arrows/arrowRight${isLight ? 'Light' : ''}.svg`)} alt="arrow" />
                 )}
             </div>
         );
     };
 
     private redirectToLanding = () => {
-        this.props.toggleSidebar(false);
+        this.props.toggleSidebar(true);
         this.props.history.push(`${showLanding() ? '/' : '/trading'}`);
     };
 

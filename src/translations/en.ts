@@ -1,7 +1,7 @@
 import { nationalitiesNames } from './nationalities';
 
 export const en = {
-    'page.header.navbar.signIn': 'Sign In',
+    'page.header.navbar.signIn': 'Login',
     'page.header.navbar.trade': 'Trade',
     'page.header.navbar.wallets': 'Wallets',
     'page.header.navbar.openOrders': 'Orders',

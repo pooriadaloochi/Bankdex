@@ -1,5 +1,5 @@
-import { ru } from './ru';
+import { fa } from './fa';
 
 export const customLanguageMap = {
-    ru,
+    fa,
 };
