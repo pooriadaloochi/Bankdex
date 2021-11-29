@@ -60,10 +60,10 @@ class Landing extends React.Component<Props> {
             return (
                 <div className="pg-landing-screen__header">
                     <div className="pg-landing-screen__header__wrap">
-                        <div className="pg-landing-screen__header__wrap__left" style={{cursor:'pointer'}} onClick={e => this.handleScrollTop()}>
+                        <div className="pg-landing-screen__header__wrap__left" style={{ cursor: 'pointer' }} onClick={e => this.handleScrollTop()}>
                             {/* <LogoIcon /> */}
 
-                            <img src='/images/logo_BankDex.png' alt='BankDex'/> 
+                            <img src='/images/logo_BankDex.png' alt='BankDex' />
 
                         </div>
                         <div className="pg-landing-screen__header__wrap__right">
@@ -79,10 +79,10 @@ class Landing extends React.Component<Props> {
         return (
             <div className="pg-landing-screen__header">
                 <div className="pg-landing-screen__header__wrap">
-                    <div className="pg-landing-screen__header__wrap__left" style={{cursor:'pointer'}} onClick={e => this.handleScrollTop()}>
-                        {/* <LogoIcon /> */} 
+                    <div className="pg-landing-screen__header__wrap__left" style={{ cursor: 'pointer' }} onClick={e => this.handleScrollTop()}>
+                        {/* <LogoIcon /> */}
 
-                        <img src='/images/logo_BankDex.png' alt='BankDex'/> 
+                        <img src='/images/logo_BankDex.png' alt='BankDex' />
 
                     </div>
                     <div className="pg-landing-screen__header__wrap__right">
@@ -103,7 +103,7 @@ class Landing extends React.Component<Props> {
             <div className="pg-landing-screen__market-info">
                 <div className="pg-landing-screen__market-info__wrap">
                     <div className="pg-landing-screen__market-info__wrap__title">
-                        <h1>Welcome to BankDex</h1>
+                        <h1>{this.translate('page.body.landing.marketInfo.title.text1')}</h1>
                         <h1>{this.translate('page.body.landing.marketInfo.title.text2')}</h1>
                         <Link to="/trading" className="landing-button">
                             {this.translate('page.body.landing.marketInfo.title.button')}
@@ -121,7 +121,7 @@ class Landing extends React.Component<Props> {
                 <div className="pg-landing-screen__platform-info__wrap">
                     <div className="pg-landing-screen__platform-info__wrap__item">
                         <span>{this.translate('page.body.landing.platformInfo.item.first.value')}</span>
-                        <span>Welcome to BankDex</span>
+                        <span>{this.translate('page.body.landing.platformInfo.item.first.title')}</span>
                     </div>
                     <div className="pg-landing-screen__platform-info__wrap__item">
                         <span>{this.translate('page.body.landing.platformInfo.item.second.value')}</span>
@@ -141,8 +141,8 @@ class Landing extends React.Component<Props> {
             <div className="pg-landing-screen__register">
                 <div className="pg-landing-screen__register__wrap">
                     <div className="pg-landing-screen__register__wrap__item">
-                        <h1>Welcome to BankDex</h1>
-                        <h2>BankDex offers an intuitive interface with real time orderbooks, charting tools, trade history, and a simple order process so you can trade from day one.</h2>
+                        <h1>{this.translate('page.body.landing.register.item.title')}</h1>
+                        <h2>{this.translate('page.body.landing.register.item.text')}</h2>
                         <Link to="/signup" className="landing-button">
                             {this.translate('page.body.landing.register.item.button')}
                         </Link>
@@ -156,7 +156,7 @@ class Landing extends React.Component<Props> {
         return (
             <div className="pg-landing-screen__features">
                 <div className="pg-landing-screen__features__wrap">
-                    <h1>BankDex platform features</h1>
+                    <h1>{this.translate('page.body.landing.features.title')}</h1>
                     <div className="pg-landing-screen__features__content">
                         <div className="pg-landing-screen__features__content__row">
                             <div className="pg-landing-screen__features__content__row__item">
@@ -165,15 +165,15 @@ class Landing extends React.Component<Props> {
                                     alt={this.translate('page.body.landing.features.features.item1.title')}
                                 />
                                 <h2>{this.translate('page.body.landing.features.features.item1.title')}</h2>
-                                <span>BankDex  offers the most liquid order book in the world, allowing users to easily exchange Bitcoin, Ethereum, EOS, Litecoin, Ripple, NEO and many other digital assets with minimal slippage.</span>
+                                <span>{this.translate('page.body.landing.features.features.item1.text')}</span>
                             </div>
                             <div className="pg-landing-screen__features__content__row__item">
                                 <img
                                     src={FeaturesTypesIcon}
-                                    alt='BankDex'
+                                    alt={this.translate('page.body.landing.features.features.item2.title')}
                                 />
                                 <h2>{this.translate('page.body.landing.features.features.item2.title')}</h2>
-                                <span>BankDex offers a suite of order types to give traders the tools they need for every scenario. Discover more about our most advanced Algorithmic orders types.</span>
+                                <span>{this.translate('page.body.landing.features.features.item2.text')}</span>
                             </div>
                         </div>
                         <div className="pg-landing-screen__features__content__row">
@@ -222,15 +222,12 @@ class Landing extends React.Component<Props> {
         return (
             <div className="pg-landing-screen__trade-on-the-go">
                 <div className="pg-landing-screen__trade-on-the-go__wrap">
-                    <div className="pg-landing-screen__trade-on-the-go__wrap__image"/>
+                    <div className="pg-landing-screen__trade-on-the-go__wrap__image" />
                     <div className="pg-landing-screen__trade-on-the-go__wrap__content">
                         <h1>{this.translate('page.body.landing.tradeOnTheGo.item.title')}</h1>
                         <h2>{this.translate('page.body.landing.tradeOnTheGo.item.text1')}</h2>
                         <h2>{this.translate('page.body.landing.tradeOnTheGo.item.text2')}</h2>
-                        <h2>Our platform is optimized for trading on any device.
-                            And you don’t need to download any additional applications.
-                            All the power of BankDex cryptocurrency exchange, in the palm of your hand.
-                        </h2>
+                        <h2>{this.translate('page.body.landing.tradeOnTheGo.item.text3')}</h2>
                         <Link to="/trading/" className="landing-button">
                             {this.translate('page.body.landing.tradeOnTheGo.item.button')}
                         </Link>
@@ -265,7 +262,7 @@ class Landing extends React.Component<Props> {
                     <div className="pg-landing-screen__footer__wrap__left" onClick={e => this.handleScrollTop()}>
                         {/* <LogoIcon /> */}
 
-                        <img src='/images/logo_BankDex.png' alt='BankDex'/> 
+                        <img src='/images/logo_BankDex.png' alt='BankDex' />
 
                     </div>
                     <div className="pg-landing-screen__footer__wrap__navigation">
@@ -300,7 +297,7 @@ class Landing extends React.Component<Props> {
                         </div>
                     </div>
                 </div>
-                <span className="pg-landing-screen__footer__rights">BankDex © All rights reserved.</span>
+                <span className="pg-landing-screen__footer__rights">{this.translate('page.body.landing.footer.rights')}</span>
             </div>
         );
     }
@@ -324,7 +321,7 @@ class Landing extends React.Component<Props> {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    private translate = (key: string) => this.props.intl.formatMessage({id: key});
+    private translate = (key: string) => this.props.intl.formatMessage({ id: key });
 }
 
 const mapStateToProps = (state: RootState): ReduxProps => ({

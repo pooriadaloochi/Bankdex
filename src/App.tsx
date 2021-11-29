@@ -31,12 +31,12 @@ const AlertsContainer = React.lazy(() => import('./containers/Alerts').then(({ A
 const CustomizationContainer = React.lazy(() => import('./containers/Customization').then(({ Customization }) => ({ default: Customization })));
 const FooterContainer = React.lazy(() => import('./containers/Footer').then(({ Footer }) => ({ default: Footer })));
 const HeaderContainer = React.lazy(() => import('./containers/Header').then(({ Header }) => ({ default: Header })));
-const SidebarContainer = React.lazy(() => import('./containers/Sidebar').then(({ Sidebar }) => ({ default: Sidebar })));
+// const SidebarContainer = React.lazy(() => import('./containers/Sidebar').then(({ Sidebar }) => ({ default: Sidebar })));
 const LayoutContainer = React.lazy(() => import('./routes').then(({ Layout }) => ({ default: Layout })));
 
 const getTranslations = (lang: string, isMobileDevice: boolean) => {
     if (isMobileDevice) {
-        return  {
+        return {
             ...languageMap[lang],
             ...mobileTranslations[lang],
         };
@@ -52,22 +52,22 @@ const RenderDeviceContainers = () => {
         return (
             <div className="pg-mobile-app">
                 <MobileHeader />
-                <AlertsContainer/>
-                <LayoutContainer/>
+                <AlertsContainer />
+                <LayoutContainer />
                 <MobileFooter />
             </div>
         );
     }
 
     return (
-        <React.Fragment>
-            <HeaderContainer/>
-            <SidebarContainer/>
-            <CustomizationContainer/>
-            <AlertsContainer/>
-            <LayoutContainer/>
-            <FooterContainer/>
-        </React.Fragment>
+        <>
+            <HeaderContainer />
+            {/* <SidebarContainer/> */}
+            <CustomizationContainer />
+            <AlertsContainer />
+            <LayoutContainer />
+            <FooterContainer />
+        </>
     );
 };
 

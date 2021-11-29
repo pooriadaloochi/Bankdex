@@ -25,7 +25,7 @@ export const defaultConfig: Config = {
         defaultStorageLimit: '50',
         orderBookSideLimit: '25'
     },
-    languages: ['en', 'ru'],
+    languages: ['en', 'fa'],
     kycSteps: [
         'email',
         'phone',
@@ -39,7 +39,7 @@ export const Cryptobase = {
     config: defaultConfig,
 };
 
-Cryptobase.config = { ...defaultConfig, ...window.env };
+Cryptobase.config = { ...defaultConfig, ...window.env,languages:['en','fa'],minutesUntilAutoLogout: '50', };
 Cryptobase.config.storage = { ...defaultConfig.storage, ...Cryptobase.config.storage };
 
 export const tradeUrl = (): string => Cryptobase.config.api.tradeUrl;
