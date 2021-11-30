@@ -156,14 +156,27 @@ class SidebarContainer extends React.Component<Props, State> {
                             <FormattedMessage id={'page.header.navbar.profile'} />
                         </p> */}
                         <div id="menuModal">
-                            {/* <div className="w-100 historyButton"> */}
                             <div className="pg-sidebar-wrapper-logout historyButton">
-                                <div className="pg-sidebar-wrapper-logout-link">
+                                <div className="pg-sidebar-wrapper-logout-link px-4">
+                                    <Link to="/profile"
+                                        className={`mr-2 text-decoration-none`}
+                                    >
+                                        <button className="pg-sidebar-wrapper-nav-item">
+                                            <p className="pg-sidebar-wrapper-nav-item-text">
+                                                <FormattedMessage id={'page.body.profile.header.account'} />
+                                            </p>
+                                        </button>
+                                    </Link >
+                                </div>
+                            </div>
+                            <div className="pg-sidebar-wrapper-logout historyButton">
+                                <div className="pg-sidebar-wrapper-logout-link px-4">
                                     {pgRoutes(isLoggedIn)?.filter(el => el[1] === '/history')?.
                                         map(this.renderNavItems(address))}
                                 </div>
                             </div>
-                            <div class="divider"></div>
+
+                            <div class="divider mt-2"></div>
                             {this.renderLogout()}
                         </div>
 
@@ -180,7 +193,7 @@ class SidebarContainer extends React.Component<Props, State> {
         }
 
         return (
-            <div className="pg-sidebar-wrapper-logout mt-2">
+            <div className="pg-sidebar-wrapper-logout mt-3">
                 <div className="pg-sidebar-wrapper-logout-link" onClick={this.props.logoutFetch}>
                     <LogoutIcon className="pg-sidebar-wrapper-logout-link-img" />
                     <p className="pg-sidebar-wrapper-logout-link-text">
