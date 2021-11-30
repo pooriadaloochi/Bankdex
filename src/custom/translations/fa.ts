@@ -47,6 +47,9 @@ export const fa = {
     'page.body.trade.header.marketDepths.content.volume': 'مقدار:',
     'page.body.trade.header.marketDepths.content.cumulativeVolume': 'مجموع:',
     'page.body.trade.header.marketDepths.content.cumulativeValue': 'مقدار تخمین زده شده:',
+    /* Charts */
+    'page.body.charts.tabs.chart': 'چارت',
+    'page.body.charts.tabs.depth': 'عمق',
 
     'page.body.trade.toolBar.lowest': 'کمترین در 24 ساعت',
     'page.body.trade.toolBar.lastPrice': 'آخرین قیمت',
