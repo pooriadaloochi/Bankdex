@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import { IntlProps } from '../../';
 import { kycSteps } from '../../api';
 import { CrossIcon } from '../../assets/images/kyc/CrossIcon';
-import { LogoIcon } from '../../assets/images/LogoIcon';
+// import { LogoIcon } from '../../assets/images/LogoIcon';
 import { Address, Documents, Identity, Phone } from '../../containers';
 import { getVerificationStep, setDocumentTitle } from '../../helpers';
 import {
@@ -54,10 +54,10 @@ class ConfirmComponent extends React.Component<Props> {
 
     public renderVerificationStep = (step: string) => {
         switch (step) {
-            case 'phone':    return <Phone />;
-            case 'profile':  return <Identity />;
+            case 'phone': return <Phone />;
+            case 'profile': return <Identity />;
             case 'document': return <Documents />;
-            case 'address':  return <Address />;
+            case 'address': return <Address />;
             default: return 'Something went wrong';
         }
     };
@@ -69,9 +69,10 @@ class ConfirmComponent extends React.Component<Props> {
         return (
             <div className="pg-container pg-confirm">
                 <div className="pg-confirm__logo">
-                    <LogoIcon />
+                    {/* <LogoIcon /> */}
+                    <img src='/images/logo_bankdex.png' alt='BankDex' />
                 </div>
-                <h3 className="pg-confirm__title">
+                <h3 className="pg-confirm__title mt-3">
                     <FormattedMessage id={`page.confirm.title.${step}`} />
                     <CrossIcon
                         className="pg-confirm__title__icon"

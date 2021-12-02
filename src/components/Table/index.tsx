@@ -1,12 +1,14 @@
 import classNames from 'classnames';
 import * as React from 'react';
-import { toggleMarketSelector } from '../../modules';
+import { toggleMarketSelector, selectMarketSelectorState, } from '../../modules';
 import { connect, MapDispatchToPropsFunction } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-
+interface ReduxProps {
+    marketSelectorOpened: boolean;
+}
 interface DispatchProps {
     toggleMarketSelector: typeof toggleMarketSelector;
 }
@@ -95,6 +97,7 @@ class Tables extends React.Component<TableProps, TableState> {
             activeFilter: undefined,
             resultData: undefined,
             selectedRowKey: props.selectedKey,
+            marketSelectorOpened: this.props
         };
     }
 
@@ -182,13 +185,17 @@ class Tables extends React.Component<TableProps, TableState> {
 
     private handleSelect = (key: string) => () => {
         const { onSelect } = this.props;
-        this.props.toggleMarketSelector();
+
 
         if (onSelect) {
             this.setState({
                 selectedRowKey: key,
             }, () => {
                 if (onSelect) {
+                    var matches = this.state.selectedRowKey.match(/\d+/g);
+                    if (this.state.selectedRowKey && !matches && this.props.marketSelectorOpened) {
+                        this.props.toggleMarketSelector();
+                    }
                     onSelect(key);
                 }
             });
@@ -301,7 +308,7 @@ class Tables extends React.Component<TableProps, TableState> {
     }
 }
 const mapStateToProps = (state: RootState): ReduxProps => ({
-    marketSelectorOpened: false,
+    marketSelectorOpened: selectMarketSelectorState(state),
 });
 const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProps, {}> =
     dispatch => ({
