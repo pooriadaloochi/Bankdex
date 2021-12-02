@@ -62,7 +62,6 @@ class SidebarContainer extends React.Component<Props, State> {
     public render() {
         const { isLoggedIn, lang } = this.props;
         const { isOpenLanguage } = this.state;
-        console.log(this.props);
 
         const address = this.props.history.location ? this.props.history.location.pathname : '';
         const languageName = lang.toUpperCase();

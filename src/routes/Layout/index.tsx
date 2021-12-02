@@ -340,7 +340,7 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
         }
 
         return (
-            <div className={`container-fluid pg-layout ${tradingCls}`}>
+            <div className={`container-fluid pg-layout ${tradingCls} pb-3`}>
                 <Switch>
                     <Route exact={true} path="/magic-link" component={MagicLink} />
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/signin" component={SignInScreen} />
