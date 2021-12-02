@@ -1,6 +1,15 @@
 import classNames from 'classnames';
 import * as React from 'react';
+import { toggleMarketSelector } from '../../modules';
+import { connect, MapDispatchToPropsFunction } from 'react-redux';
+import { injectIntl } from 'react-intl';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
+
+interface DispatchProps {
+    toggleMarketSelector: typeof toggleMarketSelector;
+}
 export type CellData = string | number | React.ReactNode | undefined;
 
 export interface Filter {
@@ -78,7 +87,7 @@ interface TableProps {
 /**
  * Cryptobase Table overrides default table
  */
-class Table extends React.Component<TableProps, TableState> {
+class Tables extends React.Component<TableProps, TableState> {
     constructor(props: TableProps) {
         super(props);
 
@@ -98,7 +107,7 @@ class Table extends React.Component<TableProps, TableState> {
 
     public componentWillReceiveProps(next: TableProps) {
         if (this.state.selectedRowKey !== next.selectedKey) {
-            this.setState({selectedRowKey: next.selectedKey});
+            this.setState({ selectedRowKey: next.selectedKey });
         }
     }
 
@@ -173,6 +182,7 @@ class Table extends React.Component<TableProps, TableState> {
 
     private handleSelect = (key: string) => () => {
         const { onSelect } = this.props;
+        this.props.toggleMarketSelector();
 
         if (onSelect) {
             this.setState({
@@ -211,7 +221,7 @@ class Table extends React.Component<TableProps, TableState> {
     }
 
     private renderHead(row: CellData[]) {
-        const cells = row.map((c, index) => c ?  <th key={index}>{c}</th> : <th key={index}>&nbsp;</th>);
+        const cells = row.map((c, index) => c ? <th key={index}>{c}</th> : <th key={index}>&nbsp;</th>);
 
         return (
             <thead className={'cr-table__head'}>
@@ -275,7 +285,7 @@ class Table extends React.Component<TableProps, TableState> {
 
         return (
             <tbody className={'cr-table__body'}>
-            {rowElements}
+                {rowElements}
             </tbody>
         );
     }
@@ -290,7 +300,19 @@ class Table extends React.Component<TableProps, TableState> {
         }
     }
 }
+const mapStateToProps = (state: RootState): ReduxProps => ({
+    marketSelectorOpened: false,
+});
+const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProps, {}> =
+    dispatch => ({
+        toggleMarketSelector: () => dispatch(toggleMarketSelector()),
+    });
 
-export {
-    Table,
-};
+// export {
+// Table,
+// };
+export const Table = compose(
+    injectIntl,
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps),
+)(Tables) as React.ComponentClass;
