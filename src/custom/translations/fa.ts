@@ -36,6 +36,7 @@ export const fa = {
     'page.body.trade.header.newOrder.content.amount': 'مقدار',
     'page.body.trade.header.newOrder.content.total': 'مجموع',
     'page.body.trade.header.newOrder.content.available': 'در دسترس',
+    'page.body.trade.header.newOrder.content.filterPrice': 'مرحله قیمت معتبر {priceStep} است',
 
     'error.order.create.minAmount': 'مقدار انتخابی به حد نصاب نرسیده است. حداقل مقدار } {ارز}',
     'error.order.create.minPrice': 'قیمت انتخابی مجاز نمی باشد. حداقل قیمت {قیمت} {currency}',
@@ -157,7 +158,7 @@ export const fa = {
     'page.body.wallets.tabs.deposit.ccy.message.address': 'آدرس سپرده',
     'page.body.wallets.tabs.deposit.ccy.message.button': 'کپی',
     'page.body.wallets.tabs.deposit.ccy.message.success': 'آدرس کپی شد',
-    'page.body.wallets.tabs.deposit.ccy.message.error': 'ایجاد آدرس سپرده',
+    'page.body.wallets.tabs.deposit.ccy.message.pending': 'ایجاد آدرس سپرده',
     'page.body.wallets.tabs.deposit.ccy.button.generate': 'ایجاد کن',
     'page.body.wallets.tabs.deposit.ccy.button.address': 'آدرس',
 
@@ -862,6 +863,10 @@ export const fa = {
     'password.strength.tip.number.characters': 'حداقل هشت کاراکتر',
     'password.strength.tip.letter': 'حداقل یک حرف یزرگ و یک حرف کوچک',
     'password.strength.tip.digit': 'حداقل یک عدد',
+    'alignText':'text-right',
+    'alignElement':'float-right',
+    'direction':'rtl',
+    'directionFlex':'flex-row-reverse',
 
     ...customNationalitiesNames,
     ...nationalitiesNames,

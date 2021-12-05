@@ -55,19 +55,19 @@ class RecentTradesComponent extends React.Component<RecentTradesProps, State> {
 
     public render() {
         const className = classnames({
-            'cr-table__noData' : !this.props.recentTrades.length,
+            'cr-table__noData': !this.props.recentTrades.length,
         });
 
         const cn = classnames('pg-recent-trades', {
-            'pg-recent-trades-unlogged' : !this.props.userLoggedIn,
+            'pg-recent-trades-unlogged': !this.props.userLoggedIn,
         });
 
         return (
-          <div className={className}>
-            <div className={cn}>
-                {this.renderContent()}
+            <div className={className}>
+                <div className={cn}>
+                    {this.renderContent()}
+                </div>
             </div>
-          </div>
         );
     }
 
@@ -75,23 +75,24 @@ class RecentTradesComponent extends React.Component<RecentTradesProps, State> {
         const { isMobileDevice } = this.props;
 
         return this.props.userLoggedIn ?
-        (
-            <TabPanel
-                panels={this.renderTabs()}
-                onTabChange={this.handleMakeRequest}
-                optionalHead={this.props.intl.formatMessage({ id: 'page.body.trade.header.recentTrades' })}
-                currentTabIndex={this.state.index}
-                isMobileDevice={isMobileDevice}
-            />
-        ) :
-        (
-            <div>
-                <div className="cr-table-header__content">
-                    <div className="cr-title-component">{this.props.intl.formatMessage({id: 'page.body.trade.header.recentTrades'})}</div>
+            (
+                <TabPanel
+                    panels={this.renderTabs()}
+                    lang={this.props.intl.locale}
+                    onTabChange={this.handleMakeRequest}
+                    optionalHead={this.props.intl.formatMessage({ id: 'page.body.trade.header.recentTrades' })}
+                    currentTabIndex={this.state.index}
+                    isMobileDevice={isMobileDevice}
+                />
+            ) :
+            (
+                <div>
+                    <div className="cr-table-header__content">
+                        <div className={`cr-title-component text-right ${this.props.intl.locale === 'fa' && 'text-right'}`}>{this.props.intl.formatMessage({ id: 'page.body.trade.header.recentTrades' })}</div>
+                    </div>
+                    <RecentTradesMarket />
                 </div>
-                <RecentTradesMarket />
-            </div>
-        );
+            );
 
     };
 

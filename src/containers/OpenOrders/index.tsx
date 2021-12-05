@@ -66,7 +66,7 @@ export class OpenOrdersContainer extends React.Component<Props> {
         return (
             <div className={classNames}>
                 <div className="cr-table-header__content">
-                    <div className="cr-title-component">
+                    <div className={`cr-title-component d-flex ${this.translate('directionFlex')} justify-content-between`}>
                         <FormattedMessage id="page.body.trade.header.openOrders" />
                         <span className="cr-table-header__cancel" onClick={this.handleCancelAll}>
                             <FormattedMessage id="page.body.openOrders.header.button.cancelAll" />

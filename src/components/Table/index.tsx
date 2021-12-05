@@ -136,7 +136,7 @@ class Tables extends React.Component<TableProps, TableState> {
         });
 
         return (
-            <div className="cr-table-container">
+            <div className={`cr-table-container ${this.props.intl.locale === 'fa' && 'text-right'}`}>
                 <div className={cn}>
                     {titleComponent ? this.renderTitleComponent() : null}
                     {filters.length

@@ -933,5 +933,9 @@ export const en = {
     'metamask.error.unauthorized': '[MetaMask] Please authorize this website to access your Ethereum account',
     'metamask.error.unknown': '[MetaMask] An unknown error occurred. Check the console for more details',
 
+    'alignText':'text-left',
+    'alignElement':'float-left',
+    'direction':'ltr',
+    'directionFlex':'flex-row',
     ...nationalitiesNames,
 };

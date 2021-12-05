@@ -77,7 +77,7 @@ export const App = () => {
     const isMobileDevice = useSelector(selectMobileDeviceState);
 
     return (
-        <IntlProvider locale={lang} messages={getTranslations(lang, isMobileDevice)} key={lang}>
+        <IntlProvider locale={lang} style={{ direction: `${lang === 'fa' && 'rtl !important'}` }} messages={getTranslations(lang, isMobileDevice)} key={lang}>
             <Router history={browserHistory}>
                 <ErrorWrapper>
                     <React.Suspense fallback={null}>

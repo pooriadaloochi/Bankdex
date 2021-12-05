@@ -72,11 +72,11 @@ class DropdownComponent extends React.PureComponent<DropdownComponentProps & {},
         return (
             <div className={cx}>
                 <Dropdown>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic" dir={`${this.props.translateStyle("direction")}`}>
                         {selected}
                         <ChevronIcon className="cr-dropdown__arrow" />
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu >
                         {list.map((elem, index) => this.renderElem(elem, index))}
                     </Dropdown.Menu>
                 </Dropdown>
@@ -85,10 +85,10 @@ class DropdownComponent extends React.PureComponent<DropdownComponentProps & {},
     }
 
     private renderElem = (elem: DropdownElem, index: number) => {
-        return  (
-            <Dropdown.Item
+        return (
+            <Dropdown.Item className={`${this.props.translateStyle("alignText")}`}
                 key={index}
-                onSelect={ (eventKey: any, e?: React.SyntheticEvent<unknown>) => this.handleSelect(elem, index)}
+                onSelect={(eventKey: any, e?: React.SyntheticEvent<unknown>) => this.handleSelect(elem, index)}
             >
                 {elem}
             </Dropdown.Item>
