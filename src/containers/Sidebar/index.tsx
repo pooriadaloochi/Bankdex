@@ -175,7 +175,7 @@ class SidebarContainer extends React.Component<Props, State> {
                                 </div>
                             </div>
 
-                            <div class="divider mt-2"></div>
+                            <div className="divider mt-2"></div>
                             {this.renderLogout()}
                         </div>
 

@@ -177,10 +177,11 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
         return (
             <div className={classnames('cr-order-form', className)} onKeyPress={this.handleEnterPress}>
                 <div className="cr-order-item">
-                    <div className="cr-order-item__dropdown__label">
+                    <div className={`cr-order-item__dropdown__label 
+                        ${translate('alignText')}`}>
                         {translate('page.body.trade.header.newOrder.content.orderType')}
                     </div>
-                    <DropdownComponent list={orderTypes} onSelect={this.handleOrderTypeChange} placeholder=""/>
+                    <DropdownComponent list={orderTypes} onSelect={this.handleOrderTypeChange} placeholder="" translateStyle={translate} />
                 </div>
                 {orderType === 'Limit' ? (
                     <div className="cr-order-item">
@@ -254,7 +255,7 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
                 </div>
 
                 <div className="cr-order-item">
-                    <div className="cr-order-item__percentage-buttons">
+                    <div className={`cr-order-item__percentage-buttons ${translate('directionFlex')}`}>
                         {
                             amountPercentageArray.map((value, index) => <PercentageButton
                                 value={value}
@@ -266,7 +267,7 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
                 </div>
 
                 <div className="cr-order-item">
-                    <div className="cr-order-item__total">
+                    <div className={`cr-order-item__total ${translate('directionFlex')}`}>
                         <label className="cr-order-item__total__label">
                             {translate('page.body.trade.header.newOrder.content.total')}
                         </label>
@@ -282,7 +283,7 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
                     </div>
                 </div>
                 <div className="cr-order-item">
-                    <div className="cr-order-item__available">
+                    <div className={`cr-order-item__available ${translate('directionFlex')}`}>
                         <label className="cr-order-item__available__label">
                             {translate('page.body.trade.header.newOrder.content.available')}
                         </label>

@@ -57,6 +57,7 @@ class CustomInput extends React.Component<Props> {
                     </label>
                     <InputGroup size="lg">
                         <FormControl
+                            className={`text-center`}
                             size="lg"
                             type={type}
                             value={inputValue.toString()}
