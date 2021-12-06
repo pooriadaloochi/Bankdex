@@ -47,17 +47,19 @@ class CustomInput extends React.Component<Props> {
             onKeyPress,
             autoComplete,
             name,
+            flexDirection,
+            withdrawComponent
         } = this.props;
 
         return (
             <React.Fragment>
                 <div className="custom-input">
-                    <label className={classNameLabel}>
+                    <label className={classNameLabel} style={{ marginLeft: `${flexDirection === 'flex-row-reverse' && (!withdrawComponent ? '70%' : '5%')}` }}>
                         {(labelVisible || inputValue) && (label || defaultLabel)}
                     </label>
                     <InputGroup size="lg">
                         <FormControl
-                            className={`text-center`}
+                            className={`${flexDirection === 'flex-row-reverse' && 'text-right'}`}
                             size="lg"
                             type={type}
                             value={inputValue.toString()}
@@ -76,7 +78,7 @@ class CustomInput extends React.Component<Props> {
                         />
                     </InputGroup>
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 

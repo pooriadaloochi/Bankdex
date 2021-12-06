@@ -27,28 +27,29 @@ const CurrencyInfo: React.FunctionComponent<CurrencyInfoProps> = (props: Currenc
 
     const stringLocked = lockedAmount ? lockedAmount.toString() : undefined;
     const iconUrl = props.wallet ? props.wallet.iconUrl : null;
+    const { flexDirection } = props
 
 
     return (
-        <div className="cr-wallet-item__single">
-            <CurrencyIcon icon={iconUrl} currency={currency}/>
-            <div className="cr-wallet-item__single-balance">
-                <div>
-                    <div className="cr-wallet-item__amount-locked">
+        <div className={`cr-wallet-item__single m-0 ${flexDirection}`}>
+            <CurrencyIcon icon={iconUrl} currency={currency} style={{ marginLeft: '1rem' }} />
+            <div className="cr-wallet-item__single-balance justify-content-start">
+                <div style={{ margin: '0 1rem' }}>
+                    <div className={`cr-wallet-item__amount-locked m-0 ${flexDirection}`}>
                         <FormattedMessage id="page.body.wallets.locked" />
                     </div>
                     <span className="cr-wallet-item__balance-locked">
-                    <Decimal fixed={selectedFixed} thousSep=",">{stringLocked}</Decimal>
-                </span>
+                        <Decimal fixed={selectedFixed} thousSep=",">{stringLocked}</Decimal>
+                    </span>
                 </div>
                 <div>
-                <span className="cr-wallet-item__balance">
-                    {currency}&nbsp;<FormattedMessage id="page.body.wallets.balance"/>
-                </span>
-                &nbsp;
-                <span className="cr-wallet-item__balance-amount">
-                    <Decimal fixed={selectedFixed} thousSep=",">{balance}</Decimal>
-                </span>
+                    <span className={`cr-wallet-item__balance m-0 ${flexDirection}`}>
+                        {currency}&nbsp;<FormattedMessage id="page.body.wallets.balance" />
+                    </span>
+                    &nbsp;
+                    <span className="cr-wallet-item__balance-amount">
+                        <Decimal fixed={selectedFixed} thousSep=",">{balance}</Decimal>
+                    </span>
                 </div>
             </div>
         </div>

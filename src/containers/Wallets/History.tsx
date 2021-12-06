@@ -87,7 +87,7 @@ export class WalletTable extends React.Component<Props> {
     }
 
     public render() {
-        const { label, list, firstElemIndex, lastElemIndex, page, nextPageExists } = this.props;
+        const { label, list, firstElemIndex, lastElemIndex, page, nextPageExists, flexDirection } = this.props;
 
         if (!list.length) {
             return null;
@@ -95,7 +95,7 @@ export class WalletTable extends React.Component<Props> {
 
         return (
             <div className="pg-history-elem__wallet">
-                <div className="pg-history-elem__label">
+                <div className={`pg-history-elem__label ${flexDirection === 'flex-row-reverse' && 'text-right'}`}>
                     {this.props.intl.formatMessage({ id: `page.body.history.${label}` })}
                 </div>
                 <History headers={this.getHeaders(label)} data={this.retrieveData(list)} />

@@ -177,7 +177,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
 
         if (!wallets.length && next.wallets.length) {
             this.setState({ selectedWalletIndex: 0 });
-            next.wallets[0]?.currency && this.props.fetchBeneficiaries({ currency_id:  next.wallets[0].currency.toLowerCase() });
+            next.wallets[0]?.currency && this.props.fetchBeneficiaries({ currency_id: next.wallets[0].currency.toLowerCase() });
         }
 
         if (!withdrawSuccess && next.withdrawSuccess) {
@@ -244,6 +244,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                                 onTabChange={(_, label) => this.onTabChange(label)}
                                 currentTabIndex={currentTabIndex}
                                 onCurrentTabChange={this.onCurrentTabChange}
+                                flexDirection={this.translate('directionFlex')}
                             />
                         </div>
                     </div>
@@ -329,7 +330,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
     };
 
     private handleOnCopy = () => {
-        this.props.fetchSuccess({ message: ['page.body.wallets.tabs.deposit.ccy.message.success'], type: 'success'});
+        this.props.fetchSuccess({ message: ['page.body.wallets.tabs.deposit.ccy.message.success'], type: 'success' });
     };
 
     private handleGenerateAddress = () => {
@@ -353,8 +354,8 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
         const wallet: Wallet = (wallets[selectedWalletIndex] || defaultWallet);
         const currencyItem = (currencies && currencies.find(item => item.id === wallet.currency)) || { min_confirmations: 6, deposit_enabled: false };
         const text = this.props.intl.formatMessage({ id: 'page.body.wallets.tabs.deposit.ccy.message.submit' },
-                                                   { confirmations: currencyItem.min_confirmations });
-        const error = this.props.intl.formatMessage({id: 'page.body.wallets.tabs.deposit.ccy.message.pending'});
+            { confirmations: currencyItem.min_confirmations });
+        const error = this.props.intl.formatMessage({ id: 'page.body.wallets.tabs.deposit.ccy.message.pending' });
 
         const blurCryptoClassName = classnames('pg-blur-deposit-crypto', {
             'pg-blur-deposit-crypto--active': isAccountActivated,
@@ -365,7 +366,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
         if (wallets[selectedWalletIndex].type === 'coin') {
             return (
                 <React.Fragment>
-                    <CurrencyInfo wallet={wallets[selectedWalletIndex]}/>
+                    <CurrencyInfo wallet={wallets[selectedWalletIndex]} flexDirection={this.translate('directionFlex')} />
                     {currencyItem && !currencyItem.deposit_enabled ? (
                         <Blur
                             className={blurCryptoClassName}
@@ -381,22 +382,23 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                         handleOnCopy={this.handleOnCopy}
                         text={text}
                         wallet={wallet}
+                        flexDirection={this.translate('directionFlex')}
                     />
-                    {wallet.currency && <WalletHistory label="deposit" type="deposits" currency={wallet.currency} />}
+                    {wallet.currency && <WalletHistory label="deposit" type="deposits" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />}
                 </React.Fragment>
             );
         } else {
             return (
                 <React.Fragment>
-                    <CurrencyInfo wallet={wallets[selectedWalletIndex]}/>
+                    <CurrencyInfo wallet={wallets[selectedWalletIndex]} />
                     {currencyItem && !currencyItem.deposit_enabled ? (
                         <Blur
                             className="pg-blur-deposit-fiat"
                             text={this.translate('page.body.wallets.tabs.deposit.disabled.message')}
                         />
                     ) : null}
-                    <DepositFiat title={this.title} description={this.description} uid={user ? user.uid : ''}/>
-                    {wallet.currency && <WalletHistory label="deposit" type="deposits" currency={wallet.currency} />}
+                    <DepositFiat title={this.title} description={this.description} uid={user ? user.uid : ''} />
+                    {wallet.currency && <WalletHistory label="deposit" type="deposits" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />}
                 </React.Fragment>
             );
         }
@@ -410,7 +412,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
 
         return (
             <React.Fragment>
-                <CurrencyInfo wallet={wallets[selectedWalletIndex]}/>
+                <CurrencyInfo wallet={wallets[selectedWalletIndex]} flexDirection={this.translate('directionFlex')} />
                 {walletsError && <p className="pg-wallet__error">{walletsError.message}</p>}
                 {currencyItem && !currencyItem.withdrawal_enabled ? (
                     <Blur
@@ -419,7 +421,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                     />
                 ) : null}
                 {this.renderWithdrawContent()}
-                {user.otp && wallet.currency && <WalletHistory label="withdraw" type="withdraws" currency={wallet.currency} />}
+                {user.otp && wallet.currency && <WalletHistory label="withdraw" type="withdraws" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />}
             </React.Fragment>
         );
     };
@@ -450,7 +452,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
             withdrawButtonLabel: this.props.intl.formatMessage({ id: 'page.body.wallets.tabs.withdraw.content.button' }),
         };
 
-        return otp ? <Withdraw {...withdrawProps} /> : this.isOtpDisabled();
+        return otp ? <Withdraw flexDirection={this.translate('directionFlex')} {...withdrawProps} /> : this.isOtpDisabled();
     };
 
 

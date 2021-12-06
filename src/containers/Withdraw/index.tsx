@@ -86,6 +86,7 @@ export class Withdraw extends React.Component<WithdrawProps, WithdrawState> {
             withdrawTotalLabel,
             withdrawButtonLabel,
             isMobileDevice,
+            flexDirection,
         } = this.props;
 
         const cx = classnames('cr-withdraw', className);
@@ -95,12 +96,12 @@ export class Withdraw extends React.Component<WithdrawProps, WithdrawState> {
         });
 
         const withdrawAmountClass = classnames('cr-withdraw__group__amount', {
-          'cr-withdraw__group__amount--focused': withdrawAmountFocused,
+            'cr-withdraw__group__amount--focused': withdrawAmountFocused,
         });
 
         return (
             <div className={cx}>
-                <div className="cr-withdraw-column">
+                <div className={`cr-withdraw-column ${flexDirection}`}>
                     <div className="cr-withdraw__group__address">
                         <Beneficiaries
                             currency={currency}
@@ -118,13 +119,15 @@ export class Withdraw extends React.Component<WithdrawProps, WithdrawState> {
                             placeholder={withdrawAmountLabel || 'Amount'}
                             classNameInput="cr-withdraw__input"
                             handleChangeInput={this.handleChangeInputAmount}
+                            flexDirection={flexDirection}
+                            withdrawComponent={true}
                         />
                     </div>
                     <div className={lastDividerClassName} />
                     {!isMobileDevice && twoFactorAuthRequired && this.renderOtpCodeInput()}
                 </div>
-                <div className="cr-withdraw-column">
-                    <div>
+                <div className={`cr-withdraw-column ${flexDirection}`}>
+                    <div className={flexDirection} dir={`${flexDirection === 'flex-row-reverse' && 'rtl'}`}>
                         <SummaryField
                             className="cr-withdraw__summary-field"
                             message={withdrawFeeLabel ? withdrawFeeLabel : 'Fee'}
@@ -181,28 +184,30 @@ export class Withdraw extends React.Component<WithdrawProps, WithdrawState> {
 
     private renderOtpCodeInput = () => {
         const { otpCode, withdrawCodeFocused } = this.state;
-        const { withdraw2faLabel } = this.props;
+        const { withdraw2faLabel, flexDirection } = this.props;
         const withdrawCodeClass = classnames('cr-withdraw__group__code', {
-          'cr-withdraw__group__code--focused': withdrawCodeFocused,
+            'cr-withdraw__group__code--focused': withdrawCodeFocused,
         });
 
         return (
             <React.Fragment>
-              <div className={withdrawCodeClass}>
-                  <CustomInput
-                      type="number"
-                      label={withdraw2faLabel || '2FA code'}
-                      placeholder={withdraw2faLabel || '2FA code'}
-                      defaultLabel="2FA code"
-                      handleChangeInput={this.handleChangeInputOtpCode}
-                      inputValue={otpCode}
-                      handleFocusInput={() => this.handleFieldFocus('code')}
-                      classNameLabel="cr-withdraw__label"
-                      classNameInput="cr-withdraw__input"
-                      autoFocus={false}
-                  />
-              </div>
-              <div className="cr-withdraw__divider cr-withdraw__divider-two" />
+                <div className={withdrawCodeClass}>
+                    <CustomInput
+                        type="number"
+                        label={withdraw2faLabel || '2FA code'}
+                        placeholder={withdraw2faLabel || '2FA code'}
+                        defaultLabel="2FA code"
+                        handleChangeInput={this.handleChangeInputOtpCode}
+                        inputValue={otpCode}
+                        handleFocusInput={() => this.handleFieldFocus('code')}
+                        classNameLabel="cr-withdraw__label"
+                        classNameInput="cr-withdraw__input"
+                        autoFocus={false}
+                        flexDirection={flexDirection}
+                        withdrawComponent={true}
+                    />
+                </div>
+                <div className="cr-withdraw__divider cr-withdraw__divider-two" />
             </React.Fragment>
         );
     };

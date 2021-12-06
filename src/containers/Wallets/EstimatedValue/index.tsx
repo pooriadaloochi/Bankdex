@@ -98,9 +98,9 @@ class EstimatedValueContainer extends React.Component<Props> {
 
         return (
             <div className="pg-estimated-value">
-                <div className="pg-estimated-value__container">
+                <div className={`pg-estimated-value__container m ${this.translate('alignText')}`} dir={this.translate('direction')}>
                     {this.translate('page.body.wallets.estimated_value')}
-                    <span className="value-container">
+                    <span className="value-container" dir={this.translate('direction')}>
                         <span className="value">
                             {formatWithSeparators(estimatedValue, ',')}
                         </span>
@@ -112,7 +112,7 @@ class EstimatedValueContainer extends React.Component<Props> {
         );
     }
 
-    public translate = (key: string) => this.props.intl.formatMessage({id: key});
+    public translate = (key: string) => this.props.intl.formatMessage({ id: key });
 
     private renderSecondaryCurrencyValuation = (estimatedValue: string) => {
         const {
