@@ -73,7 +73,8 @@ export const TabPanel: React.FC<TabPanelProps> = ({
     isMobileDevice,
     onCurrentTabChange,
     onTabChange,
-    lang
+    lang,
+    flexDirection,
 }) => {
     const dropdownLabels = React.useCallback(() => {
         if (!panels.length) {
@@ -151,12 +152,12 @@ export const TabPanel: React.FC<TabPanelProps> = ({
             );
         } else {
             return (
-                <div className={'cr-tab-panel__navigation-container-navigation'} role="tablist">
+                <div className={`cr-tab-panel__navigation-container-navigation ${flexDirection}`} role="tablist">
                     {panels.map(renderTabPanel)}
                 </div>
             );
         }
-    }, [dropdownLabels, handleOrderTypeChange, isMobileDevice, panels, renderTabPanel]);
+    }, [dropdownLabels, handleOrderTypeChange, isMobileDevice, panels, renderTabPanel, flexDirection]);
 
     const renderTabContent = React.useCallback(
         (tab: Tab, index: number) => {
@@ -186,7 +187,7 @@ export const TabPanel: React.FC<TabPanelProps> = ({
             className={classnames('cr-tab-panel', {
                 'cr-tab-panel__fixed': fixed,
             })}>
-            <div className={`cr-tab-panel__navigation-container draggable-container ${lang === 'fa' && 'flex-row'}`}>
+            <div className={`cr-tab-panel__navigation-container draggable-container ${lang === 'fa' ? 'flex-row' : flexDirection}`}>
                 {tabPanelRender()}
                 {optionalHead && <div className={`cr-tab-panel__optinal-head ${lang === 'fa' && 'flex-row-reverse'}`}>{optionalHead}</div>}
             </div>

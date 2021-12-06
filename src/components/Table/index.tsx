@@ -136,7 +136,7 @@ class Tables extends React.Component<TableProps, TableState> {
         });
 
         return (
-            <div className={`cr-table-container ${this.props.intl.locale === 'fa' && 'text-right'}`}>
+            <div className='cr-table-container' dir={`${this.props.intl.locale === 'fa' && 'rtl'}`}>
                 <div className={cn}>
                     {titleComponent ? this.renderTitleComponent() : null}
                     {filters.length
@@ -156,14 +156,14 @@ class Tables extends React.Component<TableProps, TableState> {
     private renderTitleComponent() {
         const { titleComponent } = this.props;
 
-        return <div className={'cr-title-component'}>{titleComponent}</div>;
+        return <div className={`cr-title-component${this.props.intl.locale === 'fa' && 'text-right'} `}> {titleComponent}</div >;
     }
 
     private renderRowCells(row: CellData[]) {
 
         return row && row.length ?
             row.map((c, index: number) =>
-                <td key={index} colSpan={row.length === 1 ? this.props.colSpan : undefined}>{c}</td>) : [];
+                <td key={index} className={`${(index === 0 && this.props.intl.locale === 'fa') && 'text-right'}`} colSpan={row.length === 1 ? this.props.colSpan : undefined}>{c}</td>) : [];
     }
 
     private handleFilter(item: Filter) {
@@ -228,7 +228,7 @@ class Tables extends React.Component<TableProps, TableState> {
     }
 
     private renderHead(row: CellData[]) {
-        const cells = row.map((c, index) => c ? <th key={index}>{c}</th> : <th key={index}>&nbsp;</th>);
+        const cells = row.map((c, index) => c ? <th key={index} className={`${(index === 0 && this.props.intl.locale === 'fa') && 'text-right'}`}> {c}</th > : <th key={index}>&nbsp;</th>);
 
         return (
             <thead className={'cr-table__head'}>

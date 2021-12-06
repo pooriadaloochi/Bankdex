@@ -142,7 +142,7 @@ class BeneficiariesComponent extends React.Component<Props, State> {
         const filtredBeneficiaries = this.handleFilterByState(beneficiaries, ['active', 'pending']);
 
         return (
-            <div className="pg-beneficiaries">
+            <div className={`pg-beneficiaries ${this.translate('alignText')}`}>
                 <span className="pg-beneficiaries__title">{type === 'coin' ? this.translate('page.body.wallets.beneficiaries.title') : this.translate('page.body.wallets.beneficiaries.fiat.title')}</span>
                 {filtredBeneficiaries.length ? this.renderAddressDropdown(filtredBeneficiaries, currentWithdrawalBeneficiary, type) : this.renderAddAddress()}
                 {isOpenAddressModal && (
@@ -177,7 +177,7 @@ class BeneficiariesComponent extends React.Component<Props, State> {
 
     private renderDropdownItem = (item: Beneficiary, index: number, type: 'fiat' | 'coin') => {
         const isPending = item.state && item.state.toLowerCase() === 'pending';
-        const itemClassName = classnames('pg-beneficiaries__dropdown__body__item item', {
+        const itemClassName = classnames(`pg-beneficiaries__dropdown__body__item item ${this.translate('directionFlex')}`, {
             'item--pending': isPending,
         });
 
@@ -192,11 +192,11 @@ class BeneficiariesComponent extends React.Component<Props, State> {
                         <span className="item__left__title">{this.translate('page.body.wallets.beneficiaries.dropdown.fiat.fullName')}</span>
                         <span className="item__left__address">{item.data ? (item.data as BeneficiaryBank).full_name : ''}</span>
                     </div>
-                    <div className="item__right">
+                    <div className={`item__right ${this.translate('directionFlex')}`}>
                         {isPending ? (
                             <span className="item__right__pending">{this.translate('page.body.wallets.beneficiaries.dropdown.pending')}</span>
                         ) : null}
-                        <span className="item__right__delete" onClick={this.handleClickDeleteAddress(item)}><TrashBin/></span>
+                        <span className="item__right__delete" onClick={this.handleClickDeleteAddress(item)}><TrashBin /></span>
                     </div>
                 </div>
             );
@@ -208,11 +208,11 @@ class BeneficiariesComponent extends React.Component<Props, State> {
                     <span className="item__left__title">{this.translate('page.body.wallets.beneficiaries.dropdown.name')}</span>
                     <span className="item__left__address">{item.name}</span>
                 </div>
-                <div className="item__right">
+                <div className={`item__right ${this.translate('directionFlex')}`}>
                     {isPending ? (
-                        <span className="item__right__pending">{this.translate('page.body.wallets.beneficiaries.dropdown.pending')}</span>
+                        <span className="item__right__pending ml-4">{this.translate('page.body.wallets.beneficiaries.dropdown.pending')}</span>
                     ) : null}
-                    <span className="item__right__delete" onClick={this.handleClickDeleteAddress(item)}><TrashBin/></span>
+                    <span className="item__right__delete" onClick={this.handleClickDeleteAddress(item)}><TrashBin /></span>
                 </div>
             </div>
         );
@@ -322,7 +322,7 @@ class BeneficiariesComponent extends React.Component<Props, State> {
                             {isPending ? (
                                 <span className="select__right__pending">{this.translate('page.body.wallets.beneficiaries.dropdown.pending')}</span>
                             ) : null}
-                            <span className="select__right__tip" onMouseOver={this.handleToggleTip} onMouseOut={this.handleToggleTip}><TipIcon/></span>
+                            <span className="select__right__tip" onMouseOver={this.handleToggleTip} onMouseOut={this.handleToggleTip}><TipIcon /></span>
                             <span className="select__right__select">{this.translate('page.body.wallets.beneficiaries.dropdown.select')}</span>
                             <span className="select__right__chevron"><ChevronIcon /></span>
                         </div>
@@ -335,16 +335,16 @@ class BeneficiariesComponent extends React.Component<Props, State> {
 
         return (
             <div className={dropdownClassName}>
-                <div className="pg-beneficiaries__dropdown__select select" onClick={this.handleToggleDropdown}>
+                <div className={`pg-beneficiaries__dropdown__select select ${this.translate('directionFlex')}`} onClick={this.handleToggleDropdown}>
                     <div className="select__left">
                         <span className="select__left__title">{this.translate('page.body.wallets.beneficiaries.dropdown.name')}</span>
                         <span className="select__left__address"><span>{currentWithdrawalBeneficiary.name}</span></span>
                     </div>
-                    <div className="select__right">
+                    <div className={`select__right ${this.translate('directionFlex')}`}>
                         {isPending ? (
                             <span className="select__right__pending">{this.translate('page.body.wallets.beneficiaries.dropdown.pending')}</span>
                         ) : null}
-                        <span className="select__right__tip" onMouseOver={this.handleToggleTip} onMouseOut={this.handleToggleTip}><TipIcon/></span>
+                        <span className="select__right__tip" onMouseOver={this.handleToggleTip} onMouseOut={this.handleToggleTip}><TipIcon /></span>
                         <span className="select__right__select">{this.translate('page.body.wallets.beneficiaries.dropdown.select')}</span>
                         <span className="select__right__chevron"><ChevronIcon /></span>
                     </div>

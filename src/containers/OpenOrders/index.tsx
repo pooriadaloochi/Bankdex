@@ -111,6 +111,7 @@ export class OpenOrdersContainer extends React.Component<Props> {
                 headers={this.renderHeaders()}
                 data={this.renderData()}
                 onCancel={this.handleCancel}
+                direction={this.translate('direction')}
             />
         );
     };

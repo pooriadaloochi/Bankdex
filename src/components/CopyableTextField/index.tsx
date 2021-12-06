@@ -51,13 +51,14 @@ class CopyableTextField extends React.Component<CopyableTextFieldProps> {
             fieldId,
             copyButtonText,
             label,
+            flexDirection
         } = this.props;
         const doCopy = () => copy(fieldId);
         const cx = classnames('cr-copyable-text-field', className);
 
         return (
             <div className={cx}>
-                <InputGroup>
+                <InputGroup className={flexDirection}>
                     <CustomInput
                         id={String(fieldId)}
                         readOnly={true}
@@ -68,6 +69,7 @@ class CopyableTextField extends React.Component<CopyableTextFieldProps> {
                         label={label || ''}
                         defaultLabel={label || ''}
                         placeholder={label || ''}
+                        flexDirection={flexDirection}
                     />
                     <InputGroup.Append>
                         <Button

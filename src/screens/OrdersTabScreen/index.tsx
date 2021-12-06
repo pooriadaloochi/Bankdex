@@ -36,8 +36,7 @@ interface State {
 }
 
 class Orders extends React.PureComponent<Props, State> {
-    public state = { tab: 'open', currentTabIndex: 0};
-
+    public state = { tab: 'open', currentTabIndex: 0 };
     public tabMapping = ['open', 'all'];
 
     public componentDidMount() {
@@ -50,18 +49,20 @@ class Orders extends React.PureComponent<Props, State> {
     }
 
     public render() {
+        const translate = (id: string) => this.props.intl.formatMessage({ id });
+
         const cancelAll = this.props.list.length ? (
             <React.Fragment>
-                <span onClick={this.handleCancelAll}>
+                <span onClick={this.handleCancelAll} >
                     <FormattedMessage id="page.body.openOrders.header.button.cancelAll" />
-                    <span className="pg-orders-tab__close" />
+                    <span className={`pg-orders-tab__close ${translate('direction') === 'rtl' && 'mr-3'}`} />
                 </span>
             </React.Fragment>
         ) : null;
 
         return (
             <div className="pg-orders-tab pg-container">
-                <div className="pg-orders-tab__tabs-content">
+                <div className="pg-orders-tab__tabs-content" dir={`${translate('direction')}`}>
                     <TabPanel
                         panels={this.renderTabs()}
                         onTabChange={this.handleMakeRequest}
@@ -90,12 +91,12 @@ class Orders extends React.PureComponent<Props, State> {
 
         return [
             {
-                content: tab === 'open' ? <OrdersElement type="open"/> : null,
-                label: this.props.intl.formatMessage({ id: 'page.body.openOrders.tab.open'}),
+                content: tab === 'open' ? <OrdersElement type="open" /> : null,
+                label: this.props.intl.formatMessage({ id: 'page.body.openOrders.tab.open' }),
             },
             {
                 content: tab === 'all' ? <OrdersElement type="all" /> : null,
-                label: this.props.intl.formatMessage({ id: 'page.body.openOrders.tab.all'}),
+                label: this.props.intl.formatMessage({ id: 'page.body.openOrders.tab.all' }),
             },
         ];
     };

@@ -66,12 +66,13 @@ const DepositCrypto: React.FunctionComponent<DepositCryptoProps> = (props: Depos
         handleOnCopy,
         text,
         wallet,
+        flexDirection
     } = props;
     const isMobileDevice = useSelector(selectMobileDeviceState);
     const size = dimensions || QR_SIZE;
     const disabled = !wallet.deposit_address?.address;
     const onCopy = !disabled ? handleOnCopy : undefined;
-    const className = classnames('cr-deposit-crypto', {'cr-copyable-text-field__disabled': disabled});
+    const className = classnames('cr-deposit-crypto', { 'cr-copyable-text-field__disabled': disabled });
 
     if (!wallet.deposit_address) {
         return (
@@ -98,11 +99,11 @@ const DepositCrypto: React.FunctionComponent<DepositCryptoProps> = (props: Depos
 
     return (
         <div className={className}>
-            <div>
+            <div className={flexDirection}>
                 <p className="cr-deposit-info">{text}</p>
                 {walletAddress ? (
                     <div className="d-none d-md-block qr-code-wrapper">
-                        <QRCode dimensions={size} data={walletAddress}/>
+                        <QRCode dimensions={size} data={walletAddress} />
                     </div>
                 ) : null}
             </div>
@@ -111,7 +112,7 @@ const DepositCrypto: React.FunctionComponent<DepositCryptoProps> = (props: Depos
                     <MetaMaskButton depositAddress={walletAddress} />
                 ) : null}
                 <form className="cr-deposit-crypto__copyable">
-                    <fieldset className="cr-copyable-text-field" onClick={onCopy}>
+                    <fieldset className={`cr-copyable-text-field ${flexDirection}`} onClick={onCopy}>
                         <CopyableTextField
                             className="cr-deposit-crypto__copyable-area"
                             value={walletAddress || error}
@@ -119,6 +120,7 @@ const DepositCrypto: React.FunctionComponent<DepositCryptoProps> = (props: Depos
                             copyButtonText={copyButtonText}
                             disabled={disabled}
                             label={copiableTextFieldText ? copiableTextFieldText : 'Deposit by Wallet Address'}
+                            flexDirection={flexDirection}
                         />
                     </fieldset>
                 </form>

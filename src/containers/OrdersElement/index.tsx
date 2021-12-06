@@ -67,7 +67,7 @@ class OrdersComponent extends React.PureComponent<Props, OrdersState>  {
             updateList = list.filter(o => o.state === 'wait');
         }
 
-        const emptyMsg = this.props.intl.formatMessage({id: 'page.noDataToShow'});
+        const emptyMsg = this.props.intl.formatMessage({ id: 'page.noDataToShow' });
 
         return (
             <div className={`pg-history-elem ${updateList.length ? '' : 'pg-history-elem-empty'}`}>
@@ -80,10 +80,10 @@ class OrdersComponent extends React.PureComponent<Props, OrdersState>  {
 
     public renderContent = list => {
         const { firstElemIndex, lastElemIndex, pageIndex, nextPageExists } = this.props;
-
+        const { locale } = this.props.intl;
         return (
             <React.Fragment>
-                <History headers={this.renderHeaders()} data={this.retrieveData(list)}/>
+                <History headers={this.renderHeaders()} data={this.retrieveData(list)} />
                 <Pagination
                     firstElemIndex={firstElemIndex}
                     lastElemIndex={lastElemIndex}
@@ -91,6 +91,7 @@ class OrdersComponent extends React.PureComponent<Props, OrdersState>  {
                     nextPageExists={nextPageExists}
                     onClickPrevPage={this.onClickPrevPage}
                     onClickNextPage={this.onClickNextPage}
+                    lang={locale}
                 />
             </React.Fragment>
         );

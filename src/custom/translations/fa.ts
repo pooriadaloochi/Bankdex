@@ -204,6 +204,7 @@ export const fa = {
     'page.body.wallets.beneficiaries.dropdown.address': 'آدرس',
     'page.body.wallets.beneficiaries.dropdown.select': 'انتخاب',
     'page.body.wallets.beneficiaries.dropdown.name': 'نام',
+    'page.body.wallets.beneficiaries.dropdown.pending': 'در انتظار',
 
     'page.body.wallets.beneficiaries.dropdown.fiat.account': 'حساب',
     'page.body.wallets.beneficiaries.dropdown.fiat.bankOfBeneficiary': 'بانک ذینفع',
