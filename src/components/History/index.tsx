@@ -26,6 +26,7 @@ export class History extends React.PureComponent<HistoryProps> {
                 data={tableData}
                 header={headers}
                 titleComponent={this.title}
+                intl={'fa'}
             />
         );
     }

@@ -36,13 +36,15 @@ export class OpenOrders extends React.Component<OpenOrdersProps> {
         const { headersKeys = this.defaultHeadersKeys } = this.props;
         const tableData = this.props.data.map(this.renderRow);
         const orderIndex = headersKeys.findIndex(header => header === 'Order Type');
+        const { direction } = this.props
 
-        if (headersKeys[orderIndex] === 'Order Type'){
-           headers[orderIndex] = <span onClick={this.props.function}>Order Type</span>;
+
+        if (headersKeys[orderIndex] === 'Order Type') {
+            headers[orderIndex] = <span onClick={this.props.function}>Order Type</span>;
         }
 
         return (
-            <div className="cr-open-orders">
+            <div className="cr-open-orders" dir={direction}>
                 <Table
                     header={headers}
                     data={tableData as CellData[][]}
@@ -84,7 +86,7 @@ export class OpenOrders extends React.Component<OpenOrdersProps> {
 
     public renderOrder(orderType: string) {
         // tslint:disable-next-line:no-magic-numbers
-        const type = orderType ? orderType.toLowerCase().slice(0,3) : orderType;
+        const type = orderType ? orderType.toLowerCase().slice(0, 3) : orderType;
         const classNames = classnames('cr-open-orders__order', {
             'cr-open-orders__order--buy': type === 'buy',
             'cr-open-orders__order--sell': type === 'sel',

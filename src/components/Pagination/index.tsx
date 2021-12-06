@@ -97,11 +97,12 @@ class Pagination extends React.Component<PaginationProps> {
             separator,
             total,
             totalText,
+            lang,
         } = this.props;
 
         if (total) {
             return (
-                <p>
+                <p className={`${lang === 'fa' && 'order-3 ml-3'}`}>
                     <span>{firstElemIndex}</span>
                     <span>{separator || ' - '}</span>
                     <span>{lastElemIndex}</span>
@@ -112,7 +113,7 @@ class Pagination extends React.Component<PaginationProps> {
         }
 
         return (
-            <p>
+            <p className={`${lang === 'fa' && 'order-3 ml-3'}`}>
                 <span>{firstElemIndex}</span>
                 <span>{separator || ' - '}</span>
                 <span>{lastElemIndex}</span>
@@ -121,27 +122,45 @@ class Pagination extends React.Component<PaginationProps> {
     };
 
     public render() {
-        const {page, nextPageExists } = this.props;
+        const { page, nextPageExists, lang } = this.props;
         const prevDisabled = page === 0;
         const nextDisabled = !nextPageExists;
 
         return (
-            <div className="pg-history-elem__pagination">
+            <div className={`pg-history-elem__pagination ${lang === 'fa' && ' justify-content-start flex-row-reverse'}`}>
                 {this.renderInfoElement()}
-                <button
-                    className="pg-history__pagination-prev"
-                    onClick={this.onClickPrevPage}
-                    disabled={prevDisabled}
-                >
-                    <PreviousIcon disabled={prevDisabled}/>
-                </button>
-                <button
-                    className="pg-history__pagination-next"
-                    onClick={this.onClickNextPage}
-                    disabled={nextDisabled}
-                >
-                    <NextPageIcon disabled={nextDisabled}/>
-                </button>
+                {lang === 'fa' ?
+                    <button
+                        className={`pg-history__pagination-next ${lang === 'fa' && 'order-1'}`}
+                        onClick={this.onClickPrevPage}
+                        disabled={prevDisabled}
+                    >
+                        <NextPageIcon disabled={prevDisabled} />
+                    </button>
+                    :
+                    <button
+                        className={`pg-history__pagination-prev`}
+                        onClick={this.onClickPrevPage}
+                        disabled={prevDisabled}
+                    >
+                        <PreviousIcon disabled={prevDisabled} />
+                    </button>}
+                {lang === 'fa' ?
+                    <button
+                        className={`pg-history__pagination-prev ${lang === 'fa' && 'order-0 ml-1'}`}
+                        onClick={this.onClickNextPage}
+                        disabled={nextDisabled}
+                    >
+                        <PreviousIcon disabled={nextDisabled} />
+                    </button>
+                    :
+                    <button
+                        className={`pg-history__pagination-next`}
+                        onClick={this.onClickNextPage}
+                        disabled={nextDisabled}
+                    >
+                        <NextPageIcon disabled={nextDisabled} />
+                    </button>}
             </div>
         );
     }
