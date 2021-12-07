@@ -38,7 +38,8 @@ class ProfileVerificationComponent extends React.Component<Props> {
         switch (targetLabelStatus) {
             case 'verified':
                 return (
-                    <div className="pg-profile-page-verification__progress-bar__step pg-profile-page-verification__progress-bar__step--verified">
+                    <div className={`pg-profile-page-verification__progress-bar__step pg-profile-page-verification__progress-bar__step--verified 
+                    ${this.props.lang === 'fa' && 'text-right'}`}>
                         <FormattedMessage id={`page.body.profile.verification.progress.level`} />
                         <span>&nbsp;{index + 1}</span>
                         <CheckIcon />
@@ -112,7 +113,8 @@ class ProfileVerificationComponent extends React.Component<Props> {
                 return (
                     <div
                         key={index}
-                        className="pg-profile-page-verification__step pg-profile-page-verification__step--verified">
+                        className={`pg-profile-page-verification__step pg-profile-page-verification__step--verified 
+                        ${this.props.lang === 'fa' && 'text-right'}`}>
                         <div className="pg-profile-page-verification__step__info">
                             <div className="pg-profile-page-verification__step__info__title">
                                 <span>{index + 1}.&nbsp;</span>
@@ -134,7 +136,8 @@ class ProfileVerificationComponent extends React.Component<Props> {
                 return (
                     <div
                         key={index}
-                        className="pg-profile-page-verification__step pg-profile-page-verification__step--pending">
+                        className={`pg-profile-page-verification__step pg-profile-page-verification__step--pending 
+                        ${this.props.lang === 'fa' && 'text-right'}`}>
                         <div className="pg-profile-page-verification__step__info">
                             <div className="pg-profile-page-verification__step__info__title">
                                 <span>{index + 1}.&nbsp;</span>
@@ -154,7 +157,8 @@ class ProfileVerificationComponent extends React.Component<Props> {
                 return (
                     <div
                         key={index}
-                        className="pg-profile-page-verification__step pg-profile-page-verification__step--rejected">
+                        className={`pg-profile-page-verification__step pg-profile-page-verification__step--rejected 
+                        ${this.props.lang === 'fa' && 'text-right'}`}>
                         <div className="pg-profile-page-verification__step__info">
                             <div className="pg-profile-page-verification__step__info__title">
                                 <span>{index + 1}.&nbsp;</span>
@@ -183,7 +187,8 @@ class ProfileVerificationComponent extends React.Component<Props> {
                 return (
                     <div
                         key={index}
-                        className="pg-profile-page-verification__step pg-profile-page-verification__step--blocked">
+                        className={`pg-profile-page-verification__step pg-profile-page-verification__step--blocked 
+                        ${this.props.lang === 'fa' && 'text-right'}`}>
                         <div className="pg-profile-page-verification__step__info">
                             <div className="pg-profile-page-verification__step__info__title">
                                 <span>{index + 1}.&nbsp;</span>
@@ -204,7 +209,8 @@ class ProfileVerificationComponent extends React.Component<Props> {
                 return (
                     <div
                         key={index}
-                        className="pg-profile-page-verification__step pg-profile-page-verification__step--active">
+                        className={`pg-profile-page-verification__step pg-profile-page-verification__step--active 
+                        ${this.props.lang === 'fa' && 'text-right'}`}>
                         <div className="pg-profile-page-verification__step__info">
                             <div className="pg-profile-page-verification__step__info__title">
                                 <span>{index + 1}.&nbsp;</span>
@@ -228,7 +234,8 @@ class ProfileVerificationComponent extends React.Component<Props> {
         const { labels } = this.props;
 
         return (
-            <div className="pg-profile-page__box pg-profile-page-verification">
+            <div className={`pg-profile-page__box pg-profile-page-verification 
+            ${this.props.lang === 'fa' && 'text-right'}`} >
                 <h3 className="pg-profile-page-verification__title">
                     <FormattedMessage id="page.body.profile.header.account.profile" />
                 </h3>

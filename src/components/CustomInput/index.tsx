@@ -48,13 +48,17 @@ class CustomInput extends React.Component<Props> {
             autoComplete,
             name,
             flexDirection,
-            withdrawComponent
+            // withdrawComponent
         } = this.props;
 
         return (
             <React.Fragment>
-                <div className="custom-input">
-                    <label className={classNameLabel} style={{ marginLeft: `${flexDirection === 'flex-row-reverse' && (!withdrawComponent ? '70%' : '5%')}` }}>
+                <div className="custom-input" dir={flexDirection === 'flex-row-reverse' && 'rtl'}>
+                    <label className={classNameLabel}
+                        style={{
+                            left: `${flexDirection === 'flex-row' && '10px'}`,
+                            right: `${flexDirection === 'flex-row-reverse' && '10px'}`
+                        }}>
                         {(labelVisible || inputValue) && (label || defaultLabel)}
                     </label>
                     <InputGroup size="lg">

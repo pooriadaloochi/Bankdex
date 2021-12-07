@@ -51,14 +51,16 @@ class History extends React.Component<Props, State> {
     }
 
     public render() {
+
         return (
             <div className="pg-history-tab pg-container">
                 <div className="pg-history-tab__tabs-content">
-                    <TabPanel
+                    <TabPanel className={'flex-row-reverse'}
                         panels={this.renderTabs()}
                         onTabChange={this.handleMakeRequest}
                         currentTabIndex={this.state.currentTabIndex}
                         onCurrentTabChange={this.onCurrentTabChange}
+                        lang={this.props.intl.locale}
                     />
                 </div>
             </div>
@@ -81,15 +83,15 @@ class History extends React.Component<Props, State> {
         return [
             {
                 content: tab === 'deposits' ? <HistoryElement type="deposits" /> : null,
-                label: this.props.intl.formatMessage({id: 'page.body.history.deposit'}),
+                label: this.props.intl.formatMessage({ id: 'page.body.history.deposit' }),
             },
             {
                 content: tab === 'withdraws' ? <HistoryElement type="withdraws" /> : null,
-                label: this.props.intl.formatMessage({id: 'page.body.history.withdraw'}),
+                label: this.props.intl.formatMessage({ id: 'page.body.history.withdraw' }),
             },
             {
                 content: tab === 'trades' ? <HistoryElement type="trades" /> : null,
-                label: this.props.intl.formatMessage({id: 'page.body.history.trade'}),
+                label: this.props.intl.formatMessage({ id: 'page.body.history.trade' }),
             },
         ];
     };

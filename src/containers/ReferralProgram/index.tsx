@@ -27,12 +27,12 @@ type Props = ReduxProps & DispatchProps & IntlProps;
 
 class ReferralProgramClass extends React.Component<Props> {
     public translate = (e: string) => {
-        return this.props.intl.formatMessage({id: e});
+        return this.props.intl.formatMessage({ id: e });
     };
 
     public doCopy = () => {
         copy('referral-id');
-        this.props.fetchSuccess({message: ['page.body.wallets.tabs.deposit.ccy.message.success'], type: 'success'});
+        this.props.fetchSuccess({ message: ['page.body.wallets.tabs.deposit.ccy.message.success'], type: 'success' });
     };
 
     public render() {
@@ -43,7 +43,7 @@ class ReferralProgramClass extends React.Component<Props> {
             <div className="pg-profile-page__referral mb-3">
                 <fieldset className="pg-copyable-text__section" onClick={this.doCopy}>
                     <legend className="cr-deposit-crypto__copyable-title">
-                        <FormattedMessage id="page.body.profile.header.referralProgram"/>
+                        <FormattedMessage id="page.body.profile.header.referralProgram" />
                     </legend>
                     <CopyableTextField
                         className="pg-copyable-text-field__input"

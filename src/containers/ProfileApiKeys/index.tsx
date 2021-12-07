@@ -71,7 +71,7 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
     };
 
     public t = (key: string) => {
-        return this.props.intl.formatMessage({id: key});
+        return this.props.intl.formatMessage({ id: key });
     };
 
     public copy = (id: string) => {
@@ -112,11 +112,11 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
         return (
             <div className="pg-profile-page__api-keys">
                 <div className="pg-profile-page-header">
-                    <div className="pg-profile-page__api-keys__header">
-                        <h3>{this.t('page.body.profile.apiKeys.header')}</h3>
+                    <div className="pg-profile-page__api-keys__header ">
+                        <h3 className={this.t('alignElement')}>{this.t('page.body.profile.apiKeys.header')}</h3>
                         {user.otp && dataLoaded && (
                             <span
-                                className="pg-profile-page__pull-right"
+                                className={`pg-profile-page__pull-right ${this.t('alignElement') === 'float-right' && 'float-left'}`}
                                 onClick={this.handleCreateKeyClick}
                             >
                                 {this.t('page.body.profile.apiKeys.header.create')}
@@ -233,7 +233,7 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
     };
 
     private renderModalBody = () => {
-        const {otpCode, codeFocused} = this.state;
+        const { otpCode, codeFocused } = this.state;
         const { modal } = this.props;
         const secret = (modal && modal.apiKey) ? modal.apiKey.secret : '';
         const emailGroupClass = cr('cr-email-form__group', {
@@ -274,11 +274,11 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
                         <div className="pg-copyable-text__section">
                             <fieldset onClick={() => this.handleCopy('access-key-id', 'access')}>
                                 <CopyableTextField
-                                  className="pg-copyable-text-field__input"
-                                  fieldId={'access-key-id'}
-                                  value={(modal.apiKey && modal.apiKey.kid) || ''}
-                                  copyButtonText={this.t('page.body.profile.content.copyLink')}
-                                  label={this.t('page.body.profile.apiKeys.modal.access_key')}
+                                    className="pg-copyable-text-field__input"
+                                    fieldId={'access-key-id'}
+                                    value={(modal.apiKey && modal.apiKey.kid) || ''}
+                                    copyButtonText={this.t('page.body.profile.content.copyLink')}
+                                    label={this.t('page.body.profile.apiKeys.modal.access_key')}
                                 />
                             </fieldset>
                         </div>
@@ -286,7 +286,7 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
                             <span className="secret-sign">&#9888;</span>
                             <p className="secret-warning">
                                 <span>{this.t('page.body.profile.apiKeys.modal.secret_key')}</span>
-                                <br/>
+                                <br />
                                 {this.t('page.body.profile.apiKeys.modal.secret_key_info')}
                                 <span> {this.t('page.body.profile.apiKeys.modal.secret_key_store')}</span>
                             </p>
@@ -294,17 +294,17 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
                         <div className="pg-copyable-text__section">
                             <fieldset onClick={() => this.handleCopy('secret-key-id', 'secret')}>
                                 <CopyableTextField
-                                  className="pg-copyable-text-field__input"
-                                  fieldId={'secret_key-id'}
-                                  value={secret || ''}
-                                  copyButtonText={this.t('page.body.profile.content.copyLink')}
-                                  label={this.t('page.body.profile.apiKeys.modal.secret_key')}
+                                    className="pg-copyable-text-field__input"
+                                    fieldId={'secret_key-id'}
+                                    value={secret || ''}
+                                    copyButtonText={this.t('page.body.profile.content.copyLink')}
+                                    label={this.t('page.body.profile.apiKeys.modal.secret_key')}
                                 />
                             </fieldset>
                         </div>
                         <p className="note-section">
                             <span>{this.t('page.body.profile.apiKeys.modal.note')} </span>
-                            <br/>
+                            <br />
                             {this.t('page.body.profile.apiKeys.modal.note_content')}
                         </p>
                         <div className="button-confirmation">
@@ -385,7 +385,7 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
     };
 
     private handleHide2FAModal = () => {
-        const payload: ApiKeys2FAModal['payload'] = {active: false};
+        const payload: ApiKeys2FAModal['payload'] = { active: false };
         this.props.toggleApiKeys2FAModal(payload);
         this.setState({ otpCode: '' });
     };
@@ -423,49 +423,49 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
     };
 
     private handleCreateKeyClick = () => {
-        const payload: ApiKeys2FAModal['payload'] = {active: true, action: 'createKey'};
+        const payload: ApiKeys2FAModal['payload'] = { active: true, action: 'createKey' };
         this.props.toggleApiKeys2FAModal(payload);
     };
 
     private handleCreateKey = () => {
-        const payload: ApiKeyCreateFetch['payload'] = {totp_code: this.state.otpCode};
+        const payload: ApiKeyCreateFetch['payload'] = { totp_code: this.state.otpCode };
         this.props.createApiKey(payload);
-        this.setState({otpCode: ''});
+        this.setState({ otpCode: '' });
     };
 
     private handleCreateSuccess = () => {
-        const payload: ApiKeys2FAModal['payload'] = {active: false};
+        const payload: ApiKeys2FAModal['payload'] = { active: false };
         this.props.toggleApiKeys2FAModal(payload);
     };
 
     private handleToggleStateKeyClick = apiKey => () => {
-        const payload: ApiKeys2FAModal['payload'] = {active: true, action: 'updateKey', apiKey};
+        const payload: ApiKeys2FAModal['payload'] = { active: true, action: 'updateKey', apiKey };
         this.props.toggleApiKeys2FAModal(payload);
     };
 
     private handleUpdateKey = () => {
-        const apiKey: ApiKeyDataInterface = {...this.props.modal.apiKey} as any;
+        const apiKey: ApiKeyDataInterface = { ...this.props.modal.apiKey } as any;
         apiKey.state = apiKey.state === 'active' ? 'disabled' : 'active';
-        const payload: ApiKeyUpdateFetch['payload'] = {totp_code: this.state.otpCode, apiKey: apiKey};
+        const payload: ApiKeyUpdateFetch['payload'] = { totp_code: this.state.otpCode, apiKey: apiKey };
         this.props.updateApiKey(payload);
-        this.setState({otpCode: ''});
+        this.setState({ otpCode: '' });
     };
 
     private handleCopy = (id: string, type: string) => {
         this.copy(id);
-        this.props.fetchSuccess({ message: [`success.api_keys.copied.${type}`], type: 'success'});
+        this.props.fetchSuccess({ message: [`success.api_keys.copied.${type}`], type: 'success' });
     };
 
     private handleDeleteKeyClick = apiKey => {
-        const payload: ApiKeys2FAModal['payload'] = {active: true, action: 'deleteKey', apiKey};
+        const payload: ApiKeys2FAModal['payload'] = { active: true, action: 'deleteKey', apiKey };
         this.props.toggleApiKeys2FAModal(payload);
     };
 
     private handleDeleteKey = () => {
         const { modal } = this.props;
-        const payload: ApiKeyDeleteFetch['payload'] = {kid: (modal.apiKey && modal.apiKey.kid) || '', totp_code: this.state.otpCode};
+        const payload: ApiKeyDeleteFetch['payload'] = { kid: (modal.apiKey && modal.apiKey.kid) || '', totp_code: this.state.otpCode };
         this.props.deleteApiKey(payload);
-        this.setState({otpCode: ''});
+        this.setState({ otpCode: '' });
     };
 
     private onClickPrevPage = () => {
