@@ -14,9 +14,9 @@ interface OwnProps {
     classNamePrefix?: string;
 }
 
-export const SearchDropdown: React.FC<OwnProps> = ({ className, onSelect, options, placeholder, classNamePrefix }) => (
+export const SearchDropdown: React.FC<OwnProps> = ({ className, onSelect, options, placeholder, classNamePrefix, alignText }) => (
     <Select
-        className={className}
+        className={`${className} ${alignText}`}
         classNamePrefix={classNamePrefix || 'cr-search-dropdown'}
         options={options}
         onChange={onSelect}

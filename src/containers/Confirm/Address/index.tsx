@@ -98,7 +98,7 @@ class AddressComponent extends React.Component<Props, State> {
 
         return (
             <React.Fragment>
-                <div className="pg-confirm__content-address">
+                <div className="pg-confirm__content-address" dir={this.translate('directionFlex') === 'flex-row-reverse' && 'rtl'}>
                     <div className="pg-confirm__content-address__row">
                         <fieldset className={addressFocusedClass}>
                             <CustomInput
@@ -110,11 +110,12 @@ class AddressComponent extends React.Component<Props, State> {
                                 labelVisible={true}
                                 handleChangeInput={e => this.handleChange(e, 'address')}
                                 handleFocusInput={this.handleFieldFocus('address')}
+                                flexDirection={this.translate('directionFlex')}
                             />
                         </fieldset>
                     </div>
                     <div className="pg-confirm__content-address__row input-group">
-                        <fieldset className={cityFocusedClass}>
+                        <fieldset className={`${cityFocusedClass} w-100`}>
                             <CustomInput
                                 type="string"
                                 label={this.translate('page.body.kyc.address.city')}
@@ -124,9 +125,10 @@ class AddressComponent extends React.Component<Props, State> {
                                 inputValue={city}
                                 handleChangeInput={e => this.handleChange(e, 'city')}
                                 handleFocusInput={this.handleFieldFocus('city')}
+                                flexDirection={this.translate('directionFlex')}
                             />
                         </fieldset>
-                        <fieldset className={postcodeFocusedClass}>
+                        <fieldset className={`${postcodeFocusedClass} w-100`}>
                             <CustomInput
                                 type="string"
                                 label={this.translate('page.body.kyc.address.postcode')}
@@ -136,6 +138,7 @@ class AddressComponent extends React.Component<Props, State> {
                                 inputValue={postcode}
                                 handleChangeInput={e => this.handleChange(e, 'postcode')}
                                 handleFocusInput={this.handleFieldFocus('postcode')}
+                                flexDirection={this.translate('directionFlex')}
                             />
                         </fieldset>
                     </div>
@@ -148,6 +151,7 @@ class AddressComponent extends React.Component<Props, State> {
                             options={dataCountries}
                             onSelect={this.selectCountry}
                             placeholder={this.translate('page.body.kyc.documents.country.placeholder')}
+                            alignText={this.translate('alignText')}
                         />
                     </div>
                     <UploadFile
@@ -213,7 +217,7 @@ class AddressComponent extends React.Component<Props, State> {
     private handleUploadScan = (uploadEvent, id) => {
         const allFiles: File[] = uploadEvent.target.files;
         const maxDocsCount = 1;
-        const additionalFileList = Array.from(allFiles).length > maxDocsCount ?  Array.from(allFiles).slice(0, maxDocsCount) : Array.from(allFiles);
+        const additionalFileList = Array.from(allFiles).length > maxDocsCount ? Array.from(allFiles).slice(0, maxDocsCount) : Array.from(allFiles);
 
         switch (id) {
             case 'fileScan':
@@ -290,7 +294,7 @@ class AddressComponent extends React.Component<Props, State> {
         this.props.sendAddresses(request);
     };
 
-    private translate = (key: string) => this.props.intl.formatMessage({id: key});
+    private translate = (key: string) => this.props.intl.formatMessage({ id: key });
 }
 
 const mapStateToProps = (state: RootState): ReduxProps => ({

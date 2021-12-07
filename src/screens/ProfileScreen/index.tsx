@@ -21,32 +21,33 @@ class ProfileComponent extends React.Component<RouterProps, IntlProps> {
     };
 
     public render() {
+        const lang = this.props.intl.locale
         return (
             <div className="container pg-profile-page">
                 <div className="pg-profile-page__details">
                     <div className="row pg-profile-page-header pg-profile-page-header-first">
-                        <h3 className="col-12">
-                            <FormattedMessage id="page.body.profile.header.account"/>
+                        <h3 className={`col-12 ${lang === 'fa' && 'text-right'}`}>
+                            <FormattedMessage id="page.body.profile.header.account" />
                         </h3>
                     </div>
-                    <div className="row">
+                    <div className="row" dir={`${lang === 'fa' && 'rtl'}`}>
                         <div className="col-12 col-md-6 mx-0">
-                            <div className="row col-12 mx-0">
-                                <ProfileAuthDetails/>
-                                <ReferralProgram/>
+                            <div className="row col-12 mx-0 ">
+                                <ProfileAuthDetails dir={`${lang === 'fa' && 'rtl'}`} />
+                                <ReferralProgram dir={`${lang === 'fa' && 'rtl'}`} />
                             </div>
                         </div>
                         <div className="col-12 col-md-6">
-                            <ProfileVerification/>
+                            <ProfileVerification dir={`${lang === 'fa' && 'rtl'}`} lang={lang} />
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <ProfileApiKeys/>
+                        <ProfileApiKeys dir={`${lang === 'fa' && 'rtl'}`} />
                     </div>
                     <div className="col-12">
-                        <ProfileAccountActivity/>
+                        <ProfileAccountActivity dir={`${lang === 'fa' && 'rtl'}`} />
                     </div>
                 </div>
             </div>

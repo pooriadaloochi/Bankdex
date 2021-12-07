@@ -48,11 +48,11 @@ class ProfileAccountActivityComponent extends React.Component<Props> {
 
     public render() {
         const { loading, userActivity } = this.props;
-        const emptyMsg = this.props.intl.formatMessage({id: 'page.noDataToShow'});
+        const emptyMsg = this.props.intl.formatMessage({ id: 'page.noDataToShow' });
 
         return (
             <div className="pg-profile-page__activity">
-                <div className="pg-profile-page-header">
+                <div className={`pg-profile-page-header ${this.props.intl.locale === 'fa' && 'flex-row-reverse'}`}>
                     <h3><FormattedMessage id="page.body.profile.header.accountActivity" /></h3>
                 </div>
                 <div className={`pg-history-elem ${userActivity.length ? '' : 'pg-history-empty'}`}>
@@ -87,11 +87,11 @@ class ProfileAccountActivityComponent extends React.Component<Props> {
 
     private getHeaders = () => {
         return [
-            this.props.intl.formatMessage({id: 'page.body.profile.header.accountActivity.content.date'}),
-            this.props.intl.formatMessage({id: 'page.body.profile.header.accountActivity.content.action'}),
-            this.props.intl.formatMessage({id: 'page.body.profile.header.accountActivity.content.result'}),
-            this.props.intl.formatMessage({id: 'page.body.profile.header.accountActivity.content.addressip'}),
-            this.props.intl.formatMessage({id: 'page.body.profile.header.accountActivity.content.userAgent'}),
+            this.props.intl.formatMessage({ id: 'page.body.profile.header.accountActivity.content.date' }),
+            this.props.intl.formatMessage({ id: 'page.body.profile.header.accountActivity.content.action' }),
+            this.props.intl.formatMessage({ id: 'page.body.profile.header.accountActivity.content.result' }),
+            this.props.intl.formatMessage({ id: 'page.body.profile.header.accountActivity.content.addressip' }),
+            this.props.intl.formatMessage({ id: 'page.body.profile.header.accountActivity.content.userAgent' }),
         ];
     };
 
@@ -100,7 +100,7 @@ class ProfileAccountActivityComponent extends React.Component<Props> {
             return [
                 localeDate(item.created_at, 'fullDate'),
                 this.getResultOfUserAction(item.action),
-                this.renderResult(this.props.intl.formatMessage({ id: `page.body.profile.content.result.${item.result}`})),
+                this.renderResult(this.props.intl.formatMessage({ id: `page.body.profile.content.result.${item.result}` })),
                 item.user_ip,
                 getUserAgent(item.user_agent),
             ];
@@ -109,9 +109,9 @@ class ProfileAccountActivityComponent extends React.Component<Props> {
 
     private renderResult(result: string) {
         const className = classnames({
-            'pg-profile-page__activity-result-succeed': result === this.props.intl.formatMessage({id: 'page.body.profile.content.result.succeed'}),
-            'pg-profile-page__activity-result-failed':  result === this.props.intl.formatMessage({id: 'page.body.profile.content.result.failed'}) ||
-                                                        result === this.props.intl.formatMessage({id: 'page.body.profile.content.result.denied'}),
+            'pg-profile-page__activity-result-succeed': result === this.props.intl.formatMessage({ id: 'page.body.profile.content.result.succeed' }),
+            'pg-profile-page__activity-result-failed': result === this.props.intl.formatMessage({ id: 'page.body.profile.content.result.failed' }) ||
+                result === this.props.intl.formatMessage({ id: 'page.body.profile.content.result.denied' }),
         });
 
         return <span className={className}>{result}</span>;
@@ -120,19 +120,19 @@ class ProfileAccountActivityComponent extends React.Component<Props> {
     private getResultOfUserAction = (value: string) => {
         switch (value) {
             case 'login':
-                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.login'});
+                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.login' });
             case 'logout':
-                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.logout'});
+                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.logout' });
             case 'request QR code for 2FA':
-                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.request2fa'});
+                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.request2fa' });
             case 'enable 2FA':
-                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.enable2fa'});
+                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.enable2fa' });
             case 'login::2fa':
-                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.login.2fa'});
+                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.login.2fa' });
             case 'request password reset':
-                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.requestPasswordReset'});
+                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.requestPasswordReset' });
             case 'password reset':
-                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.passwordReset'});
+                return this.props.intl.formatMessage({ id: 'page.body.profile.content.action.passwordReset' });
             default:
                 return value;
         }

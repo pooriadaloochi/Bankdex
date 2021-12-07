@@ -93,18 +93,18 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
 
         const modal = this.state.showChangeModal ? (
             <div className="cr-modal">
-              <form className="cr-email-form">
-                <div className="pg-change-password-screen">
-                   <ChangePassword
-                        handleChangePassword={this.props.changePassword}
-                        title={this.props.intl.formatMessage({ id: 'page.body.profile.header.account.content.password.change' })}
-                        closeModal={this.toggleChangeModal}
-                        configs={configs}
-                        currentPasswordEntropy={currentPasswordEntropy}
-                        fetchCurrentPasswordEntropy={this.props.fetchCurrentPasswordEntropy}
-                    />
-                </div>
-              </form>
+                <form className="cr-email-form">
+                    <div className="pg-change-password-screen">
+                        <ChangePassword
+                            handleChangePassword={this.props.changePassword}
+                            title={this.props.intl.formatMessage({ id: 'page.body.profile.header.account.content.password.change' })}
+                            closeModal={this.toggleChangeModal}
+                            configs={configs}
+                            currentPasswordEntropy={currentPasswordEntropy}
+                            fetchCurrentPasswordEntropy={this.props.fetchCurrentPasswordEntropy}
+                        />
+                    </div>
+                </form>
             </div>
         ) : null;
 
@@ -120,7 +120,7 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
                         </div>
                         {isUsernameEnabled() && user.username ? (
                             <div className="pg-profile-page__row">
-                                <h2>{this.props.intl.formatMessage({ id: 'page.body.profile.header.account.username'})}: {user.username}
+                                <h2>{this.props.intl.formatMessage({ id: 'page.body.profile.header.account.username' })}: {user.username}
                                 </h2>
                             </div>
                         ) : null}
@@ -128,8 +128,8 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
                 </div>
                 <div className="pg-profile-page__row">
                     <div>
-                        <div className="pg-profile-page__label">
-                            {this.props.intl.formatMessage({ id: 'page.body.profile.header.account.content.password'})}
+                        <div className={`pg-profile-page__label ${this.props.intl.locale === 'fa' && 'text-right'}`}>
+                            {this.props.intl.formatMessage({ id: 'page.body.profile.header.account.content.password' })}
                         </div>
                         <div>
                             ************
@@ -141,7 +141,7 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
                         size="lg"
                         variant="primary"
                     >
-                        {this.props.intl.formatMessage({ id: 'page.body.profile.header.account.content.password.button.change'})}
+                        {this.props.intl.formatMessage({ id: 'page.body.profile.header.account.content.password.button.change' })}
                     </Button>
                     {modal}
                 </div>
@@ -160,10 +160,10 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
     private renderProfileTwoFactor = () => {
         return (
             <React.Fragment>
-                <div className="pg-profile-page__row">
-                    <ProfileTwoFactorAuth is2faEnabled={this.props.user.otp} navigateTo2fa={this.handleNavigateTo2fa}/>
+                <div className={`pg-profile-page__row ${this.props.intl.locale === 'fa' && 'text-right'}`} >
+                    <ProfileTwoFactorAuth is2faEnabled={this.props.user.otp} navigateTo2fa={this.handleNavigateTo2fa} />
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         );
     };
 
@@ -172,7 +172,7 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
             <div className="cr-email-form__options-group">
                 <div className="cr-email-form__option">
                     <div className="cr-email-form__option-inner">
-                        <FormattedMessage id="page.body.profile.header.account.content.twoFactorAuthentication.modalHeader"/>
+                        <FormattedMessage id="page.body.profile.header.account.content.twoFactorAuthentication.modalHeader" />
                         <div className="cr-email-form__cros-icon" onClick={this.closeModal}>
                             <CloseIcon className="close-icon" />
                         </div>
@@ -222,7 +222,7 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
                     size="lg"
                     variant="primary"
                 >
-                    {this.props.intl.formatMessage({id: 'page.body.profile.header.account.content.twoFactorAuthentication.disable'})}
+                    {this.props.intl.formatMessage({ id: 'page.body.profile.header.account.content.twoFactorAuthentication.disable' })}
                 </Button>
             </div>
         );
@@ -247,7 +247,7 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
         this.setState({
             showModal: false,
         });
-      };
+    };
 
     private toggleChangeModal = () => {
         this.setState({

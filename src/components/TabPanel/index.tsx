@@ -152,12 +152,13 @@ export const TabPanel: React.FC<TabPanelProps> = ({
             );
         } else {
             return (
-                <div className={`cr-tab-panel__navigation-container-navigation ${flexDirection}`} role="tablist">
+                <div className={`cr-tab-panel__navigation-container-navigation
+                 ${flexDirection} ${lang === 'fa' && 'flex-row-reverse'}`} role="tablist">
                     {panels.map(renderTabPanel)}
                 </div>
             );
         }
-    }, [dropdownLabels, handleOrderTypeChange, isMobileDevice, panels, renderTabPanel, flexDirection]);
+    }, [dropdownLabels, handleOrderTypeChange, isMobileDevice, panels, renderTabPanel, flexDirection, lang]);
 
     const renderTabContent = React.useCallback(
         (tab: Tab, index: number) => {

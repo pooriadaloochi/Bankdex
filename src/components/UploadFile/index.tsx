@@ -60,7 +60,7 @@ const UploadFileComponent: React.FC<Props> = ({
                         <TipIcon />
                     </div>
                 ) : null}
-                {title ? <h3>{title}</h3> : null}
+                {title ? <h3 className="mr-3">{title}</h3> : null}
             </div>
         );
     }, [handleHoverTooltipIcon, handleToggleTooltipVisible, tipText, title]);

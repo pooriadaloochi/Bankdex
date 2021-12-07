@@ -275,6 +275,7 @@ export const fa = {
     'page.body.history.deposit.content.status.canceled': 'لغو شده',
     'page.body.history.deposit.content.status.rejected': 'رد شده',
     'page.body.history.deposit.content.status.skipped': 'از قلم انداخته شده',
+    'page.body.history.deposit.content.status.processing': 'در حال پردازش',
 
     'page.body.history.withdraw': 'تاریخچه برداشت ',
     'page.body.history.withdraw.header.id': 'شناسه',
@@ -313,7 +314,7 @@ export const fa = {
     'page.body.profile.header.account': 'پروفایل',
 
     'page.body.profile.header.account.content.password': 'رمز',
-    'page.body.profile.header.account.content.password.button.change': 'نوسان',
+    'page.body.profile.header.account.content.password.button.change': 'تغییر',
     'page.body.profile.header.account.content.password.old': 'رمز قبلی',
     'page.body.profile.header.account.content.password.new': 'رمز جدید',
     'page.body.profile.header.account.content.password.button.save': 'ذخیره',
