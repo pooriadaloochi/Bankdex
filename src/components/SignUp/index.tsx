@@ -122,11 +122,14 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
     handleFocusRefId,
     clickCheckBox,
     renderCaptcha,
+    lang
 }) => {
     const isMobileDevice = useSelector(selectMobileDeviceState);
     const history = useHistory();
     const { formatMessage } = useIntl();
-
+    if (history.location.pathname.includes('/signup')) {
+        document.getElementById('root').style.height = '100%';
+    }
     const disableButton = React.useMemo((): boolean => {
         if (!hasConfirmed || isLoading || !email.match(EMAIL_REGEX) || !password || !confirmPassword ||
             (isUsernameEnabled() && !username.match(USERNAME_REGEX))) {
@@ -171,6 +174,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                     classNameLabel="cr-sign-up-form__label"
                     classNameInput="cr-sign-up-form__input"
                     autoFocus={false}
+                    flexDirection={lang === 'fa' ? 'flex-row-reverse' : 'flex-row'}
                 />
                 {password ? (
                     <PasswordStrengthMeter
@@ -199,6 +203,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
         passwordErrorSecondSolved,
         passwordErrorThirdSolved,
         translate,
+        lang
     ]);
 
     const handleSubmitForm = React.useCallback(() => {
@@ -260,14 +265,14 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
         <form>
             <div className="cr-sign-up-form" onKeyPress={handleEnterPress}>
                 {!isMobileDevice && (
-                    <div className="cr-sign-up-form__options-group">
-                        <div className="cr-sign-up-form__option">
+                    <div className={`cr-sign-up-form__options-group ${lang === 'fa' && 'text-right'}`} >
+                        {/* <div className="cr-sign-up-form__option">
                             <div
                                 className="cr-sign-up-form__option-inner cr-sign-in-form__tab-signin"
                                 onClick={onSignIn}>
                                 {labelSignIn || 'Sign In'}
                             </div>
-                        </div>
+                        </div> */}
                         <div className="cr-sign-up-form__option">
                             <div className="cr-sign-up-form__option-inner __selected">{labelSignUp || 'Sign Up'}</div>
                         </div>
@@ -284,7 +289,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                             className={cr('cr-sign-up-form__group', {
                                 'cr-sign-up-form__group--focused': usernameFocused,
                                 'cr-sign-up-form__group--errored': username.length &&
-                                !usernameFocused && !username.match(USERNAME_REGEX),
+                                    !usernameFocused && !username.match(USERNAME_REGEX),
                             })}>
                             <CustomInput
                                 type="text"
@@ -297,6 +302,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                                 classNameLabel="cr-sign-up-form__label"
                                 classNameInput="cr-sign-up-form__input"
                                 autoFocus={!isMobileDevice}
+                                flexDirection={lang === 'fa' ? 'flex-row-reverse' : 'flex-row'}
                             />
                             {!username.match(USERNAME_REGEX) && !usernameFocused && username.length ? (
                                 <div className="cr-sign-up-form__error">
@@ -320,6 +326,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                             classNameLabel="cr-sign-up-form__label"
                             classNameInput="cr-sign-up-form__input"
                             autoFocus={!isUsernameEnabled() && !isMobileDevice}
+                            flexDirection={lang === 'fa' ? 'flex-row-reverse' : 'flex-row'}
                         />
                         {emailError && <div className="cr-sign-up-form__error">{emailError}</div>}
                     </div>
@@ -339,6 +346,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                             classNameLabel="cr-sign-up-form__label"
                             classNameInput="cr-sign-up-form__input"
                             autoFocus={false}
+                            flexDirection={lang === 'fa' ? 'flex-row-reverse' : 'flex-row'}
                         />
                         {confirmationError && <div className={'cr-sign-up-form__error'}>{confirmationError}</div>}
                     </div>
@@ -357,6 +365,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                             classNameLabel="cr-sign-up-form__label"
                             classNameInput="cr-sign-up-form__input"
                             autoFocus={false}
+                            flexDirection={lang === 'fa' ? 'flex-row-reverse' : 'flex-row'}
                         />
                     </div>
                     <Form className="cr-sign-up-form__group" onClick={clickCheckBox}>

@@ -8,7 +8,7 @@ import {
     MapStateToProps,
 } from 'react-redux';
 import { RouterProps } from 'react-router';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { IntlProps } from '../../';
 import { Captcha, EmailForm } from '../../components';
@@ -93,20 +93,34 @@ class ForgotPasswordComponent extends React.Component<Props, ForgotPasswordState
             reCaptchaSuccess,
             geetestCaptchaSuccess,
         } = this.props;
-
+        if (this.props.history.location.pathname.includes('/forgot_password')) {
+            document.getElementById('root').style.height = '100%';
+        }
         return (
             <div className="pg-forgot-password-screen" onKeyPress={this.handleEnterPress}>
+                <div className={"image_left"}>
+                    <img src='/images/background.jpeg' alt='BankDex' />
+                </div>
                 <div className="pg-forgot-password-screen__container">
+                    <div className="top_header_link">
+                        {this.props.intl.locale === "fa" ? 'ثبت نام نکرده اید ؟' : 'Haven’t registered?'}
+                        <Link to="/signup">
+                            &nbsp;
+                            {this.props.intl.locale === "fa" && ' الان '}
+                            {this.props.intl.formatMessage({ id: 'page.header.signUp' })}
+                            {this.props.intl.locale !== "fa" ? ' now' : ' کنید'}
+                        </Link>
+                    </div>
                     <div className="pg-forgot-password___form">
                         <EmailForm
                             OnSubmit={this.handleChangePassword}
-                            title={this.props.intl.formatMessage({id: 'page.forgotPassword'})}
-                            emailLabel={this.props.intl.formatMessage({id: 'page.forgotPassword.email'})}
-                            buttonLabel={this.props.intl.formatMessage({id: 'page.forgotPassword.send'})}
+                            title={this.props.intl.formatMessage({ id: 'page.forgotPassword' })}
+                            emailLabel={this.props.intl.formatMessage({ id: 'page.forgotPassword.email' })}
+                            buttonLabel={this.props.intl.formatMessage({ id: 'page.forgotPassword.send' })}
                             email={email}
                             emailFocused={emailFocused}
                             emailError={emailError}
-                            message={this.props.intl.formatMessage({id: 'page.forgotPassword.message'})}
+                            message={this.props.intl.formatMessage({ id: 'page.forgotPassword.message' })}
                             validateForm={this.validateForm}
                             handleInputEmail={this.handleInputEmail}
                             handleFieldFocus={this.handleFocusEmail}
@@ -116,6 +130,7 @@ class ForgotPasswordComponent extends React.Component<Props, ForgotPasswordState
                             reCaptchaSuccess={reCaptchaSuccess}
                             geetestCaptchaSuccess={geetestCaptchaSuccess}
                             captcha_response={captcha_response}
+                            lang={this.props.intl.locale}
                         />
                     </div>
                 </div>

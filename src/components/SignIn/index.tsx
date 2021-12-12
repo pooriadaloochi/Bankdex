@@ -9,6 +9,7 @@ import { captchaLogin } from '../../api';
 import { EMAIL_REGEX } from '../../helpers';
 import { GeetestCaptchaResponse } from '../../modules';
 import { selectMobileDeviceState } from '../../modules/public/globalSettings';
+// import { QRCode } from '../../components';
 
 export interface SignInProps {
     labelSignIn?: string;
@@ -73,11 +74,14 @@ const SignIn: React.FC<SignInProps> = ({
     geetestCaptchaSuccess,
     reCaptchaSuccess,
     renderCaptcha,
+    lang
 }) => {
     const isMobileDevice = useSelector(selectMobileDeviceState);
     const history = useHistory();
     const { formatMessage } = useIntl();
-
+    if (history.location.pathname.includes('/signin')) {
+        document.getElementById('root').style.height = '100%';
+    }
     const isValidForm = React.useCallback(() => {
         const isEmailValid = email.match(EMAIL_REGEX);
 
@@ -174,16 +178,18 @@ const SignIn: React.FC<SignInProps> = ({
                 {!isMobileDevice && (
                     <div className="cr-sign-in-form__options-group">
                         <div className="cr-sign-in-form__option">
-                            <div className="cr-sign-in-form__option-inner __selected">
+                            <div className={`cr-sign-in-form__option-inner __selected ${lang === 'fa' && 'text-right'}`}>
                                 {labelSignIn ? labelSignIn : 'Sign In'}
                             </div>
                         </div>
+                        {/* <QRCode /> */}
+
                         <div className="cr-sign-in-form__option">
-                            <div
+                            {/* <div
                                 className="cr-sign-in-form__option-inner cr-sign-in-form__tab-signup"
                                 onClick={onSignUp}>
                                 {labelSignUp ? labelSignUp : 'Sign Up'}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 )}
@@ -207,6 +213,7 @@ const SignIn: React.FC<SignInProps> = ({
                             handleFocusInput={() => handleFieldFocus('email')}
                             classNameLabel="cr-sign-in-form__label"
                             autoFocus={!isMobileDevice}
+                            flexDirection={lang === 'fa' ? 'flex-row-reverse' : 'flex-row'}
                         />
                         {emailError && <div className={'cr-sign-in-form__error'}>{emailError}</div>}
                     </div>
@@ -224,6 +231,7 @@ const SignIn: React.FC<SignInProps> = ({
                             handleFocusInput={() => handleFieldFocus('password')}
                             classNameLabel="cr-sign-in-form__label"
                             autoFocus={false}
+                            flexDirection={lang === 'fa' ? 'flex-row-reverse' : 'flex-row'}
                         />
                         {passwordError && <div className={'cr-sign-in-form__error'}>{passwordError}</div>}
                     </div>
@@ -237,7 +245,7 @@ const SignIn: React.FC<SignInProps> = ({
                             onClick={handleClick as any}
                             size="lg"
                             variant="primary">
-                            {isLoading ? 'Loading...' : labelSignIn ? labelSignIn : 'Sign in'}
+                            {isLoading ? 'Loading...' : labelSignIn ? labelSignIn : 'Log In in'}
                         </Button>
                     </div>
                     {!isMobileDevice && renderForgotButton}

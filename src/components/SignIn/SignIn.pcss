@@ -1,13 +1,13 @@
 .cr-sign-in-form {
   border-radius: 3px;
-  box-shadow: 0 10px 15px var(--shadow-color-level-2);
+  /* box-shadow: 0 10px 15px var(--shadow-color-level-2); */
   height: 500px;
-  max-width: 424px;
+  max-width: 480px;
   position: relative;
 
   &__options-group {
-    border-bottom: 2px solid var(--divider-color-level-2);
-    height: 58px;
+    /* border-bottom: 2px solid var(--divider-color-level-2); */
+    /* height: 58px; */
     width: 100%;
   }
 
@@ -18,29 +18,29 @@
     width: 50%;
 
     .__selected {
-      border-bottom: 2px solid var(--primary-cta-color);
+      /* border-bottom: 2px solid var(--primary-cta-color); */
       color: var(--primary-text-color);
     }
   }
 
   &__option-inner {
     background: transparent;
-    cursor: pointer;
-    font-size: 14px;
+    /* cursor: pointer; */
+    font-size: 24px;
     font-style: normal;
     font-weight: 500;
     height: 58px;
     letter-spacing: 0.0357143em;
     line-height: 58px;
-    margin: 0 auto;
-    text-align: center;
+    margin: 0 1.5rem;
+    /* text-align: left; */
     text-transform: uppercase;
     width: 75%;
   }
 
   &__form-content {
     box-sizing: border-box;
-    padding: var(--email-form-padding) var(--email-form-padding) 12px;
+    padding: var(--email-form-padding) var(--email-form-padding);
   }
 
   & > * {
@@ -60,7 +60,7 @@
 
   &__group {
     background: transparent;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     position: relative;
   }
 
@@ -73,6 +73,7 @@
   &__group--focused {
     .cr-sign-in-form__label {
       color: var(--input-legend-color-active);
+      border-radius:3px;
     }
   }
 

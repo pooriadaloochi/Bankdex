@@ -198,8 +198,8 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
         this.props.fetchConfigs();
         if (
             !(location.pathname.includes('/magic-link')
-            || location.pathname.includes('/404')
-            || location.pathname.includes('/500'))
+                || location.pathname.includes('/404')
+                || location.pathname.includes('/500'))
         ) {
             switch (platformAccessStatus) {
                 case 'restricted':
@@ -227,8 +227,8 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
     public componentWillReceiveProps(nextProps: LayoutProps) {
         if (
             !(nextProps.location.pathname.includes('/magic-link')
-            || nextProps.location.pathname.includes('/404')
-            || nextProps.location.pathname.includes('/500'))
+                || nextProps.location.pathname.includes('/404')
+                || nextProps.location.pathname.includes('/500'))
             || this.props.platformAccessStatus !== nextProps.platformAccessStatus
         ) {
             switch (nextProps.platformAccessStatus) {
@@ -285,7 +285,7 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
         clearInterval(this.walletsFetchInterval);
     }
 
-    public translate = (key: string) => this.props.intl.formatMessage({id: key});
+    public translate = (key: string) => this.props.intl.formatMessage({ id: key });
 
     public render() {
         const {
@@ -340,7 +340,7 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
         }
 
         return (
-            <div className={`container-fluid pg-layout ${tradingCls} pb-3`}>
+            <div className={`container-fluid pg-layout ${tradingCls} h-100`}>
                 <Switch>
                     <Route exact={true} path="/magic-link" component={MagicLink} />
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/signin" component={SignInScreen} />
@@ -362,7 +362,7 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/security/2fa" component={ProfileTwoFactorAuthScreen} />
                     <Route path="**"><Redirect to="/trading/" /></Route>
                 </Switch>
-                {isLoggedIn && <WalletsFetch/>}
+                {isLoggedIn && <WalletsFetch />}
                 {isShownExpSessionModal && this.handleRenderExpiredSessionModal()}
             </div>
         );

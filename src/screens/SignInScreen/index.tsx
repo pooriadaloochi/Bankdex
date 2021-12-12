@@ -3,7 +3,7 @@ import * as React from 'react';
 import { injectIntl } from 'react-intl';
 import { connect, MapDispatchToPropsFunction, MapStateToProps } from 'react-redux';
 import { RouterProps } from 'react-router';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { IntlProps } from '../../';
 import { captchaLogin } from '../../api';
@@ -81,7 +81,7 @@ class SignIn extends React.Component<Props, SignInState> {
     public componentDidMount() {
         setDocumentTitle('Sign In');
         this.props.signInError({ code: 0, message: [''] });
-        this.props.signUpRequireVerification({requireVerification: false});
+        this.props.signUpRequireVerification({ requireVerification: false });
     }
 
     public componentWillReceiveProps(nextProps: Props) {
@@ -116,7 +116,21 @@ class SignIn extends React.Component<Props, SignInState> {
 
         return (
             <div className="pg-sign-in-screen">
-                <div className={className}>{require2FA ? this.render2FA() : this.renderSignInForm()}</div>
+                <div className={"image_left"}>
+                    <img src='/images/background.jpeg' alt='BankDex' />
+                </div>
+                <div className={className} dir={this.props.intl.locale === "fa" && 'rtl'}>
+                    <div className="top_header_link">
+                        {this.props.intl.locale === "fa" ? 'ثبت نام نکرده اید ؟' : 'Haven’t registered?'}
+                        <Link to="/signup">
+                            &nbsp;
+                            {this.props.intl.locale === "fa" && ' الان '}
+                            {this.props.intl.formatMessage({ id: 'page.header.signUp' })}
+                            {this.props.intl.locale !== "fa" ? ' now' : ' کنید'}
+                        </Link>
+                    </div>
+                    {require2FA ? this.render2FA() : this.renderSignInForm()}
+                </div>
             </div>
         );
     }
@@ -161,6 +175,7 @@ class SignIn extends React.Component<Props, SignInState> {
                 reCaptchaSuccess={reCaptchaSuccess}
                 geetestCaptchaSuccess={geetestCaptchaSuccess}
                 captcha_response={captcha_response}
+                lang={this.props.intl.locale}
             />
         );
     };
@@ -183,6 +198,7 @@ class SignIn extends React.Component<Props, SignInState> {
                 handleOtpCodeChange={this.handleChangeOtpCode}
                 handleChangeFocusField={this.handle2faFocus}
                 handleClose2fa={this.handleClose}
+                lang={this.props.intl.locale}
             />
         );
     };
