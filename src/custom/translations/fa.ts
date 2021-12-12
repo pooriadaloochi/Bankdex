@@ -1,7 +1,8 @@
-import {nationalitiesNames} from '../../translations/nationalities';
 import {customNationalitiesNames} from './nationalities';
+import { nationalitiesNames } from '../../translations/nationalities';
+import { LangType } from '../../translations';
 
-export const fa = {
+export const fa: LangType = {
     'page.header.navbar.signIn': 'ورود',
     'page.header.navbar.trade': 'معامله',
     'page.header.navbar.wallets': '  کیف پول ',

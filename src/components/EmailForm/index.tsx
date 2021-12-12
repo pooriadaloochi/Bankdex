@@ -47,6 +47,7 @@ const EmailForm = React.memo((props: EmailFormProps) => {
         captchaType,
         geetestCaptchaSuccess,
         reCaptchaSuccess,
+        lang
     } = props;
 
     const handleCancel = () => {
@@ -100,7 +101,7 @@ const EmailForm = React.memo((props: EmailFormProps) => {
 
     return (
         <form>
-            <div className={emailFormClass}>
+            <div className={emailFormClass} dir={lang === 'fa' && 'rtl'}>
                 {!isMobileDevice && (
                     <div className="cr-email-form__options-group">
                         <div className="cr-email-form__option">
@@ -114,7 +115,7 @@ const EmailForm = React.memo((props: EmailFormProps) => {
                     </div>
                 )}
                 <div className="cr-email-form__form-content">
-                    <div className="cr-email-form__header">{message}</div>
+                    <div className={`cr-email-form__header ${lang === 'fa' && 'text-right'}`}>{message}</div>
                     <div className={emailGroupClass}>
                         <CustomInput
                             type="email"

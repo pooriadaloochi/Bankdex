@@ -65,7 +65,13 @@ class Head extends React.Component<Props> {
         }
 
         return (
-            <header className={`pg-header`}>
+            <header className={`pg-header`} style={{
+                display:
+                    `${(!location.pathname.includes('/signin') && !location.pathname.includes('/signup')
+                        && !location.pathname.includes('/forgot_password'))
+                        ? 'block' : 'none'}`
+            }}>
+
                 <div className={`pg-container pg-header__content ${tradingCls}`}>
                     {/* <div
                         className={`pg-sidebar__toggler ${mobileWallet && 'pg-sidebar__toggler-mobile'}`}
@@ -90,7 +96,7 @@ class Head extends React.Component<Props> {
                     </div>
 
                     <div className="d-flex justify-content-end align-items-center mr-2">
-                        <Sidebar />
+                        <Sidebar openSidebar={this.openSidebar} />
                         <NavBar onLinkChange={this.closeMenu} />
                     </div>
                 </div>
@@ -143,7 +149,7 @@ class Head extends React.Component<Props> {
     };
 
     private redirectToLanding = () => {
-        this.props.toggleSidebar(true);
+        this.props.toggleSidebar(false);
         this.props.history.push(`${showLanding() ? '/' : '/trading'}`);
     };
 

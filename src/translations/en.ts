@@ -540,7 +540,7 @@ export const en = {
     'page.footer.legalDocuments': 'Legal documents',
     'page.footer.faq': 'FAQ',
 
-    'page.header.signIn': 'Sign In',
+    'page.header.signIn': 'Log In',
     'page.header.signIn.email': 'Email',
     'page.header.signIn.password': 'Password',
     'page.header.signIn.password.message.error': 'Password is invalid',
