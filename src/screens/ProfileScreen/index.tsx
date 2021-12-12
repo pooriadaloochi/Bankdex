@@ -23,7 +23,7 @@ class ProfileComponent extends React.Component<RouterProps, IntlProps> {
     public render() {
         const lang = this.props.intl.locale
         return (
-            <div className="container pg-profile-page">
+            <div className="container-fluid pg-profile-page">
                 <div className="pg-profile-page__details">
                     <div className="row pg-profile-page-header pg-profile-page-header-first">
                         <h3 className={`col-12 ${lang === 'fa' && 'text-right'}`}>
