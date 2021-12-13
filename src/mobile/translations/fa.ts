@@ -1,4 +1,6 @@
-export const ru = {
+import { LangType } from '../../translations';
+
+export const fa: LangType = {
     'page.mobile.header.signIn': 'Log In',
     'page.mobile.footer.home': 'Home',
     'page.mobile.footer.orders': 'Orders',
