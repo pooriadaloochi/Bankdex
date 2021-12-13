@@ -42,6 +42,7 @@ import {
     selectSignUpRequireVerification,
     signUp,
 } from '../../modules';
+import { store } from './../../store'
 
 interface ReduxProps {
     configs: Configs;
@@ -170,20 +171,24 @@ class SignUp extends React.Component<Props> {
 
         const className = cx('pg-sign-up-screen__container', { loading });
 
+        const { isMobileDevice } = store.getState().public.colorTheme;
         return (
-            <div className="pg-sign-up-screen">
+            <div className="pg-sign-up-screen">{!isMobileDevice
+                &&
                 <div className={"image_left"}>
                     <img src='/images/background.jpeg' alt='BankDex' />
-                </div>
+                </div>}
                 <div className={className} dir={this.props.intl.locale === "fa" && 'rtl'}>
-                    <div className="top_header_link">
-                        {this.props.intl.locale === "fa" ?
-                            'از قبل حساب کاربری دارید ؟' : 'Already have an account?'}
-                        <Link to="/signin">
-                            &nbsp;
-                            {this.props.intl.formatMessage({ id: 'page.header.signIn' })}
-                        </Link>
-                    </div>
+                    {!isMobileDevice
+                        &&
+                        <div className="top_header_link">
+                            {this.props.intl.locale === "fa" ?
+                                'از قبل حساب کاربری دارید ؟' : 'Already have an account?'}
+                            <Link to="/signin">
+                                &nbsp;
+                                {this.props.intl.formatMessage({ id: 'page.header.signIn' })}
+                            </Link>
+                        </div>}
                     <SignUpForm
                         labelSignIn={this.props.intl.formatMessage({ id: 'page.header.signIn' })}
                         labelSignUp={this.props.intl.formatMessage({ id: 'page.header.signUp' })}
@@ -437,7 +442,7 @@ class SignUp extends React.Component<Props> {
                 <Button
                     block={true}
                     onClick={this.closeModal}
-                    size="lg"
+                    size="md"
                     variant="primary"
                 >
                     {this.props.intl.formatMessage({ id: 'page.header.signUp.modal.footer' })}
