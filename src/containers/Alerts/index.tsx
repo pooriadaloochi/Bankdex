@@ -42,6 +42,7 @@ class AlertComponent extends React.Component<Props> {
                         <div onClick={() => this.deleteAlertByIndex(index)}>
                             <Alert
                                 // @ts-ignore
+                                dismissible
                                 variant={w.type === 'error' ? 'danger' : w.type}
                             >
                                 {this.translate(msg)}
