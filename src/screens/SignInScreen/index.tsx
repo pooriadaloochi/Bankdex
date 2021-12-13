@@ -30,6 +30,7 @@ import {
     signUpRequireVerification,
 } from '../../modules';
 import { CommonError } from '../../modules/types';
+import { store } from './../../store'
 
 interface ReduxProps {
     error?: CommonError;
@@ -113,14 +114,16 @@ class SignIn extends React.Component<Props, SignInState> {
         const { loading, require2FA } = this.props;
 
         const className = cx('pg-sign-in-screen__container', { loading });
-
+        const { isMobileDevice } = store.getState().public.colorTheme;
         return (
             <div className="pg-sign-in-screen">
-                <div className={"image_left"}>
-                    <img src='/images/background.jpeg' alt='BankDex' />
-                </div>
+                {!isMobileDevice
+                    && <div className={"image_left"}>
+                        <img src='/images/background.jpeg' alt='BankDex' />
+                    </div>
+                }
                 <div className={className} dir={this.props.intl.locale === "fa" && 'rtl'}>
-                    <div className="top_header_link">
+                    {!isMobileDevice && <div className="top_header_link">
                         {this.props.intl.locale === "fa" ? 'ثبت نام نکرده اید ؟' : 'Haven’t registered?'}
                         <Link to="/signup">
                             &nbsp;
@@ -128,7 +131,7 @@ class SignIn extends React.Component<Props, SignInState> {
                             {this.props.intl.formatMessage({ id: 'page.header.signUp' })}
                             {this.props.intl.locale !== "fa" ? ' now' : ' کنید'}
                         </Link>
-                    </div>
+                    </div>}
                     {require2FA ? this.render2FA() : this.renderSignInForm()}
                 </div>
             </div>

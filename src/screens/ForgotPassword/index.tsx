@@ -32,6 +32,7 @@ import {
     selectRecaptchaSuccess,
 } from '../../modules';
 import { CommonError } from '../../modules/types';
+import { store } from './../../store'
 
 interface ReduxProps {
     success: boolean;
@@ -96,21 +97,27 @@ class ForgotPasswordComponent extends React.Component<Props, ForgotPasswordState
         if (this.props.history.location.pathname.includes('/forgot_password')) {
             document.getElementById('root').style.height = '100%';
         }
+        const { isMobileDevice } = store.getState().public.colorTheme;
         return (
             <div className="pg-forgot-password-screen" onKeyPress={this.handleEnterPress}>
-                <div className={"image_left"}>
-                    <img src='/images/background.jpeg' alt='BankDex' />
-                </div>
-                <div className="pg-forgot-password-screen__container">
-                    <div className="top_header_link">
-                        {this.props.intl.locale === "fa" ? 'ثبت نام نکرده اید ؟' : 'Haven’t registered?'}
-                        <Link to="/signup">
-                            &nbsp;
-                            {this.props.intl.locale === "fa" && ' الان '}
-                            {this.props.intl.formatMessage({ id: 'page.header.signUp' })}
-                            {this.props.intl.locale !== "fa" ? ' now' : ' کنید'}
-                        </Link>
+                {!isMobileDevice
+                    && <div className={"image_left"}>
+                        <img src='/images/background.jpeg' alt='BankDex' />
                     </div>
+                }
+                <div className="pg-forgot-password-screen__container">
+                    {!isMobileDevice
+                        &&
+                        <div className="top_header_link">
+                            {this.props.intl.locale === "fa" ? 'ثبت نام نکرده اید ؟' : 'Haven’t registered?'}
+                            <Link to="/signup">
+                                &nbsp;
+                                {this.props.intl.locale === "fa" && ' الان '}
+                                {this.props.intl.formatMessage({ id: 'page.header.signUp' })}
+                                {this.props.intl.locale !== "fa" ? ' now' : ' کنید'}
+                            </Link>
+                        </div>
+                    }
                     <div className="pg-forgot-password___form">
                         <EmailForm
                             OnSubmit={this.handleChangePassword}
