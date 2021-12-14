@@ -76,7 +76,7 @@ class SidebarContainer extends React.Component<Props, State> {
         return (
             <div className={sidebarClassName}>
                 {/* <div className="btn-group pg-navbar__header-settings__account-dropdown dropdown-menu-language-container"> */}
-                {pgRoutes(isLoggedIn)?.filter(el => !address.includes(el[1]) && el[1] !== '/history')?.
+                {pgRoutes(isLoggedIn)?.filter(el => !address.includes(el[1]) && el[1] !== '/history' && el[1] !== '/activity')?.
                     map(this.renderNavItems(address))}
                 {this.renderProfileLink()}
                 <Dropdown>
@@ -135,8 +135,8 @@ class SidebarContainer extends React.Component<Props, State> {
         const handleLinkChange = () => this.props.toggleSidebar(false);
         const address = location ? location.pathname : '';
         // const isActive = address === '/profile';
-        const handleShowMenu = () => document.getElementById('menuModal').style.display = 'block';
-        const handleHideMenu = () => document.getElementById('menuModal').style.display = 'none';
+        // const handleShowMenu = () => document.getElementById('menuModal').style.display = 'block';
+        // const handleHideMenu = () => document.getElementById('menuModal').style.display = 'none';
 
         // const iconClassName = classnames('pg-sidebar-wrapper-nav-item-img', {
         // 'pg-sidebar-wrapper-nav-item-img--active': isActive,
@@ -147,8 +147,8 @@ class SidebarContainer extends React.Component<Props, State> {
             <div className="pg-sidebar-wrapper-nav-item mr-4">
                 <Link to="/profile" onClick={handleLinkChange}>
                     <button className="pg-sidebar-wrapper-nav-item rounded-circle 
-                    w-100 h-100 border border-light hoverMenu"
-                        onMouseOver={handleShowMenu} onMouseOut={handleHideMenu}>
+                    w-100 h-100 border border-light hoverMenu">
+                        {/* onMouseOver={handleShowMenu} onMouseOut={handleHideMenu} */}
                         {/* <ProfileIcon className={iconClassName} /> */}
                         PO
                         {/* <p className="pg-sidebar-wrapper-profile-link-text">
@@ -168,9 +168,10 @@ class SidebarContainer extends React.Component<Props, State> {
                                     </Link >
                                 </div>
                             </div>
+                            <div class="divider mt-2"></div>
                             <div className="pg-sidebar-wrapper-logout historyButton">
-                                <div className="pg-sidebar-wrapper-logout-link px-4">
-                                    {pgRoutes(isLoggedIn)?.filter(el => el[1] === '/history')?.
+                                <div className="pg-sidebar-wrapper-logout-link d-flex flex-column px-4">
+                                    {pgRoutes(isLoggedIn)?.filter(el => (el[1] === '/history' || el[1] === '/activity'))?.
                                         map(this.renderNavItems(address))}
                                 </div>
                             </div>

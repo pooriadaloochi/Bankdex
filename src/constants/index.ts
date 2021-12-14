@@ -2,10 +2,11 @@ export const PG_TITLE_PREFIX = 'BankDex';
 
 export const pgRoutes = (isLoggedIn: boolean, isLight?: boolean): string[][] => {
     const routes = [
-        ['page.header.navbar.trade', '/trading/', `trade${isLight ? 'Light' : ''}`],
-        ['page.header.navbar.wallets', '/wallets', `wallets${isLight ? 'Light' : ''}`],
         ['page.header.navbar.openOrders', '/orders', `orders${isLight ? 'Light' : ''}`],
+        ['page.header.navbar.wallets', '/wallets', `wallets${isLight ? 'Light' : ''}`],
+        ['page.header.navbar.trade', '/trading/', `trade${isLight ? 'Light' : ''}`],
         ['page.header.navbar.history', '/history', `history${isLight ? 'Light' : ''}`],
+        ['page.header.navbar.activity', '/activity', `activity${isLight ? 'Light' : ''}`],
         // ['page.header.navbar.api', '/docs', `api${isLight ? 'Light' : ''}`],
     ];
     const routesUnloggedIn = [

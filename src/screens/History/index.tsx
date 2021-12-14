@@ -61,6 +61,7 @@ class History extends React.Component<Props, State> {
                         currentTabIndex={this.state.currentTabIndex}
                         onCurrentTabChange={this.onCurrentTabChange}
                         lang={this.props.intl.locale}
+                        langHistory={this.props.intl.locale}
                     />
                 </div>
             </div>

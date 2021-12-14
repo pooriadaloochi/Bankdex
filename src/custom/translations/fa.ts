@@ -8,6 +8,7 @@ export const fa: LangType = {
     'page.header.navbar.wallets': '  کیف پول ',
     'page.header.navbar.openOrders': 'سفارشات',
     'page.header.navbar.history': 'تاریخچه',
+    'page.header.navbar.activity': 'فعالیت',
 
     'page.header.navbar.profile': 'پروفایل',
     'page.header.navbar.logout': 'خروج',

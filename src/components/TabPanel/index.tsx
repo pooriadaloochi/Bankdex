@@ -75,6 +75,7 @@ export const TabPanel: React.FC<TabPanelProps> = ({
     onTabChange,
     lang,
     flexDirection,
+    langHistory
 }) => {
     const dropdownLabels = React.useCallback(() => {
         if (!panels.length) {
@@ -188,7 +189,8 @@ export const TabPanel: React.FC<TabPanelProps> = ({
             className={classnames('cr-tab-panel', {
                 'cr-tab-panel__fixed': fixed,
             })}>
-            <div className={`cr-tab-panel__navigation-container draggable-container ${lang === 'fa' ? 'flex-row' : flexDirection}`}>
+            <div className={`cr-tab-panel__navigation-container draggable-container ${lang === 'fa' ? 'flex-row' : flexDirection}`}
+                dir={langHistory === 'fa' && 'rtl'}>
                 {tabPanelRender()}
                 {optionalHead && <div className={`cr-tab-panel__optinal-head ${lang === 'fa' && 'flex-row-reverse'}`}>{optionalHead}</div>}
             </div>
