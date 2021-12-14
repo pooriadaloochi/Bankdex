@@ -81,8 +81,9 @@ import {
     TradingScreen,
     VerificationScreen,
     WalletsScreen,
+    // ActivityScreen
 } from '../../screens';
-
+import { ActivityScreen } from '../../screens/ActivityScreen'
 interface ReduxProps {
     colorTheme: string;
     configsLoading: boolean;
@@ -359,6 +360,7 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/confirm" component={ConfirmScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/profile" component={ProfileScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets" component={WalletsScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/activity" component={ActivityScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/security/2fa" component={ProfileTwoFactorAuthScreen} />
                     <Route path="**"><Redirect to="/trading/" /></Route>
                 </Switch>
