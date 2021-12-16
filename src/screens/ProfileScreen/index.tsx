@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { IntlProps } from '../../';
 import { ProfileApiKeys, ProfileVerification } from '../../containers';
-import { ProfileAccountActivity } from '../../containers/ProfileAccountActivity';
+// import { ProfileAccountActivity } from '../../containers/ProfileAccountActivity';
 import { ProfileAuthDetails } from '../../containers/ProfileAuthDetails';
 import { ReferralProgram } from '../../containers/ReferralProgram';
 import { setDocumentTitle } from '../../helpers';
@@ -46,9 +46,9 @@ class ProfileComponent extends React.Component<RouterProps, IntlProps> {
                     <div className="col-12">
                         <ProfileApiKeys dir={`${lang === 'fa' && 'rtl'}`} />
                     </div>
-                    <div className="col-12">
+                    {/* <div className="col-12">
                         <ProfileAccountActivity dir={`${lang === 'fa' && 'rtl'}`} />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );
