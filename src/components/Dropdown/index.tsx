@@ -88,7 +88,8 @@ class DropdownComponent extends React.PureComponent<DropdownComponentProps & {},
 
     private renderElem = (elem: DropdownElem, index: number) => {
         return (
-            <Dropdown.Item className={`${this.props.translateStyle("alignText")}`}
+            <Dropdown.Item
+                // className={`${this.props.translateStyle("alignText")}`}
                 key={index}
                 onSelect={(eventKey: any, e?: React.SyntheticEvent<unknown>) => this.handleSelect(elem, index)}
             >
