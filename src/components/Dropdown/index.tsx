@@ -72,7 +72,9 @@ class DropdownComponent extends React.PureComponent<DropdownComponentProps & {},
         return (
             <div className={cx}>
                 <Dropdown>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic" dir={`${this.props.translateStyle("direction")}`}>
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic"
+                    //  dir={`${this.props.translateStyle("direction")}`}
+                    >
                         {selected}
                         <ChevronIcon className="cr-dropdown__arrow" />
                     </Dropdown.Toggle>
