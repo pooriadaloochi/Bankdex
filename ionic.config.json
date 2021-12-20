@@ -1,5 +1,5 @@
 {
-  "name": "Baseapp",
+  "name": "BankDex",
   "integrations": {
     "capacitor": {}
   },
