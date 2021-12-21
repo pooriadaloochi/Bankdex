@@ -84,11 +84,11 @@ const getLayouts = () => {
         minMarketsHeight;
     return {
         lg: [
-            { x: 20, y: 0, w: 4, h: orderHeight, i: '1', minH: orderHeight, maxH: orderHeight, minW: 4, isDraggable: isDraggable, isResizable: isResizable },
-            { x: 4, y: 0, w: 12, h: tradingChartHeight, i: '2', minH: minTradingChartHeight, minW: 5, isDraggable: isDraggable, isResizable: isResizable },
+            { x: 20, y: 0, w: 4, h: orderHeight-0.5, i: '1', minH: orderHeight, maxH: orderHeight, minW: 4, isDraggable: isDraggable, isResizable: isResizable },
+            { x: 4, y: 0, w: 12, h: tradingChartHeight+1, i: '2', minH: minTradingChartHeight, minW: 5, isDraggable: isDraggable, isResizable: isResizable },
             { x: 16, y: 0, w: 4, h: orderBookHeight, i: '3', minH: minOrderBookHeight, minW: 4, isDraggable: isDraggable, isResizable: isResizable },
-            { x: 4, y: 40, w: 12, h: tradingChartHeight+0.4, i: '4', minH: minTradingChartHeight, minW: 5, isDraggable: isDraggable, isResizable: isResizable },
-            { x: 20, y: 40, w: 4, h: tradingChartHeight-1, i: '5', minH: minTradingChartHeight, minW: 5, isDraggable: isDraggable, isResizable: isResizable },
+            { x: 4, y: 40, w: 12, h: tradingChartHeight-0.4, i: '4', minH: minTradingChartHeight, minW: 5, isDraggable: isDraggable, isResizable: isResizable },
+            { x: 20, y: 40, w: 4, h: tradingChartHeight-0.5, i: '5', minH: minTradingChartHeight, minW: 5, isDraggable: isDraggable, isResizable: isResizable },
             { x: 0, y: 0, w: 4, h: recentTradesHeight, i: '6', minH: minRecentTradesHeight, minW: 4, isDraggable: isDraggable, isResizable: isResizable },
             { x: 20, y: 40, w: 4, h: marketsHeight, i: '7', minH: minMarketsHeight, minW: 4, isDraggable: isDraggable, isResizable: isResizable },
         ],
