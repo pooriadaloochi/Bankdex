@@ -1,15 +1,19 @@
 .cr-tab-panel {
   display: flex;
   flex-direction: column;
+  border-right:1px solid var(--wallets-item-border-color);
+  border-bottom:1px solid var(--wallets-item-border-color);
+  flex:1;
 
   .cr-tab {
     color: var(--base-2);
-    font-size: 1.14em;
+    font-size: 1.4em ;
     padding: var(--gap) calc(var(--gap) * 4);
     position: relative;
     text-align: center;
     text-transform: uppercase;
     transition: 0.1s;
+    flex:1;
 
     &__fixed {
       & .cr-tab {

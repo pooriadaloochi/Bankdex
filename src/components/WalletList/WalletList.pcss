@@ -3,5 +3,41 @@
   box-sizing: border-box;
   list-style: none;
   overflow-y: auto;
-  padding: 0;
+  /* padding: 0; */
+  border:1px solid var(--divider-color-level-2);
+  border-collapse: collapse;
+  /* tr:nth-child(even) {
+    background-color: var(--tab-panel-background-color);
+  } */
+  &-header{
+    border-bottom:1px solid var(--divider-color-level-2);
+    margin:1rem 0;
+  }
+  tr{
+    &:hover{
+      background: var(--wallets-item-background-color-active);
+    }
+  }
+}
+.actionTable{
+  display:flex;
+  justify-content:space-evenly;
+  *{
+    color:var(--primary-cta-color) !important;
+    &:hover{
+      color:var(--input-text-color) !important;
+      transition:.4s;
+    }
+
+  }
+}
+.active{
+  background-color: var(--wallets-item-background-color-active);
+  color: var(--wallets-item-font-active);
+
+    img {
+      background: transparent;
+      opacity: 1 !important;
+      width: 32px;
+    }
 }

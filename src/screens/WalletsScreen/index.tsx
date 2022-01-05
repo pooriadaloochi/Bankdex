@@ -20,7 +20,7 @@ import { Withdraw, WithdrawProps } from '../../containers';
 import { ModalWithdrawConfirmation } from '../../containers/ModalWithdrawConfirmation';
 import { ModalWithdrawSubmit } from '../../containers/ModalWithdrawSubmit';
 import { EstimatedValue } from '../../containers/Wallets/EstimatedValue';
-import { WalletHistory } from '../../containers/Wallets/History';
+// import { WalletHistory } from '../../containers/Wallets/History';
 import { setDocumentTitle } from '../../helpers';
 import {
     alertPush,
@@ -47,8 +47,11 @@ import {
     walletsData,
     walletsFetch,
     walletsWithdrawCcyFetch,
+    Market,
+    selectMarkets,
+    setCurrentMarket,
 } from '../../modules';
-
+import { incrementalOrderBook } from '../../api';
 
 interface ReduxProps {
     user: User;
@@ -61,6 +64,7 @@ interface ReduxProps {
     beneficiariesDeleteSuccess: boolean;
     beneficiariesAddSuccess: boolean;
     currencies: Currency[];
+    markets: Market[];
 }
 
 interface DispatchProps {
@@ -72,6 +76,7 @@ interface DispatchProps {
     fetchSuccess: typeof alertPush;
     setMobileWalletUi: typeof setMobileWalletUi;
     currenciesFetch: typeof currenciesFetch;
+    setCurrentMarket: typeof setCurrentMarket;
 }
 
 const defaultBeneficiary: Beneficiary = {
@@ -120,7 +125,7 @@ type Props = ReduxProps & DispatchProps & RouterProps & IntlProps & OwnProps;
 class WalletsComponent extends React.Component<Props, WalletsState> {
     constructor(props: Props) {
         super(props);
-
+        this.myRef = React.createRef();
         this.state = {
             activeIndex: 0,
             selectedWalletIndex: -1,
@@ -230,15 +235,23 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                         {walletsLoading && <Spinner animation="border" variant="primary" />}
                     </div>
                     <div className={`row no-gutters pg-wallet__tabs-content ${!historyList.length && 'pg-wallet__tabs-content-height'}`}>
-                        <div className={`col-md-5 col-sm-12 col-12 ${mobileWalletChosen && 'd-none d-md-block'}`}>
+                        <div className={`col-sm-12 col-12 ${mobileWalletChosen && 'd-none d-md-block'}`}>
                             <WalletList
                                 onWalletSelectionChange={this.onWalletSelectionChange}
                                 walletItems={filteredWallets || formattedWallets}
                                 activeIndex={this.state.activeIndex}
                                 onActiveIndexChange={this.onActiveIndexChange}
+                                panels={this.renderTabs()}
+                                onTabChange={(_, label) => this.onTabChange(label)}
+                                currentTabIndex={currentTabIndex}
+                                onCurrentTabChange={this.onCurrentTabChange}
+                                moveScroll={this.myRef}
+                                setMarkets={this.currencyPairSelectHandler}
+
                             />
                         </div>
-                        <div className={`pg-wallet__tabs col-md-7 col-sm-12 col-12 ${!mobileWalletChosen && 'd-none d-md-block'}`}>
+                        <div className={`pg-wallet__tabs col-sm-12 col-12 ${!mobileWalletChosen && 'd-none d-md-block'}`}
+                            ref={this.myRef}>
                             <TabPanel
                                 panels={this.renderTabs()}
                                 onTabChange={(_, label) => this.onTabChange(label)}
@@ -266,7 +279,20 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
             </React.Fragment>
         );
     }
+    private currencyPairSelectHandler = (value) => {
 
+        const { markets } = this.props;
+        const key = value?.target?.id?.toLowerCase();
+
+        const marketToSet = markets.find(el => el.base_unit === key);
+        // this.props.setCurrentPrice(0);
+        if (marketToSet) {
+            this.props.setCurrentMarket(marketToSet);
+            if (!incrementalOrderBook()) {
+                this.props.depthFetch(marketToSet);
+            }
+        }
+    };
     private onTabChange = label => this.setState({ tab: label });
     private onActiveIndexChange = index => this.setState({ activeIndex: index });
     private onCurrentTabChange = index => this.setState({ currentTabIndex: index });
@@ -384,7 +410,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                         wallet={wallet}
                         flexDirection={this.translate('directionFlex')}
                     />
-                    {wallet.currency && <WalletHistory label="deposit" type="deposits" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />}
+                    {/* {wallet.currency && <WalletHistory label="deposit" type="deposits" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />} */}
                 </React.Fragment>
             );
         } else {
@@ -398,14 +424,15 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                         />
                     ) : null}
                     <DepositFiat title={this.title} description={this.description} uid={user ? user.uid : ''} />
-                    {wallet.currency && <WalletHistory label="deposit" type="deposits" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />}
+                    {/* {wallet.currency && <WalletHistory label="deposit" type="deposits" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />} */}
                 </React.Fragment>
             );
         }
     };
 
     private renderWithdraw = () => {
-        const { currencies, user, wallets, walletsError } = this.props;
+        // const { currencies, user, wallets, walletsError } = this.props;
+        const { currencies, wallets, walletsError } = this.props;
         const { selectedWalletIndex } = this.state;
         const wallet = (wallets[selectedWalletIndex] || defaultWallet);
         const currencyItem = (currencies && currencies.find(item => item.id === wallet.currency));
@@ -421,7 +448,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                     />
                 ) : null}
                 {this.renderWithdrawContent()}
-                {user.otp && wallet.currency && <WalletHistory label="withdraw" type="withdraws" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />}
+                {/* {user.otp && wallet.currency && <WalletHistory label="withdraw" type="withdraws" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />} */}
             </React.Fragment>
         );
     };
@@ -508,6 +535,7 @@ const mapStateToProps = (state: RootState): ReduxProps => ({
     beneficiariesDeleteSuccess: selectBeneficiariesDeleteSuccess(state),
     currencies: selectCurrencies(state),
     beneficiariesAddSuccess: selectBeneficiariesCreateSuccess(state),
+    markets: selectMarkets(state),
 });
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = dispatch => ({
@@ -519,6 +547,7 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = dispatch => ({
     fetchSuccess: payload => dispatch(alertPush(payload)),
     setMobileWalletUi: payload => dispatch(setMobileWalletUi(payload)),
     currenciesFetch: () => dispatch(currenciesFetch()),
+    setCurrentMarket: (payload) => dispatch(setCurrentMarket(payload))
 });
 
 export const WalletsScreen = compose(
