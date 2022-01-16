@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { Wallet } from '../../modules';
 import { CryptoIcon } from '../CryptoIcon';
-import { Decimal } from '../Decimal';
+// import { Decimal } from '../Decimal';
 
 export interface CurrencyInfoProps {
     wallet: Wallet;
@@ -20,12 +20,12 @@ const CurrencyIcon: React.FunctionComponent<CurrencyIconProps> = (props: Currenc
 };
 
 const CurrencyInfo: React.FunctionComponent<CurrencyInfoProps> = (props: CurrencyInfoProps) => {
-    const balance = props.wallet && props.wallet.balance ? props.wallet.balance.toString() : '0';
-    const lockedAmount = props.wallet && props.wallet.locked ? props.wallet.locked.toString() : '0';
+    // const balance = props.wallet && props.wallet.balance ? props.wallet.balance.toString() : '0';
+    // const lockedAmount = props.wallet && props.wallet.locked ? props.wallet.locked.toString() : '0';
     const currency = (props.wallet || { currency: '' }).currency.toUpperCase();
-    const selectedFixed = (props.wallet || { fixed: 0 }).fixed;
+    // const selectedFixed = (props.wallet || { fixed: 0 }).fixed;
 
-    const stringLocked = lockedAmount ? lockedAmount.toString() : undefined;
+    // const stringLocked = lockedAmount ? lockedAmount.toString() : undefined;
     const iconUrl = props.wallet ? props.wallet.iconUrl : null;
     const { flexDirection } = props
 
@@ -33,7 +33,7 @@ const CurrencyInfo: React.FunctionComponent<CurrencyInfoProps> = (props: Currenc
     return (
         <div className={`cr-wallet-item__single m-0 ${flexDirection}`}>
             <CurrencyIcon icon={iconUrl} currency={currency} style={{ marginLeft: '1rem' }} />
-            <div className="cr-wallet-item__single-balance justify-content-start">
+            {/* <div className="cr-wallet-item__single-balance justify-content-start">
                 <div style={{ margin: '0 1rem' }}>
                     <div className={`cr-wallet-item__amount-locked m-0 ${flexDirection}`}>
                         <FormattedMessage id="page.body.wallets.locked" />
@@ -51,7 +51,7 @@ const CurrencyInfo: React.FunctionComponent<CurrencyInfoProps> = (props: Currenc
                         <Decimal fixed={selectedFixed} thousSep=",">{balance}</Decimal>
                     </span>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

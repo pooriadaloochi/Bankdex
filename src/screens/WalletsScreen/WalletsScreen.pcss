@@ -174,14 +174,16 @@
   .cr-withdraw {
     color: var(--table-text-color);
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: flex-start;
     padding: calc(var(--gap) * 5) calc(var(--gap) * 3) calc(var(--gap) * 3);
+    align-items:flex-start;
 
     &-column {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      margin-left:1rem;
 
       &:nth-child(1) {
         flex-direction: row;
@@ -201,7 +203,7 @@
       &:nth-child(2) {
         align-items: center;
         flex-direction: row;
-        padding-top: 20px;
+        padding-top: 50px;
 
         div:nth-child(1) {
           flex-grow: 2;
@@ -384,6 +386,7 @@
 
     &__active {
       display: flex;
+      justify-content:flex-start !important;
     }
 
     .pg-blur-deposit-crypto {
@@ -661,7 +664,7 @@
 
     .pg-blur-deposit-fiat,
     .pg-blur-withdraw {
-      height: 360px !important;
+      height: 230px !important;
       width: 100%;
     }
 

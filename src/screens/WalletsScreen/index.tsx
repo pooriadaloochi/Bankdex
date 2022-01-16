@@ -392,13 +392,13 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
         if (wallets[selectedWalletIndex].type === 'coin') {
             return (
                 <React.Fragment>
-                    <CurrencyInfo wallet={wallets[selectedWalletIndex]} flexDirection={this.translate('directionFlex')} />
                     {currencyItem && !currencyItem.deposit_enabled ? (
                         <Blur
                             className={blurCryptoClassName}
                             text={this.translate('page.body.wallets.tabs.deposit.disabled.message')}
                         />
                     ) : null}
+                    <CurrencyInfo wallet={wallets[selectedWalletIndex]} flexDirection={this.translate('directionFlex')} />
                     <DepositCrypto
                         buttonLabel={buttonLabel}
                         copiableTextFieldText={this.translate('page.body.wallets.tabs.deposit.ccy.message.address')}
