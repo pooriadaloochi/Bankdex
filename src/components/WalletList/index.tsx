@@ -27,6 +27,7 @@ const LockIcon = () => {
 };
 export interface WalletListProps {
     walletItems: Wallet[];
+    panels: Tab[];
     activeIndex: number;
     /**
      * Callback function which is invoked whenever wallet item is clicked
@@ -78,21 +79,7 @@ export const WalletList: React.FC<WalletListProps> = ({
     setMarkets
 }) => {
 
-    // const createOnTabChangeHandler = React.useCallback(
-    //     (index: number, tab: Tab) => () => {
-    //         if (!tab.disabled) {
-    //             if (onCurrentTabChange) {
-    //                 onCurrentTabChange(index);
-    //             }
-    //             if (onTabChange) {
-    //                 onTabChange(index, tab.label);
-    //             }
-    //         }
-    //     },
-    //     [onCurrentTabChange, onTabChange]
-    // );
-
-    const handleClick = useCallback(
+    const handleCallbackActiveToken = useCallback(
         (i: number, p: Wallet) => {
             moveScroll?.current?.scrollIntoView({ behavior: "smooth" });
             if (onWalletSelectionChange) {
@@ -104,6 +91,24 @@ export const WalletList: React.FC<WalletListProps> = ({
         },
         [onWalletSelectionChange, onActiveIndexChange, moveScroll]
     );
+    const createOnTabChangeHandler = useCallback(
+        (index: number, panels: Tab) => {
+            if (!panels.disabled) {
+                if (onCurrentTabChange) {
+                    onCurrentTabChange(index);
+                }
+                if (onTabChange) {
+                    onTabChange(index, panels.label);
+                }
+            }
+        },
+        [onCurrentTabChange, onTabChange]
+    );
+
+    const handleClick = (i, p, index) => {
+        handleCallbackActiveToken(i, p);
+        createOnTabChangeHandler(index, panels[index]);
+    }
 
 
     const defaultHeaders = [`      Token`, 'Name', 'Balance', 'Locked', 'Currency', 'Status', 'Ation']
@@ -114,7 +119,7 @@ export const WalletList: React.FC<WalletListProps> = ({
                 {defaultHeaders.map((el, i) => <th style={i !== 6 ? style : style2}>{el}</th>)}
             </tr>
             {walletItems.map((p: Wallet, i: number) => p ?
-                (<tr className={`${i === activeIndex ? 'active' : null}`} style={{ cursor: 'pointer', margin: '1rem 0' }}>
+                (<tr className={`${i === activeIndex ? 'active' : null}`} style={{ margin: '1rem 0' }}>
                     <td style={style}>
                         {p.iconUrl ? (
                             <span className="cr-crypto-icon cr-wallet-item__icon">
@@ -148,8 +153,13 @@ export const WalletList: React.FC<WalletListProps> = ({
                         {p.deposit_address?.state}
                     </td>
                     <td style={style}>
-                        <div className='actionTable'>
-                            <span onClick={() => handleClick(i, p)}>Withdraw / Deposit</span> |
+                        <div className={i === activeIndex ? 'actionTableActive' : 'actionTable'}>
+                            <span onClick={() => handleClick(i, p, 0)} style={{ cursor: 'pointer', }}>
+                                Deposit
+                            </span> |
+                            <span onClick={() => handleClick(i, p, 1)} style={{ cursor: 'pointer', }}>
+                                Withdraw
+                            </span>
                             {/* <a onClick={() => handleClick(i, p)}>Deposit</a> | */}
                             <Link to='/trading' id={p.currency} onClick={(e) => setMarkets(e)}>Trade</Link>
                         </div>

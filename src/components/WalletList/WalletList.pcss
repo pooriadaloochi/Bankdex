@@ -22,10 +22,22 @@
 .actionTable{
   display:flex;
   justify-content:space-evenly;
-  *{
+  span, a{
     color:var(--primary-cta-color) !important;
     &:hover{
       color:var(--input-text-color) !important;
+      transition:.4s;
+    }
+
+  }
+}
+.actionTableActive{
+  display:flex;
+  justify-content:space-evenly;
+  span, a{
+    color:var(--input-text-color) !important;
+    &:hover{
+      color:var(--primary-cta-color) !important;
       transition:.4s;
     }
 
