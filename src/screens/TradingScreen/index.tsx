@@ -90,15 +90,15 @@ const TradingWrapper = props => {
             },
             {
                 i: 4,
-                render: () => <OpenOrdersComponent/>,
+                render: () => <OpenOrdersComponent />,
             },
             {
                 i: 5,
-                render: () => <RecentTrades/>,
+                render: () => <MarketsComponent />,
             },
             {
                 i: 6,
-                render: () => <MarketsComponent/>,
+                render: () => <RecentTrades />,
             },
         ];
 
@@ -116,7 +116,7 @@ const TradingWrapper = props => {
             draggableHandle=".cr-table-header__content, .pg-trading-screen__tab-panel, .draggable-container"
             rowHeight={14}
             layouts={layouts}
-            onLayoutChange={() => {return;}}
+            onLayoutChange={() => { return; }}
             margin={[5, 5]}
             onResize={handleResize}
             onDrag={handeDrag}
@@ -166,7 +166,7 @@ class Trading extends React.Component<Props, StateProps> {
                 history.replace(`/trading/${nextProps.currentMarket.id}`);
 
                 if (!incrementalOrderBook()) {
-                  this.props.depthFetch(nextProps.currentMarket);
+                    this.props.depthFetch(nextProps.currentMarket);
                 }
             }
         }
@@ -183,7 +183,7 @@ class Trading extends React.Component<Props, StateProps> {
         return (
             <div className={'pg-trading-screen'}>
                 <div className={'pg-trading-wrap'}>
-                    <ToolBar/>
+                    <ToolBar />
                     <div data-react-toolbox="grid" className={'cr-grid'}>
                         <div className="cr-grid__grid-wrapper">
                             <TradingWrapper
