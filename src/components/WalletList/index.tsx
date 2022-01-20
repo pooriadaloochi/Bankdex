@@ -119,7 +119,10 @@ export const WalletList: React.FC<WalletListProps> = ({
                 {defaultHeaders.map((el, i) => <th style={i !== 6 ? style : style2}>{el}</th>)}
             </tr>
             {walletItems.map((p: Wallet, i: number) => p ?
-                (<tr className={`${i === activeIndex ? 'active' : null}`} style={{ margin: '1rem 0' }}>
+                (<tr className={`${i === activeIndex ? 'active' : null}`}
+                 style={{ margin: '1rem 0',cursor:"pointer" }}
+                 onClick={() => handleClick(i, p, 0)}
+                 >
                     <td style={style}>
                         {p.iconUrl ? (
                             <span className="cr-crypto-icon cr-wallet-item__icon">
