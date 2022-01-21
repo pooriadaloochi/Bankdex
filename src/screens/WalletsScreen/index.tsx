@@ -485,10 +485,11 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
 
     private isOtpDisabled = () => {
         return (
-            <React.Fragment>
+            <div className='withdraw_2fa'>
                 <p className="pg-wallet__enable-2fa-message">
                     {this.translate('page.body.wallets.tabs.withdraw.content.enable2fa')}
                 </p>
+                <div className='pg-wallet__enable-2fa-message_button'>
                 <Button
                     block={true}
                     onClick={this.redirectToEnable2fa}
@@ -497,7 +498,8 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                 >
                     {this.translate('page.body.wallets.tabs.withdraw.content.enable2faButton')}
                 </Button>
-            </React.Fragment>
+                </div>
+            </div>
         );
     };
 
