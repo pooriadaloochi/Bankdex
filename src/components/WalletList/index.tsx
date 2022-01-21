@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback,useRef } from 'react';
 import { Wallet } from '../../modules';
 // import { WalletItem } from '../WalletItem';
 import { CryptoIcon } from '../CryptoIcon';
@@ -72,13 +72,13 @@ export const WalletList: React.FC<WalletListProps> = ({
     walletItems,
     panels,
     onTabChange,
-    currentTabIndex,
     onCurrentTabChange,
     moveScroll,
-    markets,
     setMarkets
 }) => {
-
+    const withdrawRef = useRef();
+    const DepositRef = useRef();
+    const TradeRef = useRef();
     const handleCallbackActiveToken = useCallback(
         (i: number, p: Wallet) => {
             moveScroll?.current?.scrollIntoView({ behavior: "smooth" });
@@ -109,6 +109,13 @@ export const WalletList: React.FC<WalletListProps> = ({
         handleCallbackActiveToken(i, p);
         createOnTabChangeHandler(index, panels[index]);
     }
+    const handleClickRow = (i, p) => {
+        handleCallbackActiveToken(i, p);
+        withdrawRef?.current?.addEventListener("click",(e)=>e.stopPropagation());
+        DepositRef?.current?.addEventListener("click",(e)=>e.stopPropagation());
+        TradeRef?.current?.addEventListener("click",(e)=>e.stopPropagation());
+        
+    }
 
 
     const defaultHeaders = [`      Token`, 'Name', 'Balance', 'Locked', 'Currency', 'Status', 'Ation']
@@ -121,7 +128,7 @@ export const WalletList: React.FC<WalletListProps> = ({
             {walletItems.map((p: Wallet, i: number) => p ?
                 (<tr className={`${i === activeIndex ? 'active' : null}`}
                  style={{ margin: '1rem 0',cursor:"pointer" }}
-                 onClick={() => handleClick(i, p, 0)}
+                 onClick={() => handleClickRow(i, p)}
                  >
                     <td style={style}>
                         {p.iconUrl ? (
@@ -157,14 +164,21 @@ export const WalletList: React.FC<WalletListProps> = ({
                     </td>
                     <td style={style}>
                         <div className={i === activeIndex ? 'actionTableActive' : 'actionTable'}>
-                            <span onClick={() => handleClick(i, p, 0)} style={{ cursor: 'pointer', }}>
+                            <span 
+                            ref={DepositRef}
+                            onClick={() => handleClick(i, p, 0)} style={{ cursor: 'pointer', }}>
                                 Deposit
                             </span> |
-                            <span onClick={() => handleClick(i, p, 1)} style={{ cursor: 'pointer', }}>
+                            <span
+                            ref={withdrawRef} 
+                             onClick={() => handleClick(i, p, 1)} style={{ cursor: 'pointer', }}>
                                 Withdraw
                             </span>
                             {/* <a onClick={() => handleClick(i, p)}>Deposit</a> | */}
-                            <Link to='/trading' id={p.currency} onClick={(e) => setMarkets(e)}>Trade</Link>
+                            <Link to='/trading' 
+                            id={p.currency}
+                            ref={TradeRef} 
+                             onClick={(e) => setMarkets(e)}>Trade</Link>
                         </div>
                     </td>
                 </tr>) : <span>there is no Token</span>)
