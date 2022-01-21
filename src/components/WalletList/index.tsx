@@ -173,7 +173,8 @@ export const WalletList: React.FC<WalletListProps> = ({
                             ref={withdrawRef} 
                              onClick={() => handleClick(i, p, 1)} style={{ cursor: 'pointer', }}>
                                 Withdraw
-                            </span>
+                            </span> 
+                            |
                             {/* <a onClick={() => handleClick(i, p)}>Deposit</a> | */}
                             <Link to='/trading' 
                             id={p.currency}
