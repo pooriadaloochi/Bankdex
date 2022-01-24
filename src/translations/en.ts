@@ -8,6 +8,8 @@ export const en = {
     'page.header.navbar.history': 'History',
     'page.header.navbar.activity': 'My Activity',
     'page.header.navbar.api': 'API Documentation',
+    'page.header.navbar.markets': 'Market',
+    'page.header.navbar.news': 'News',
 
     'page.header.navbar.profile': 'Profile',
     'page.header.navbar.logout': 'Logout',

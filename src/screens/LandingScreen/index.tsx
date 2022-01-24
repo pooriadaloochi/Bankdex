@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import * as React from 'react';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
@@ -6,11 +7,18 @@ import { compose } from 'redux';
 import { IntlProps } from '../../';
 import { MarketsTable } from '../../containers';
 import { toggleColorTheme } from '../../helpers';
+import { Dropdown } from 'react-bootstrap';
 import {
     RootState,
     selectCurrentColorTheme,
     selectUserLoggedIn,
+    changeUserDataFetch,
+    changeLanguage,
+    User,
+    selectCurrentLanguage,
+    selectUserInfo,
 } from '../../modules';
+import { languages } from '../../api/config';
 
 const FeaturesExchangeIcon = require('../../assets/images/landing/features/Exchange.svg');
 const FeaturesTypesIcon = require('../../assets/images/landing/features/Types.svg');
@@ -27,16 +35,30 @@ const RedditIcon = require('../../assets/images/landing/social/Reddit.svg');
 const FacebookIcon = require('../../assets/images/landing/social/Facebook.svg');
 const MediumIcon = require('../../assets/images/landing/social/Medium.svg');
 const CoinMarketIcon = require('../../assets/images/landing/social/CoinMarket.svg');
-
+const enIcon = require('../../assets/images/sidebar/en.svg');
+const faIcon = require('../../assets/images/sidebar/fa.svg');
+// ../../assets/images/sidebar/${lang}.svg
 
 interface ReduxProps {
     isLoggedIn: boolean;
     colorTheme: string;
+    lang: string;
+    user: User;
 }
-
-type Props = ReduxProps & RouteProps & IntlProps;
+interface State {
+    isOpenLanguage: boolean;
+}
+interface OwnProps {
+    // onLinkChange?: () => void;
+    // history: History;
+    changeUserDataFetch: typeof changeUserDataFetch;
+}
+type Props = ReduxProps & RouteProps & IntlProps & State;
 
 class Landing extends React.Component<Props> {
+    public state = {
+        isOpenLanguage: false,
+    };
     public componentDidMount() {
         if (this.props.colorTheme === 'light') {
             toggleColorTheme('dark');
@@ -54,22 +76,53 @@ class Landing extends React.Component<Props> {
             toggleColorTheme(this.props.colorTheme);
         }
     }
-
+  
     public renderHeader() {
-        if (this.props.isLoggedIn) {
+        
+        const { isLoggedIn } = this.props;
+        const lang = (this.props?.intl?.locale);
+
+        const languageName = lang?.toUpperCase();
+        const languageClassName = classnames('dropdown-menu-language-field', {
+            'dropdown-menu-language-field-active': this.state.isOpenLanguage,
+        });
+        if (isLoggedIn) {
             return (
                 <div className="pg-landing-screen__header">
                     <div className="pg-landing-screen__header__wrap">
-                        <div className="pg-landing-screen__header__wrap__left" style={{ cursor: 'pointer' }} onClick={e => this.handleScrollTop()}>
-                            {/* <LogoIcon /> */}
-
+                        <div className="pg-landing-screen__header__wrap__left" style={{ cursor: 'pointer' }}
+                         onClick={e => this.handleScrollTop()}>
                             <img src='/images/logo_bankdex.png' alt='BankDex' />
+                            {/* <LogoIcon /> */}
+                            <div className="pg-landing-screen__header__wrap__left_menu">
+                                <Link to="/trade" >
+                                    {this.translate('page.header.navbar.trade')}
+                                </Link>
+                                <Link to="/" >
+                                    {this.translate('page.header.navbar.markets')}
+                                </Link>
+                                <Link to="/" className="">
+                                    {this.translate('page.header.navbar.news')}
+                                </Link>
+                            </div>
 
                         </div>
                         <div className="pg-landing-screen__header__wrap__right">
                             <Link to="/profile" className="landing-button">
                                 {this.translate('page.body.landing.header.button1')}
                             </Link>
+                             <Dropdown style={{marginLeft:'1rem'}}>
+                                <Dropdown.Toggle variant="primary" id={languageClassName}>
+                                    <img
+                                        src={lang==='en'?enIcon:faIcon}
+                                        alt={`${lang}-flag-icon`}
+                                    />
+                                    <span className="dropdown-menu-language-selected">{languageName}</span>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu className="dropdownMenu">
+                                    {this.getLanguageDropdownItems()}
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
                     </div>
                 </div>
@@ -92,12 +145,68 @@ class Landing extends React.Component<Props> {
                         <Link to="/signup" className="landing-button">
                             {this.translate('page.body.landing.header.button3')}
                         </Link>
+                        <Dropdown style={{marginLeft:'1rem'}}>
+                            <Dropdown.Toggle variant="primary" id={languageClassName}>
+                                <img
+                                    src={lang==='en'?enIcon:faIcon}
+                                    alt={`${lang}-flag-icon`}
+                                />
+                                <span className="dropdown-menu-language-selected">{languageName}</span>
+                            </Dropdown.Toggle>
+                        <Dropdown.Menu className="dropdownMenu">
+                            {this.getLanguageDropdownItems()}
+                        </Dropdown.Menu>
+                    </Dropdown>
                     </div>
                 </div>
             </div>
         );
+        
     }
+    private tryRequire = (name: string) => {
+        try {
+            require(`../../assets/images/sidebar/${name}.svg`);
 
+            return true;
+        } catch (err) {
+            return false;
+        }
+    };
+    private handleChangeLanguage = (language: string) => {
+        const { user, isLoggedIn } = this.props;
+        console.log(user);
+        
+        if (isLoggedIn) {
+            const data = user.data && JSON.parse(user.data);
+
+            if (data && data.language && data.language !== language) {
+                const payload = {
+                    ...user,
+                    data: JSON.stringify({
+                        ...data,
+                        language,
+                    }),
+                };
+
+                this.props.changeUserDataFetch({ user: payload });
+            }
+        }
+
+        this.props.changeLanguage(language);
+    };
+    public getLanguageDropdownItems = () => {
+        return languages.map((l: string, index: number) =>
+            <Dropdown.Item key={index} onClick={e => this.handleChangeLanguage(l)}>
+                <div className="dropdown-row">
+                    <img
+                        src={this.tryRequire(l) && require(`../../assets/images/sidebar/${l}.svg`)}
+                        alt={`${l}-flag-icon`}
+                    />
+                    <span>{l.toUpperCase()}</span>
+                </div>
+            </Dropdown.Item>,
+        );
+    };
     public renderMarketInfoBlock() {
         return (
             <div className="pg-landing-screen__market-info">
@@ -327,10 +436,17 @@ class Landing extends React.Component<Props> {
 const mapStateToProps = (state: RootState): ReduxProps => ({
     isLoggedIn: selectUserLoggedIn(state),
     colorTheme: selectCurrentColorTheme(state),
+    lang: selectCurrentLanguage(state),
+    user: selectUserInfo(state),
 });
-
+const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProps, {}> = dispatch => ({
+    changeLanguage: payload => dispatch(changeLanguage(payload)),
+    // toggleSidebar: payload => dispatch(toggleSidebar(payload)),
+    // logoutFetch: () => dispatch(logoutFetch()),
+    changeUserDataFetch: payload => dispatch(changeUserDataFetch(payload)),
+});
 export const LandingScreen = compose(
     injectIntl,
     withRouter,
-    connect(mapStateToProps, null),
+    connect(mapStateToProps, mapDispatchToProps),
 )(Landing) as React.ComponentClass;

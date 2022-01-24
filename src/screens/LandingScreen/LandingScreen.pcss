@@ -125,13 +125,30 @@
 
         .landing-button {
           height: 34px;
-          width: 170px;
+          width: 130px;
 
           &--simple {
             background: transparent;
             height: 32px;
             margin-right: 21px;
             width: 76px;
+          }
+        }
+      }
+      &__left {
+        display: flex;
+        &_menu{
+          width: 250px;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          a{
+           color: var(--primary-text-color);
+           font-size: 14px;
+           border-bottom: 1px solid var(--primary-cta-color);
+           &:hover{
+            color: var(--primary-cta-color);
+           }
           }
         }
       }
@@ -619,3 +636,4 @@
     }
   }
 }
+
