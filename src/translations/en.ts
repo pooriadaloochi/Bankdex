@@ -101,7 +101,9 @@ export const en = {
 
     'page.body.landing.marketInfo.title.text1': 'Welcome to BankDex.',
     'page.body.landing.marketInfo.title.text2': 'Buy, sell and trade digital currency.',
+    'page.body.landing.marketInfo.title.text3': "Join the world's largest crypto exchange",
     'page.body.landing.marketInfo.title.button': 'start trading',
+    'page.body.landing.marketInfo.title.exchange': 'Market trend',
 
     'page.body.landing.platformInfo.item.first.value': '30M+',
     'page.body.landing.platformInfo.item.first.title': 'Customers served',
@@ -135,6 +137,7 @@ export const en = {
     'page.body.landing.tradeOnTheGo.item.button': 'let’s try',
 
     'page.body.landing.startTrading.title': 'Start trading now',
+    'page.body.landing.registerNow.title': 'Register now',
     'page.body.landing.startTrading.button1': 'register',
     'page.body.landing.startTrading.button2': 'Start trading',
 

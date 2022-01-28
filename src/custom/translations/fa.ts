@@ -102,7 +102,9 @@ export const fa: LangType = {
 
     'page.body.landing.marketInfo.title.text1': 'به بانکدکس خوش آمدید',
     'page.body.landing.marketInfo.title.text2': 'خرید، فروش و معامله ارزهای دیجیتال.',
+    'page.body.landing.marketInfo.title.text3': 'به بزرگترین صرافی رمزارز جهان بپیوندید',
     'page.body.landing.marketInfo.title.button': 'شروع معاملات',
+    'page.body.landing.marketInfo.title.exchange': 'روند بازار',
 
     'page.body.landing.platformInfo.item.first.value': '30M+',
     'page.body.landing.platformInfo.item.first.title': 'Customers served',
@@ -136,6 +138,7 @@ export const fa: LangType = {
     'page.body.landing.tradeOnTheGo.item.button': ' همین حالا امتحان کنید',
 
     'page.body.landing.startTrading.title': 'همین حالا معامله را شروع کن',
+    'page.body.landing.registerNow.title': 'همین حالا ثبت کن',
     'page.body.landing.startTrading.button1': 'ثبت نام',
     'page.body.landing.startTrading.button2': 'شروع معامله',
 
