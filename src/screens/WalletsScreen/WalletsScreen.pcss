@@ -408,7 +408,7 @@
     .pg-blur-withdraw {
       height: 600px;
       margin-left: -10px;
-      margin-top: 94px;
+      /* margin-top: 94px; */
       width: calc(100% - 10px);
 
       .pg-blur__content__text {
@@ -669,7 +669,9 @@
     }
 
     .pg-blur-withdraw {
-      height: 270px !important;
+      height: 720px !important;
+      display: none;
+      /*  */
     }
   }
 }
@@ -732,4 +734,192 @@
   display:flex;
   flex-direction: column;
   align-items: center;
+}
+.RialCoin{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  direction: rtl;
+  p{
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  &_header{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary-cta-color);
+    color: var(--wallets-item-background-color);
+    border-radius: 8px;
+    padding: 1rem 0;
+    a{
+      background: var(--wallets-item-background-color-hover);
+      color: var(--input-text-color);
+      padding: 5px 7px;
+      margin-top: 0.5rem;
+      border-radius: 5px;
+
+    }
+  }
+  &_raiseOfwalletsHeader{
+    width: 70%;
+    text-align: right;
+    margin-top: 2rem;
+    margin-right: 1rem;
+    color: var(--button-primary-cta-text-color);
+    li{
+      margin-top: 7px;
+      font-size: 1rem;
+    }
+  }
+  &_bottomInputs{ 
+    width: 70%;
+    text-align: right;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    span{
+      color: var(--primary-cta-color);
+      font-size: 1.1rem;
+    }&_all{
+      margin-top: 1rem;
+      &_dropdowns{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .dropdown{
+          width: 40rem;
+          margin: 1rem 0;
+        } 
+        button{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          height: 40px;
+          font-size: 1.25rem ;
+        }
+        .addCart{
+          margin-top: 1.5rem;
+          width: 20rem;
+          
+          height: 30px;
+          justify-content: center;
+        }
+      }
+      &_seccondInput{
+        margin-top: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        &_right{
+          width: 50%;
+          input{
+            width: 70%;
+            margin-top: 0.5rem;
+            height: 40px;
+            border-radius: 5px;
+            background: var(--primary-cta-color);
+            padding-right: 10px;
+          }
+        }
+        &_left{
+          width: 50%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          button{
+            height: 35px;
+            margin-left: 5px;
+          }
+          button:last-child{
+            background-color:green;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.rialWithdraw{
+  direction: rtl;
+  width: 70%;
+  color: var(--primary-text-color);
+  margin: auto;
+  &_header{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  span{
+    margin-bottom: 1rem;
+  }
+  button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 40px;
+    font-size: 1.25rem ;
+    color: var(--body-background-color);
+  }
+  }
+  &_inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 2rem 0;
+    &_cost{
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      input{
+        width: 100%;
+        background: var(--primary-cta-color);
+        padding: 5px;
+        border-radius: 5px;
+      }
+    }
+    &_balance{
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      li{
+        margin: 0.5rem 0;
+        text-align: right;
+        button{
+          margin-right: 1rem;
+        }
+      }
+
+    }
+    &_count{
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: right;
+      width: 80%;
+      &_footer{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-start;
+        button {
+          width: 10rem !important;
+        }
+      }
+    }
+    .Identification {
+      span {
+        margin-top: 1rem;
+      }
+    }
+    .footer_button_witdraw{
+      width: 80%;
+    }
+  }
 }
