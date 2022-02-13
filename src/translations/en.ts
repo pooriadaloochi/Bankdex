@@ -7,6 +7,8 @@ export const en = {
     'page.header.navbar.openOrders': 'Orders',
     'page.header.navbar.history': 'History',
     'page.header.navbar.activity': 'My Activity',
+    'page.header.navbar.markets': 'Market',
+    'page.header.navbar.news': 'News',
     'page.header.navbar.api': 'API Documentation',
 
     'page.header.navbar.profile': 'Profile',
@@ -99,7 +101,9 @@ export const en = {
 
     'page.body.landing.marketInfo.title.text1': 'Welcome to BankDex.',
     'page.body.landing.marketInfo.title.text2': 'Buy, sell and trade digital currency.',
+    'page.body.landing.marketInfo.title.text3': "Join the world's largest crypto exchange",
     'page.body.landing.marketInfo.title.button': 'start trading',
+    'page.body.landing.marketInfo.title.exchange': 'Market trend',
 
     'page.body.landing.platformInfo.item.first.value': '30M+',
     'page.body.landing.platformInfo.item.first.title': 'Customers served',
@@ -133,6 +137,7 @@ export const en = {
     'page.body.landing.tradeOnTheGo.item.button': 'let’s try',
 
     'page.body.landing.startTrading.title': 'Start trading now',
+    'page.body.landing.registerNow.title': 'Register now',
     'page.body.landing.startTrading.button1': 'register',
     'page.body.landing.startTrading.button2': 'Start trading',
 
@@ -142,10 +147,21 @@ export const en = {
     'page.body.landing.footer.faq': 'FAQ',
     'page.body.landing.footer.support': 'Support',
     'page.body.landing.footer.privacy': 'Privacy',
-    'page.body.landing.footer.about': 'About us',
+    'page.body.landing.footer.about': 'About',
+    'page.body.landing.footer.aboutUs': 'About us',
     'page.body.landing.footer.community': 'Community',
     'page.body.landing.footer.info': 'Info',
     'page.body.landing.footer.rights': 'BankDex © All rights reserved.',
+    // 
+    'page.body.landing.footer.terms': 'Terms',
+    'page.body.landing.footer.news': 'News',
+    'page.body.landing.footer.downloads': 'Downloads',
+    'page.body.landing.footer.buyCrypto': 'Buy Crypto',
+    'page.body.landing.footer.referal': 'Referal',
+    'page.body.landing.footer.fee': 'Fee',
+    'page.body.landing.footer.products': 'Products',
+    'page.body.landing.footer.service': 'Service',
+    'page.body.landing.footer.businessContacts': 'Business Contacts',
 
     'pagy.body.footer.powered_by': 'Powered by',
 

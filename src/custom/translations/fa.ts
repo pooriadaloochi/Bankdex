@@ -9,6 +9,8 @@ export const fa: LangType = {
     'page.header.navbar.openOrders': 'سفارشات',
     'page.header.navbar.history': 'تاریخچه',
     'page.header.navbar.activity': 'فعالیت های من',
+    'page.header.navbar.markets': 'بازار',
+    'page.header.navbar.news': 'اخبار',
 
     'page.header.navbar.profile': 'پروفایل',
     'page.header.navbar.logout': 'خروج',
@@ -100,7 +102,9 @@ export const fa: LangType = {
 
     'page.body.landing.marketInfo.title.text1': 'به بانکدکس خوش آمدید',
     'page.body.landing.marketInfo.title.text2': 'خرید، فروش و معامله ارزهای دیجیتال.',
+    'page.body.landing.marketInfo.title.text3': 'به بزرگترین صرافی رمزارز جهان بپیوندید',
     'page.body.landing.marketInfo.title.button': 'شروع معاملات',
+    'page.body.landing.marketInfo.title.exchange': 'روند بازار',
 
     'page.body.landing.platformInfo.item.first.value': '30M+',
     'page.body.landing.platformInfo.item.first.title': 'Customers served',
@@ -134,6 +138,7 @@ export const fa: LangType = {
     'page.body.landing.tradeOnTheGo.item.button': ' همین حالا امتحان کنید',
 
     'page.body.landing.startTrading.title': 'همین حالا معامله را شروع کن',
+    'page.body.landing.registerNow.title': 'همین حالا ثبت کن',
     'page.body.landing.startTrading.button1': 'ثبت نام',
     'page.body.landing.startTrading.button2': 'شروع معامله',
 
@@ -144,9 +149,20 @@ export const fa: LangType = {
     'page.body.landing.footer.support': 'پشتیبانی',
     'page.body.landing.footer.privacy': 'حریم خصوصی',
     'page.body.landing.footer.about': 'درباره ما',
+    'page.body.landing.footer.aboutUs': 'درباره ما',
     'page.body.landing.footer.community': 'انجمن',
     'page.body.landing.footer.info': 'اطلاعات',
     'page.body.landing.footer.rights': 'تمامی حقوق بانکدکس محفوظ است.',
+    // 
+    'page.body.landing.footer.terms': 'مقررات',
+    'page.body.landing.footer.news': 'اخبار',
+    'page.body.landing.footer.downloads': 'دانلودها',
+    'page.body.landing.footer.buyCrypto': 'ارز دیجیتال بخر',
+    'page.body.landing.footer.fee': 'هزینه',
+    'page.body.landing.footer.products': 'محصولات',
+    'page.body.landing.footer.service': 'خدمات',
+    'page.body.landing.footer.referal': 'معرف',
+    'page.body.landing.footer.businessContacts': 'مخاطبین تجاری',
 
 
     /* Wallets */

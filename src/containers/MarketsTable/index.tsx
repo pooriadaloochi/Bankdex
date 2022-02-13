@@ -12,6 +12,7 @@ import {
     selectMarketTickers,
     setCurrentMarket,
 } from '../../modules';
+import { TickerSlider } from '../../components/TickerSlider';
 
 const defaultTicker = {
     amount: '0.0',
@@ -63,31 +64,49 @@ const MarketsTableComponent = props => {
     }
 
     const formattedMarkets = currentBidUnitMarkets.length ? currentBidUnitMarkets.map(market =>
-        ({
-            ...market,
-            last: Decimal.format(Number((marketTickers[market.id] || defaultTicker).last), market.amount_precision),
-            open: Decimal.format(Number((marketTickers[market.id] || defaultTicker).open), market.price_precision),
-            price_change_percent: String((marketTickers[market.id] || defaultTicker).price_change_percent),
-            high: Decimal.format(Number((marketTickers[market.id] || defaultTicker).high), market.amount_precision),
-            low: Decimal.format(Number((marketTickers[market.id] || defaultTicker).low), market.amount_precision),
-            volume: Decimal.format(Number((marketTickers[market.id] || defaultTicker).volume), market.amount_precision),
-        }),
+    ({
+        ...market,
+        last: Decimal.format(Number((marketTickers[market.id] || defaultTicker).last), market.amount_precision),
+        open: Decimal.format(Number((marketTickers[market.id] || defaultTicker).open), market.price_precision),
+        price_change_percent: String((marketTickers[market.id] || defaultTicker).price_change_percent),
+        high: Decimal.format(Number((marketTickers[market.id] || defaultTicker).high), market.amount_precision),
+        low: Decimal.format(Number((marketTickers[market.id] || defaultTicker).low), market.amount_precision),
+        volume: Decimal.format(Number((marketTickers[market.id] || defaultTicker).volume), market.amount_precision),
+    }),
     ).map(market =>
-        ({
-            ...market,
-            change: Decimal.format((+market.last - +market.open)
-                .toFixed(market.price_precision), market.price_precision),
-        }),
+    ({
+        ...market,
+        change: Decimal.format((+market.last - +market.open)
+            .toFixed(market.price_precision), market.price_precision),
+    }),
     ) : [];
-
+    const { slider } = props
     return (
-        <TickerTable
-            currentBidUnit={currentBidUnit}
-            currentBidUnitsList={currentBidUnitsList}
-            markets={formattedMarkets}
-            redirectToTrading={handleRedirectToTrading}
-            setCurrentBidUnit={setCurrentBidUnit}
-        />
+        // <TickerTable
+        //     currentBidUnit={currentBidUnit}
+        //     currentBidUnitsList={currentBidUnitsList}
+        //     markets={formattedMarkets}
+        //     redirectToTrading={handleRedirectToTrading}
+        //     setCurrentBidUnit={setCurrentBidUnit}
+        // />
+        <>
+            {slider ?
+                (<TickerSlider
+                    currentBidUnit={currentBidUnit}
+                    currentBidUnitsList={currentBidUnitsList}
+                    markets={formattedMarkets}
+                    redirectToTrading={handleRedirectToTrading}
+                    setCurrentBidUnit={setCurrentBidUnit}
+                />)
+                : (<TickerTable
+                    currentBidUnit={currentBidUnit}
+                    currentBidUnitsList={currentBidUnitsList}
+                    markets={formattedMarkets}
+                    redirectToTrading={handleRedirectToTrading}
+                    setCurrentBidUnit={setCurrentBidUnit}
+                />)
+            }
+        </>
     );
 };
 
