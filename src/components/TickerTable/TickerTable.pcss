@@ -87,7 +87,7 @@
     flex-direction: column;
     height: 100%;
     justify-content: flex-start;
-    overflow: auto;
+    overflow-x: hidden;
     width: 100%;
   }
 
@@ -187,13 +187,13 @@
 
 .parentSlider{
   width: 100%;
-  height: 170px;
-  .swiper{
-    height: 100%;
+  height: 210px;
+  position: relative;
   .prevPaginationBonus{
     width: 60px;
     position: absolute;
-    left: 0;
+    left: 5rem;
+
     z-index: 9999;
     top: 0;
     height: 99%;
@@ -247,7 +247,7 @@
       svg {
         width: 19px;
         height: 19px;
-        color: black;
+
       }
     }
     &:hover {
@@ -260,34 +260,37 @@
       }
     }
   }
-    .itemSlider{
-      display: flex;
-      width: 100%;
-      height: 100%;
-      justify-content:space-around;
-      align-items: center;
-      .itemSliderOne{
-        width: 206px;
-        height: 92px;
-        font-size:1.5rem;
-        border-radius: 5px;
-        cursor: pointer;
-        color: var(--primary-text-color);
-        &:hover{
-          transition: 0.2s;
-          color: var(--primary-cta-color);
-        }
-        .itemSliderPecision{
-          font-size: 1.6rem;
-          font-weight: 600;
-        }
-        .itemSliderVolume{
-          font-size: 1.2rem;
-          color: var(--secondary-contrast-cta-color);
-        }
+
+  .itemSlider{
+    display: flex !important;
+    flex-direction: row;
+    width: 100%;
+    height: 170px;
+    justify-content:space-around;
+    align-items: center;
+    .itemSliderOne{
+      width: 206px;
+      height: 92px;
+      font-size:1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      color: var(--primary-text-color);
+      &:hover{
+        transition: 0.2s;
+        color: var(--primary-cta-color);
       }
-    } 
+      .itemSliderPecision{
+        font-size: 1.6rem;
+        font-weight: 600;
+      }
+      .itemSliderVolume{
+        font-size: 1.2rem;
+        color: var(--secondary-contrast-cta-color);
+      }
+    }
   } 
+  
+
 }
 @media screen and (max-width: 768px) {
   .pg-ticker-table {

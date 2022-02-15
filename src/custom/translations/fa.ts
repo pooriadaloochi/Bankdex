@@ -149,9 +149,20 @@ export const fa: LangType = {
     'page.body.landing.footer.support': 'پشتیبانی',
     'page.body.landing.footer.privacy': 'حریم خصوصی',
     'page.body.landing.footer.about': 'درباره ما',
+    'page.body.landing.footer.aboutUs': 'درباره ما',
     'page.body.landing.footer.community': 'انجمن',
     'page.body.landing.footer.info': 'اطلاعات',
     'page.body.landing.footer.rights': 'تمامی حقوق بانکدکس محفوظ است.',
+    // 
+    'page.body.landing.footer.terms': 'مقررات',
+    'page.body.landing.footer.news': 'اخبار',
+    'page.body.landing.footer.downloads': 'دانلودها',
+    'page.body.landing.footer.buyCrypto': 'ارز دیجیتال بخر',
+    'page.body.landing.footer.fee': 'هزینه',
+    'page.body.landing.footer.products': 'محصولات',
+    'page.body.landing.footer.service': 'خدمات',
+    'page.body.landing.footer.referal': 'معرف',
+    'page.body.landing.footer.businessContacts': 'مخاطبین تجاری',
 
 
     /* Wallets */

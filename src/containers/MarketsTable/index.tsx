@@ -13,6 +13,7 @@ import {
     selectMarketTickers,
     setCurrentMarket,
 } from '../../modules';
+import { TickerSlider } from '../../components/TickerSlider';
 
 const defaultTicker = {
     amount: '0.0',
@@ -80,9 +81,17 @@ const MarketsTableComponent = (props) => {
             .toFixed(market.price_precision), market.price_precision),
     }),
     ) : [];
-    const { slider } = props;
 
+    const { slider } = props
     return (
+        // <TickerTable
+        //     currentBidUnit={currentBidUnit}
+        //     currentBidUnitsList={currentBidUnitsList}
+        //     markets={formattedMarkets}
+        //     redirectToTrading={handleRedirectToTrading}
+        //     setCurrentBidUnit={setCurrentBidUnit}
+        // />
+
         <>
             {slider ?
                 (<TickerSlider

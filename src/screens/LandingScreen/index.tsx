@@ -1,7 +1,10 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import { injectIntl } from 'react-intl';
-import { connect, MapDispatchToProps, MapDispatchToPropsFunction } from 'react-redux';
+
+import { connect, MapDispatchToPropsFunction } from 'react-redux';
+
+
 import { Link, RouteProps, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { IntlProps } from '../../';
@@ -16,14 +19,14 @@ import {
     changeLanguage,
     User,
     selectCurrentLanguage,
-    selectUserInfo
+
+    selectUserInfo,
 } from '../../modules';
+// import { ArrowIcon } from '../../assets/images/customization/ArrowIcon';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { languages } from '../../api/config';
-import { ArrowIcon } from '../../assets/images/customization/ArrowIcon';
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
-import { Autoplay, Navigation } from 'swiper';
-import 'swiper/swiper-bundle.min.css';
-import 'swiper/react/swiper-react';
 
 
 const FeaturesExchangeIcon = require('../../assets/images/landing/features/Exchange.svg');
@@ -43,7 +46,7 @@ const MediumIcon = require('../../assets/images/landing/social/Medium.svg');
 const CoinMarketIcon = require('../../assets/images/landing/social/CoinMarket.svg');
 const enIcon = require('../../assets/images/sidebar/en.svg');
 const faIcon = require('../../assets/images/sidebar/fa.svg');
-// ../../assets/images/sidebar/${lang}.svg
+
 
 interface ReduxProps {
     isLoggedIn: boolean;
@@ -90,7 +93,9 @@ class Landing extends React.Component<Props> {
 
         const languageName = lang?.toUpperCase();
         const languageClassName = classnames('dropdown-menu-language-field', {
-            'dropdown-menu-language-field-active': this.state.isOpenLanguage
+
+            'dropdown-menu-language-field-active': this.state.isOpenLanguage,
+
         });
         if (isLoggedIn) {
             return (
@@ -98,16 +103,18 @@ class Landing extends React.Component<Props> {
                     <div className="pg-landing-screen__header__wrap">
                         <div className="pg-landing-screen__header__wrap__left" style={{ cursor: 'pointer' }}
                             onClick={e => this.handleScrollTop()}>
-                            <img src='/images/logo_bankdex.png' alt='BankDex' />
+
                             {/* <LogoIcon /> */}
-                            <div className='pg-landing-screen__header__wrap__left_menu'>
-                                <Link to='/trade'>
+
+                            <img src='/images/logo_bankdex.png' alt='BankDex' />
+                            <div className="pg-landing-screen__header__wrap__left_menu">
+                                <Link to="/trade" >
                                     {this.translate('page.header.navbar.trade')}
                                 </Link>
-                                <Link to='/'>
+                                <Link to="/" >
                                     {this.translate('page.header.navbar.markets')}
                                 </Link>
-                                <Link to='/' className=''>
+                                <Link to="/" className="">
                                     {this.translate('page.header.navbar.news')}
                                 </Link>
                             </div>
@@ -118,14 +125,18 @@ class Landing extends React.Component<Props> {
                                 {this.translate('page.body.landing.header.button1')}
                             </Link>
                             <Dropdown style={{ marginLeft: '1rem' }}>
-                                <Dropdown.Toggle variant='primary' id={languageClassName}>
+
+                                <Dropdown.Toggle variant="primary" id={languageClassName}>
+
                                     <img
                                         src={lang === 'en' ? enIcon : faIcon}
                                         alt={`${lang}-flag-icon`}
                                     />
-                                    <span className='dropdown-menu-language-selected'>{languageName}</span>
+
+                                    <span className="dropdown-menu-language-selected">{languageName}</span>
                                 </Dropdown.Toggle>
-                                <Dropdown.Menu className='dropdownMenu'>
+                                <Dropdown.Menu className="dropdownMenu">
+
                                     {this.getLanguageDropdownItems()}
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -153,14 +164,18 @@ class Landing extends React.Component<Props> {
                             {this.translate('page.body.landing.header.button3')}
                         </Link>
                         <Dropdown style={{ marginLeft: '1rem' }}>
-                            <Dropdown.Toggle variant='primary' id={languageClassName}>
+
+                            <Dropdown.Toggle variant="primary" id={languageClassName}>
+
                                 <img
                                     src={lang === 'en' ? enIcon : faIcon}
                                     alt={`${lang}-flag-icon`}
                                 />
-                                <span className='dropdown-menu-language-selected'>{languageName}</span>
+
+                                <span className="dropdown-menu-language-selected">{languageName}</span>
                             </Dropdown.Toggle>
-                            <Dropdown.Menu className='dropdownMenu'>
+                            <Dropdown.Menu className="dropdownMenu">
+
                                 {this.getLanguageDropdownItems()}
                             </Dropdown.Menu>
                         </Dropdown>
@@ -174,6 +189,7 @@ class Landing extends React.Component<Props> {
         try {
             require(`../../assets/images/sidebar/${name}.svg`);
 
+
             return true;
         } catch (err) {
             return false;
@@ -181,8 +197,11 @@ class Landing extends React.Component<Props> {
     };
     private handleChangeLanguage = (language: string) => {
         const { user, isLoggedIn } = this.props;
+        console.log(user);
+
         if (isLoggedIn) {
             const data = user.data && JSON.parse(user.data);
+
 
             if (data && data.language && data.language !== language) {
                 const payload = {
@@ -197,42 +216,74 @@ class Landing extends React.Component<Props> {
             }
         }
 
-        // @ts-ignore
+
+
         this.props.changeLanguage(language);
     };
     public getLanguageDropdownItems = () => {
         return languages.map((l: string, index: number) =>
             <Dropdown.Item key={index} onClick={e => this.handleChangeLanguage(l)}>
-                <div className='dropdown-row'>
+
+                <div className="dropdown-row">
+
                     <img
                         src={this.tryRequire(l) && require(`../../assets/images/sidebar/${l}.svg`)}
                         alt={`${l}-flag-icon`}
                     />
                     <span>{l.toUpperCase()}</span>
                 </div>
-            </Dropdown.Item>
+
+            </Dropdown.Item>,
         );
     };
     public renderMarketInfoBlock() {
-        const { lang } = this.props
+        const { lang } = this.props;
+        const renderSlides = () =>
+            [1, 2, 3, 4, 5, 6, 7, 8].map(num => (
+                <div className='sliderItem '>
+                    <div className='textslider'
+                        style={{
+                            right: `${lang === 'fa' ? '8%' : 'auto'}`,
+                            left: `${lang === 'fa' ? 'auto' : '8%'}`,
+                            direction: `${lang === 'fa' ? 'rtl' : 'ltr'}`
+                        }}>
+                        <h1>{this.translate('page.body.landing.marketInfo.title.text1')}{num}</h1>
+
+                        <span style={{ float: `${lang === 'fa' ? 'right' : 'left'}` }} >
+                            {this.translate('page.body.landing.marketInfo.title.text3')}
+                        </span>
+
+                        <Link to='/signup' className='landing-button'>
+                            {this.translate('page.body.landing.registerNow.title')}
+                        </Link>
+                    </div>
+                </div>
+            ));
         return (
+            // <div className="pg-landing-screen__market-info">
+            //     <div className="pg-landing-screen__market-info__wrap">
+            //         <div className="pg-landing-screen__market-info__wrap__title">
+            //             <h1>{this.translate('page.body.landing.marketInfo.title.text1')}</h1>
+            //             <h1>{this.translate('page.body.landing.marketInfo.title.text2')}</h1>
+            //             <Link to="/trading" className="landing-button">
+            //                 {this.translate('page.body.landing.marketInfo.title.button')}
+            //             </Link>
             <div className='pg-landing-screen__market-info'>
                 <div className='pg-landing-screen__market-info__wrap'>
                     <div className='pg-landing-screen__market-info__wrap__title'>
                         <div style={{ width: '100%' }}>
-                            <Swiper
-                                spaceBetween={50}
-                                pagination={{ clickable: true }}
-                                loop={true}
-                                // autoplay={{
-                                //     delay: 2000,
-                                //     disableOnInteraction: false
-                                // }}
-                                slidesPerView={1}
-                                modules={[Autoplay]}
-                            >
-                                <SwiperSlide>
-                                    <div className='sliderItem'>
+                            <div className="slide-container">
+                                <Slider
+                                    dots={false}
+                                    slidesToShow={1}
+                                    slidesToScroll={1}
+                                    autoplay={true}
+                                    autoplaySpeed={10000}
+                                >
+                                    {renderSlides()}
+                                </Slider>
+                                {/* <div className='each-slide' key={index} >
+                                    <div className='sliderItem '>
                                         <div className='textslider'
                                             style={{
                                                 right: `${lang === 'fa' ? '8%' : 'auto'}`,
@@ -243,41 +294,90 @@ class Landing extends React.Component<Props> {
                                             <span style={{ float: `${lang === 'fa' ? 'right' : 'left'}` }} >
                                                 {this.translate('page.body.landing.marketInfo.title.text3')}
                                             </span>
-                                            <Link to='/signup' className='landing-button'>
-                                                {this.translate('page.body.landing.registerNow.title')}
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className='sliderItem'>
-                                        <div className='textslider'>
-                                            <h1>{this.translate('page.body.landing.marketInfo.title.text1')}</h1>
-                                            <span>{this.translate('page.body.landing.marketInfo.title.text1')}</span>
-                                            <Link to='/signup' className='landing-button'>
-                                                {this.translate('page.body.landing.registerNow.title')}
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className='sliderItem'>
-                                        <div className='textslider'>
-                                            <h1>{this.translate('page.body.landing.marketInfo.title.text1')}</h1>
-                                            <span>{this.translate('page.body.landing.marketInfo.title.text')}</span>
-                                            <Link to='/signup' className='landing-button'>
-                                                {this.translate('page.body.landing.registerNow.title')}
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
 
-                            </Swiper>
-                        </div>
-                    </div>
+                                            <Link to='/signup' className='landing-button'>
+                                                {this.translate('page.body.landing.registerNow.title')}
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div> */}
+                            </div>
+                        </div >
+                    </div >
                     <MarketsTable slider={true} />
-                </div>
+                </div >
             </div >
+        );
+    }
+    // slideBonusRef = React.createRef<HTMLInputElement>();
+    // nextBonusRef = React.createRef<HTMLInputElement>();
+    // private renderPrevArrow() {
+    //     return (
+    //         <div className='prevPaginationBonus' onClick={() => this.slideBonusRef.current.goBack()}>
+    //             <div className="prevPaginationBonus_button">
+    //                 <ArrowIcon colorSvg={'var(--primary-text-color)'} />
+    //             </div>
+    //         </div>
+    //     )
+    // }
+    // private renderNextArrow() {
+    //     return (
+    //         <div className='nextPaginationBonus' onClick={() => this.slideBonusRef.current.goNext()}>
+    //             <div className="nextPaginationBonus_button">
+    //                 <ArrowIcon colorSvg={'var(--primary-text-color)'} />
+    //             </div>
+    //         </div>
+    //     )
+    // }
+    public renderbounceBlock() {
+        const slideImagesBonus = [
+            {
+                url: '/images/bounce1.png',
+                caption: 'sajlfhasjfh'
+            },
+            {
+                url: '/images/bounce2.png',
+                caption: 'sajlfhasjfh'
+            },
+            {
+                url: '/images/bounce3.png',
+                caption: 'sajlfhasjfh'
+            },
+            {
+                url: '/images/bounce1.png',
+                caption: 'sajlfhasjfh'
+            },
+            {
+                url: '/images/bounce2.png',
+                caption: 'sajlfhasjfh'
+            },
+        ];
+        const renderSlides = () =>
+            slideImagesBonus.map((slideImage, index) => (
+                <div className='each-slide' key={index} >
+                    <div className='sliderBonusItem'>
+                        <img src={`${slideImage.url}`} alt="" />
+                    </div>
+
+                </div>
+
+            ));
+        // const { lang } = this.props
+        return (
+            <div className='Bonus'>
+                <Slider
+                    dots={false}
+                    slidesToShow={4}
+                    slidesToScroll={1}
+                    autoplay={true}
+                    autoplaySpeed={3000}
+                >
+                    {renderSlides()}
+                </Slider>
+
+            </div >
+
+
         );
     }
 
@@ -354,13 +454,17 @@ class Landing extends React.Component<Props> {
     }
     public renderPlatformInfoBlock() {
         return (
-            <div className=''>
+
+            <div className='MarketsTable'>
+                <MarketsTable />
                 {/* <div className='pg-landing-screen__platform-info'> */}
                 {/* <div className='pg-landing-screen__platform-info__wrap'>
                     <div className='pg-landing-screen__platform-info__wrap__item'>
-                        <span>{this.translate('page.body.landing.platformInfo.item.first.value')}</span>
+                             <span>{this.translate('page.body.landing.platformInfo.item.first.value')}</span>
                         <span>{this.translate('page.body.landing.platformInfo.item.first.title')}</span>
                     </div>
+                    
+
                     <div className='pg-landing-screen__platform-info__wrap__item'>
                         <span>{this.translate('page.body.landing.platformInfo.item.second.value')}</span>
                         <span>{this.translate('page.body.landing.platformInfo.item.second.title')}</span>
@@ -369,6 +473,9 @@ class Landing extends React.Component<Props> {
                         <span>{this.translate('page.body.landing.platformInfo.item.third.value')}</span>
                         <span>{this.translate('page.body.landing.platformInfo.item.third.title')}</span>
                     </div>
+
+                </div>
+
                 </div> */}
             </div>
         );
@@ -503,22 +610,87 @@ class Landing extends React.Component<Props> {
                         <img src='/images/logo_bankdex.png' alt='BankDex' />
 
                     </div>
-                    <div className='pg-landing-screen__footer__wrap__navigation'>
-                        <div className='pg-landing-screen__footer__wrap__navigation__col'>
-                            <Link to='/trading/'>{this.translate('page.body.landing.footer.exchange')}</Link>
-                            <Link to='/wallets'>{this.translate('page.body.landing.footer.wallets')}</Link>
-                            <Link to='/'>{this.translate('page.body.landing.footer.fees')}</Link>
+
+                    <div className="pg-landing-screen__footer__wrap__navigation">
+                        <div className='footerList'>
+                            <div className="aboutUs">
+                                <h3>
+                                    {this.translate('page.body.landing.footer.aboutUs')}
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <Link to="/">{this.translate('page.body.landing.footer.about')}</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/">{this.translate('page.body.landing.footer.businessContacts')}</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/trading/">{this.translate('page.body.landing.footer.terms')}</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/trading/">{this.translate('page.body.landing.footer.privacy')}</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/trading/">{this.translate('page.body.landing.footer.news')}</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="products">
+                                <h3>
+                                    {this.translate('page.body.landing.footer.products')}
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <Link to="/trading/">{this.translate('page.body.landing.footer.exchange')}</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="service">
+                                <h3>
+                                    {this.translate('page.body.landing.footer.service')}
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <Link to="/">{this.translate('page.body.landing.footer.downloads')}</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/">{this.translate('page.body.landing.footer.buyCrypto')}</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/">{this.translate('page.body.landing.footer.referal')}</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="support">
+                                <h3>
+                                    {this.translate('page.body.landing.footer.support')}
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <Link to="/">{this.translate('page.body.landing.footer.fee')}</Link>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        {/* <div className="pg-landing-screen__footer__wrap__navigation__col">
+                            <Link to="/trading/">{this.translate('page.body.landing.footer.exchange')}</Link>
+                            <Link to="/wallets">{this.translate('page.body.landing.footer.wallets')}</Link>
+                            <Link to="/">{this.translate('page.body.landing.footer.fees')}</Link>
+
                         </div>
                         <div className='pg-landing-screen__footer__wrap__navigation__col'>
                             <Link to='/'>{this.translate('page.body.landing.footer.faq')}</Link>
                             <Link to='/'>{this.translate('page.body.landing.footer.support')}</Link>
                             <Link to='/'>{this.translate('page.body.landing.footer.privacy')}</Link>
                         </div>
-                        <div className='pg-landing-screen__footer__wrap__navigation__col'>
-                            <Link to='/'>{this.translate('page.body.landing.footer.about')}</Link>
-                            <Link to='/'>{this.translate('page.body.landing.footer.community')}</Link>
-                            <Link to='/'>{this.translate('page.body.landing.footer.info')}</Link>
-                        </div>
+
+                        <div className="pg-landing-screen__footer__wrap__navigation__col">
+                            <Link to="/">{this.translate('page.body.landing.footer.about')}</Link>
+                            <Link to="/">{this.translate('page.body.landing.footer.community')}</Link>
+                            <Link to="/">{this.translate('page.body.landing.footer.info')}</Link>
+                        </div> */}
+
                     </div>
                     <div className='pg-landing-screen__footer__wrap__social'>
                         <div className='pg-landing-screen__footer__wrap__social__row'>
@@ -547,11 +719,13 @@ class Landing extends React.Component<Props> {
             <div className='pg-landing-screen'>
                 {this.renderHeader()}
                 {this.renderMarketInfoBlock()}
-                {this.renderPlatformInfoBlock()}
                 {this.renderbounceBlock()}
-                {this.renderRegisterBlock()}
-                {this.renderFeaturesBlock()}
-                {this.renderTradeOnTheGoBlock()}
+                {this.renderPlatformInfoBlock()}
+
+                {/* {this.renderRegisterBlock()} */}
+                {/* {this.renderFeaturesBlock()} */}
+                {/* {this.renderTradeOnTheGoBlock()} */}
+
                 {this.renderStartTradingBlock()}
                 {this.renderFooter()}
             </div>
@@ -569,16 +743,19 @@ const mapStateToProps = (state: RootState): ReduxProps => ({
     isLoggedIn: selectUserLoggedIn(state),
     colorTheme: selectCurrentColorTheme(state),
     lang: selectCurrentLanguage(state),
-    user: selectUserInfo(state)
+
+    user: selectUserInfo(state),
 });
-const mapDispatchToProps: MapDispatchToPropsFunction<MapDispatchToProps<any, any>, {}> = dispatch => ({
+
+const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProps, {}> = dispatch => ({
     changeLanguage: payload => dispatch(changeLanguage(payload)),
     // toggleSidebar: payload => dispatch(toggleSidebar(payload)),
     // logoutFetch: () => dispatch(logoutFetch()),
-    changeUserDataFetch: payload => dispatch(changeUserDataFetch(payload))
+    changeUserDataFetch: payload => dispatch(changeUserDataFetch(payload)),
 });
 export const LandingScreen = compose(
     injectIntl,
     withRouter,
-    connect(mapStateToProps, mapDispatchToProps)
+    connect(mapStateToProps, mapDispatchToProps),
+
 )(Landing) as React.ComponentClass;

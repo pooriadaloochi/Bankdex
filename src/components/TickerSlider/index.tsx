@@ -1,11 +1,13 @@
 import React from 'react';
 import { Market } from '../../modules';
 import { Decimal } from '../Decimal';
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
-import { Autoplay, Navigation } from 'swiper';
-import 'swiper/swiper-bundle.min.css';
-import 'swiper/react/swiper-react';
-import { ArrowIcon } from '../../assets/images/customization/ArrowIcon';
+
+// import { ArrowIcon } from '../../assets/images/customization/ArrowIcon';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
 
 interface Props {
     currentBidUnit: string;
@@ -54,15 +56,55 @@ export const TickerSlider: React.FC<Props> = ({
         [redirectToTrading]
     );
     const markets1 = markets?.map((el, i) => i < 5 ? el : null)
-    const markets2 = markets?.map((el, i) => i > 4 ? el : null)
-    const prevTrickerRef = React.useRef<HTMLHeadingElement>(null);
-    const nextTrickerRef = React.useRef<HTMLHeadingElement>(null);
 
-
+    // const markets2 = markets?.map((el, i) => i > 4 ? el : null)
+    // const prevTrickerRef = React.useRef<HTMLHeadingElement>(null);
+    // const nextTrickerRef = React.useRef<HTMLHeadingElement>(null);
+    // console.log(markets1);
+    // const renderPrevArrow = (
+    //     <div className='prevPaginationBonus' ref={prevTrickerRef} >
+    //         <div className="prevPaginationBonus_button">
+    //             <ArrowIcon colorSvg={'var(--primary-text-color)'} />
+    //         </div>
+    //     </div>
+    // )
+    // const renderNexArrow = (
+    //     <div className='nextPaginationBonus' ref={nextTrickerRef} >
+    //         <div className="nextPaginationBonus_button">
+    //             <ArrowIcon colorSvg={'var(--primary-text-color)'} />
+    //         </div>
+    //     </div>
+    // )
+    const renderSlides = () =>
+        [1, 2, 3, 4, 5, 6, 7, 8].map(num => (
+            num === 0 ? <div className='itemSlider'>
+                {markets1.map(renderItem)}
+            </div> : <div className='itemSlider'>
+                {markets1.map(renderItem)}
+            </div>
+        ));
     return (
         <div className='pg-ticker-table'>
             <div className='pg-ticker-table__table-wrap'>
                 <div className='parentSlider'>
+
+                    <Slider
+                        dots={true}
+                        slidesToShow={4}
+                        slidesToScroll={1}
+                        autoplay={true}
+                        autoplaySpeed={5000}
+                        vertical={true}
+                        infinite={true}
+                        adaptiveHeight={true}
+                        draggable={false}
+                        pauseOnHover={true}
+                    // nextArrow={renderNexArrow}
+                    // prevArrow={renderPrevArrow}
+                    >
+                        {renderSlides()}
+                    </Slider>
+
                     <Swiper
                         spaceBetween={50}
                         pagination={{ clickable: true }}
@@ -114,8 +156,11 @@ export const TickerSlider: React.FC<Props> = ({
                         </div>
                     </Swiper>
 
+
                 </div>
             </div>
         </div>
     );
+
 };
+

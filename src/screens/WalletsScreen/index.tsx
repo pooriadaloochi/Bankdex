@@ -52,6 +52,8 @@ import {
     setCurrentMarket,
 } from '../../modules';
 import { incrementalOrderBook } from '../../api';
+// import DropdownComponent from './../../components/Dropdown/index';
+import { Dropdown } from 'react-bootstrap';
 
 interface ReduxProps {
     user: User;
@@ -371,12 +373,15 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
     };
 
     private renderDeposit = (isAccountActivated: boolean) => {
+
         const {
             currencies,
             user,
             wallets,
         } = this.props;
+        // console.log(wallets);
         const { selectedWalletIndex } = this.state;
+
         const wallet: Wallet = (wallets[selectedWalletIndex] || defaultWallet);
         const currencyItem = (currencies && currencies.find(item => item.id === wallet.currency)) || { min_confirmations: 6, deposit_enabled: false };
         const text = this.props.intl.formatMessage({ id: 'page.body.wallets.tabs.deposit.ccy.message.submit' },
@@ -386,6 +391,9 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
         const blurCryptoClassName = classnames('pg-blur-deposit-crypto', {
             'pg-blur-deposit-crypto--active': isAccountActivated,
         });
+        // console.log(currencies);
+        // console.log(user);
+        // console.log(wallets);
 
         const buttonLabel = `${this.translate('page.body.wallets.tabs.deposit.ccy.button.generate')} ${wallet.currency.toUpperCase()} ${this.translate('page.body.wallets.tabs.deposit.ccy.button.address')}`;
 
@@ -412,6 +420,102 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                     />
                     {/* {wallet.currency && <WalletHistory label="deposit" type="deposits" currency={wallet.currency} flexDirection={this.translate('directionFlex')} />} */}
                 </React.Fragment>
+            );
+        } if (wallets[selectedWalletIndex].currency === "irr") {
+            return (
+                <div className='RialCoin'>
+                    {/* <CurrencyInfo wallet={wallets[selectedWalletIndex]} /> */}
+                    <div className='RialCoin_header'>
+                        <p>لطفا پیش از واریز وجه توضیحات زیر را به دقت مطالعه نمایید.مسئولیت مشکلات ناشی از عدم توجه به این موارد برعهده ی  مشتری خواهد بود.</p>
+                        <a href="https://google.com">راهنمای تصویری</a>
+                    </div>
+                    <div className='RialCoin_raiseOfwalletsHeader'>
+                        <p>
+                            جهت افزایش اعتبار کیف پول ریالی خود با استفاده از کارت های بانکب عضو شبکه شتاب و از طریق درگاهپرداخت اینترنتی اقدام نمایید .
+                        </p>
+                        <br />
+                        <p>
+                            در هنگام پرداخت به نکات زیر دقت نمایید :
+                        </p>
+                    </div>
+                    <ul className='RialCoin_raiseOfwalletsHeader'>
+                        <li>حتمابه آدرس صفحه ی درگاه بانکی دقت نموده و تنها پس از اطمینان از حضور در سایت های سامانه شاپرک مشخصات کارت بانکی خود را وارد کنید .</li>
+                        <li>در صفحه درگاه دقت کنید که حتما مبلغ نمایش داده شده درست باشد .</li>
+                        <li>در تعیین مبلغ واریزبه این موضوع دقت نمایید که حداقل مبلغ معامله در بازار نوبیتکس سیصدهزار تومان است .</li>
+                    </ul>
+                    <div className='RialCoin_bottomInputs'>
+                        <span>
+                            جهت واریز مجه ، حتما باید از کارت های بانکی به نام خودتان که در پروفایل تان ثبت و تایید شده است، استفاده نمایید .
+                        </span>
+                        <div className='RialCoin_bottomInputs_all'>
+                            <div className='RialCoin_bottomInputs_all_dropdowns'>
+                                <div>
+                                    <span>
+                                        کارت بانکی
+                                    </span>
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="primary" id="dropdown-basic"
+                                        >
+                                            انتخاب کارت
+                                            {/* <ChevronIcon className="cr-dropdown__arrow" /> */}
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu >
+                                            1
+                                        </Dropdown.Menu>
+                                        <Dropdown.Menu >
+                                            2
+                                        </Dropdown.Menu>
+                                        <Dropdown.Menu >
+                                            3
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </div>
+
+                                <Button
+                                    // block={true}
+                                    type="button"
+                                    // onClick={handleGenerateAddress}
+                                    size="lg"
+                                    variant="primary"
+                                    className='addCart'
+                                >
+                                    افزودن کارت
+                                </Button>
+                            </div>
+                            <div className='RialCoin_bottomInputs_all_seccondInput'>
+                                <div className='RialCoin_bottomInputs_all_seccondInput_right'>
+                                    <span>
+                                        مبلغ واریزی به تومان :
+                                    </span>
+                                    <br />
+                                    <input />
+                                </div>
+
+
+                                <div className='RialCoin_bottomInputs_all_seccondInput_left'>
+                                    <Button
+                                        // block={true}
+                                        type="button"
+                                        // onClick={handleGenerateAddress}
+                                        size="lg"
+                                        variant="primary"
+                                    >
+                                        بازگشت به لیست کیف ها
+                                    </Button>
+                                    <Button
+                                        // block={true}
+                                        type="button"
+                                        // onClick={handleGenerateAddress}
+                                        size="lg"
+                                        variant="primary"
+                                    >
+                                        انتقال به درگاه پرداخت
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div >
             );
         } else {
             return (
@@ -463,6 +567,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
         const wallet = wallets[selectedWalletIndex];
         const { currency, fee, type } = wallet;
         const fixed = (wallet || { fixed: 0 }).fixed;
+        const rial = (wallets[selectedWalletIndex].currency === "irr")
 
         const withdrawProps: WithdrawProps = {
             withdrawDone,
@@ -479,7 +584,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
             withdrawButtonLabel: this.props.intl.formatMessage({ id: 'page.body.wallets.tabs.withdraw.content.button' }),
         };
 
-        return otp ? <Withdraw flexDirection={this.translate('directionFlex')} {...withdrawProps} /> : this.isOtpDisabled();
+        return (otp && !rial) ? <Withdraw flexDirection={this.translate('directionFlex')} {...withdrawProps} /> : rial ? this.isRialWithdraw() : this.isOtpDisabled();
     };
 
 
@@ -490,14 +595,136 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                     {this.translate('page.body.wallets.tabs.withdraw.content.enable2fa')}
                 </p>
                 <div className='pg-wallet__enable-2fa-message_button'>
-                <Button
-                    block={true}
-                    onClick={this.redirectToEnable2fa}
-                    size="lg"
-                    variant="primary"
-                >
-                    {this.translate('page.body.wallets.tabs.withdraw.content.enable2faButton')}
-                </Button>
+                    <Button
+                        block={true}
+                        onClick={this.redirectToEnable2fa}
+                        size="lg"
+                        variant="primary"
+                    >
+                        {this.translate('page.body.wallets.tabs.withdraw.content.enable2faButton')}
+                    </Button>
+                </div>
+            </div>
+        );
+    };
+    private isRialWithdraw = () => {
+        return (
+            <div className='rialWithdraw'>
+                <div className='rialWithdraw_header'>
+                    <span>در صورت تمایل به برداشت موجودی کیف پول های خود ، درخواست خود را اینجا ثبت نمایید .</span>
+                    <span>درصورت ثبت حساب بانک آینده و استفاده از آن، معمولا امکان انتقال داخل بانکی و تسریع درخواست برداشت وجود دارد .</span>
+
+                    <Button
+                        // block={true}
+                        type="button"
+                        // onClick={handleGenerateAddress}
+                        size="lg"
+                        variant="primary"
+                        className='addCart'
+                    >
+                        زمان بندی تسویه ریالی بانکدکس
+                    </Button>
+                </div>
+                <div className='rialWithdraw_inputs'>
+                    <div className='rialWithdraw_inputs_cost'>
+                        <span>
+                            مبلغ برداشت (تومان) :
+                        </span>
+                        <br />
+                        <input />
+                    </div>
+                    <ul className="rialWithdraw_inputs_balance">
+                        <li>
+                            <span>
+                                موجودی قابل برداشت شما : 384و621 تومان
+                            </span>
+                            <Button
+                                type="button"
+                                variant="primary">
+                                انتخاب
+                            </Button>
+                        </li>
+                        <li>مجموع برداشت روزانه : 0 از 300,000,000 تومان </li>
+                        <li>مجموع برداشت ماهانه : 4,990,286 از 300,000,000 تومان </li>
+                    </ul>
+                    <div className='RialCoin_bottomInputs_all_dropdowns rialWithdraw_inputs_count'>
+                        <div>
+                            <span>
+                                شماره حساب بانک مقصد
+                            </span>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="primary" id="dropdown-basic"
+                                >
+                                    انتخاب کارت
+                                    {/* <ChevronIcon className="cr-dropdown__arrow" /> */}
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu >
+                                    1
+                                </Dropdown.Menu>
+                                <Dropdown.Menu >
+                                    2
+                                </Dropdown.Menu>
+                                <Dropdown.Menu >
+                                    3
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <div className='rialWithdraw_inputs_count_footer'>
+                            <span>میتوانید هریک از حساب های بانکی تایید شده یخود را برای دریافت وجه انتخاب نمایید</span>
+                            <Button
+                                // block={true}
+                                type="button"
+                                // onClick={handleGenerateAddress}
+                                size="lg"
+                                variant="primary"
+                                className='addCart'
+                            >
+                                افزودن کارت
+                            </Button>
+                        </div>
+
+                    </div>
+                    <div className='rialWithdraw_inputs_cost Identification'>
+                        <span>
+                            کد شناسایی دوعاملی :
+                        </span>
+                        <br />
+                        <input />
+                        <span>
+                            شناسایی دو عاملی برای حساب شما فعال است .
+                        </span>
+                    </div>
+                    <div className='rialWithdraw_inputs_cost Identification'>
+                        <span>
+                            کارمزد انتقال:
+                        </span>
+                        <br />
+                        <input />
+                        <span>
+                            کارمزد انتقال ریال جهت انجام عملیات بانکی است .
+                        </span>
+                    </div>
+
+                    <div className='RialCoin_bottomInputs_all_seccondInput_left footer_button_witdraw'>
+                        <Button
+                            // block={true}
+                            type="button"
+                            // onClick={handleGenerateAddress}
+                            size="lg"
+                            variant="primary"
+                        >
+                            مشاهده کارمزدها
+                        </Button>
+                        <Button
+                            // block={true}
+                            type="button"
+                            // onClick={handleGenerateAddress}
+                            size="lg"
+                            variant="primary"
+                        >
+                            ایجاد درخواست برداشت
+                        </Button>
+                    </div>
                 </div>
             </div>
         );
