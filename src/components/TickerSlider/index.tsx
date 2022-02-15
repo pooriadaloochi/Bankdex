@@ -1,10 +1,13 @@
 import React from 'react';
 import { Market } from '../../modules';
 import { Decimal } from '../Decimal';
+
 // import { ArrowIcon } from '../../assets/images/customization/ArrowIcon';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+
 
 interface Props {
     currentBidUnit: string;
@@ -53,6 +56,7 @@ export const TickerSlider: React.FC<Props> = ({
         [redirectToTrading]
     );
     const markets1 = markets?.map((el, i) => i < 5 ? el : null)
+
     // const markets2 = markets?.map((el, i) => i > 4 ? el : null)
     // const prevTrickerRef = React.useRef<HTMLHeadingElement>(null);
     // const nextTrickerRef = React.useRef<HTMLHeadingElement>(null);
@@ -83,6 +87,7 @@ export const TickerSlider: React.FC<Props> = ({
         <div className='pg-ticker-table'>
             <div className='pg-ticker-table__table-wrap'>
                 <div className='parentSlider'>
+
                     <Slider
                         dots={true}
                         slidesToShow={4}
@@ -100,8 +105,62 @@ export const TickerSlider: React.FC<Props> = ({
                         {renderSlides()}
                     </Slider>
 
+                    <Swiper
+                        spaceBetween={50}
+                        pagination={{ clickable: true }}
+                        loop={true}
+                        slidesPerView={1}
+                        modules={[Autoplay, Navigation]}
+                        navigation={{
+                            prevEl: prevTrickerRef.current,
+                            nextEl: nextTrickerRef.current,
+                        }}
+                        onBeforeInit={(swiper) => {
+                            // @ts-ignore
+                            swiper.params.navigation.prevEl = prevTrickerRef.current;
+                            // @ts-ignore
+                            swiper.params.navigation.nextEl = nextTrickerRef.current;
+                        }}
+                    >
+                        {markets1[0] &&
+                            <SwiperSlide>
+                                <div className='itemSlider'>
+                                    {markets1.map(renderItem)}
+                                </div>
+                            </SwiperSlide>
+                        }
+                        {markets2[0] &&
+                            <SwiperSlide>
+                                <div className='itemSlider'>
+                                    pooriadaloods
+                                </div>
+                            </SwiperSlide>
+                        }
+                        {markets1[0] &&
+                            <SwiperSlide>
+                                <div className='itemSlider'>
+                                    {markets1.map(renderItem)}
+                                </div>
+                            </SwiperSlide>
+                        }
+
+                        <div className='prevPaginationBonus' ref={prevTrickerRef} >
+                            <div className="prevPaginationBonus_button">
+                                <ArrowIcon colorSvg={'var(--primary-text-color)'} />
+                            </div>
+                        </div>
+                        <div className='nextPaginationBonus' ref={nextTrickerRef} >
+                            <div className="nextPaginationBonus_button">
+                                <ArrowIcon colorSvg={'var(--primary-text-color)'} />
+                            </div>
+                        </div>
+                    </Swiper>
+
+
                 </div>
             </div>
         </div>
     );
+
 };
+

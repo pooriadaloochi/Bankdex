@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Decimal, TickerTable } from '../../components';
+import { TickerSlider } from '../../components/TickerSlider';
 import {
     useMarketsFetch,
     useMarketsTickersFetch,
@@ -24,7 +25,7 @@ const defaultTicker = {
     volume: '0.0',
 };
 
-const MarketsTableComponent = props => {
+const MarketsTableComponent = (props) => {
     useMarketsFetch();
     useMarketsTickersFetch();
     const history = useHistory();
@@ -80,6 +81,7 @@ const MarketsTableComponent = props => {
             .toFixed(market.price_precision), market.price_precision),
     }),
     ) : [];
+
     const { slider } = props
     return (
         // <TickerTable
@@ -89,6 +91,7 @@ const MarketsTableComponent = props => {
         //     redirectToTrading={handleRedirectToTrading}
         //     setCurrentBidUnit={setCurrentBidUnit}
         // />
+
         <>
             {slider ?
                 (<TickerSlider
