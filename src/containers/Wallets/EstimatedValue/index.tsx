@@ -3,7 +3,7 @@ import { injectIntl } from 'react-intl';
 import { connect, MapDispatchToPropsFunction } from 'react-redux';
 import { IntlProps } from '../../../';
 import { formatWithSeparators } from '../../../components';
-import { VALUATION_PRIMARY_CURRENCY, VALUATION_SECONDARY_CURRENCY } from '../../../constants';
+import { VALUATION_PRIMARY_CURRENCY, VALUATION_SECONDARY_CURRENCY, VALUATION_SECONDARY_CURRENCY_WALLETS } from '../../../constants';
 import { estimateUnitValue, estimateValue } from '../../../helpers/estimateValue';
 import {
     currenciesFetch,
@@ -120,14 +120,14 @@ class EstimatedValueContainer extends React.Component<Props> {
             markets,
             tickers,
         } = this.props;
-        const estimatedValueSecondary = estimateUnitValue(VALUATION_SECONDARY_CURRENCY, VALUATION_PRIMARY_CURRENCY, +estimatedValue, currencies, markets, tickers);
+        const estimatedValueSecondary = estimateUnitValue(VALUATION_SECONDARY_CURRENCY, VALUATION_SECONDARY_CURRENCY_WALLETS, +estimatedValue, currencies, markets, tickers);
 
         return (
             <span className="value-container">
                 <span className="value">
                     {formatWithSeparators(estimatedValueSecondary, ',')}
                 </span>
-                <span className="value-sign">{VALUATION_SECONDARY_CURRENCY.toUpperCase()}</span>
+                <span className="value-sign">{VALUATION_SECONDARY_CURRENCY_WALLETS.toUpperCase()}</span>
             </span>
         );
     };
