@@ -87,8 +87,8 @@ export const TickerSlider: React.FC<Props> = ({
                         dots={true}
                         slidesToShow={4}
                         slidesToScroll={1}
-                        // autoplay={true}
-                        autoplaySpeed={1000}
+                        autoplay={true}
+                        autoplaySpeed={5000}
                         vertical={true}
                         infinite={true}
                         adaptiveHeight={true}
@@ -99,22 +99,6 @@ export const TickerSlider: React.FC<Props> = ({
                     >
                         {renderSlides()}
                     </Slider>
-                    {/* {markets2[0] &&
-                        <SwiperSlide>
-                            <div className='itemSlider'>
-                                pooriadaloods
-                            </div>
-                        </SwiperSlide>
-                    }
-                    {markets1[0] &&
-                        <SwiperSlide>
-                            <div className='itemSlider'>
-                                {markets1.map(renderItem)}
-                            </div>
-                        </SwiperSlide>
-                    } */}
-
-
 
                 </div>
             </div>
