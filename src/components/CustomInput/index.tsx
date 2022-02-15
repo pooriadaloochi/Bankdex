@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { FormControl, InputGroup } from 'react-bootstrap';
+import { FormControl, InputGroup, Button } from 'react-bootstrap';
+import { EyePassword } from '../../assets/images/EyePassword'
+import { EyePasswordClose } from '../../assets/images/EyePasswordClose'
 
 export interface CustomInputProps {
     type: string;
@@ -30,6 +32,9 @@ interface OnChangeEvent {
 type Props = CustomInputProps;
 
 class CustomInput extends React.Component<Props> {
+    public state = {
+        passwordEye: true,
+    };
     public render() {
         const {
             label,
@@ -50,6 +55,9 @@ class CustomInput extends React.Component<Props> {
             flexDirection,
             // withdrawComponent
         } = this.props;
+        const handleShowPassword = () => {
+            this.setState({ passwordEye: !this.state.passwordEye });
+        }
 
         return (
             <React.Fragment>
@@ -65,7 +73,9 @@ class CustomInput extends React.Component<Props> {
                         <FormControl
                             className={`${flexDirection === 'flex-row-reverse' && 'text-right'}`}
                             size="lg"
-                            type={type}
+                            type={type === 'password' ?
+                                this.state.passwordEye ? type : 'text'
+                                : type}
                             value={inputValue.toString()}
                             placeholder={placeholder}
                             autoFocus={autoFocus}
@@ -80,6 +90,16 @@ class CustomInput extends React.Component<Props> {
                             autoComplete={autoComplete}
                             name={name}
                         />
+                        {type === 'password' &&
+                            <InputGroup.Append>
+                                <Button onClick={handleShowPassword} className={`eyePassword`}>
+                                    {this.state.passwordEye ?
+                                        <EyePasswordClose fillColor={'var(--icons)'} />
+                                        : <EyePassword fillColor={'var(--icons)'} />}
+
+                                </Button>
+                            </InputGroup.Append>
+                        }
                     </InputGroup>
                 </div>
             </React.Fragment >
