@@ -163,7 +163,7 @@ export const fa: LangType = {
     'page.body.landing.footer.service': 'خدمات',
     'page.body.landing.footer.referal': 'معرف',
     'page.body.landing.footer.businessContacts': 'مخاطبین تجاری',
-
+    'page.body.landing.footer.social': 'شبکه های اجتماعی',
 
     /* Wallets */
     'page.body.wallets.estimated_value': 'ارزش تخمین زده شده',

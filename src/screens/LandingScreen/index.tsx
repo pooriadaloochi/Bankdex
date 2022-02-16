@@ -499,6 +499,7 @@ class Landing extends React.Component<Props> {
     }
 
     public renderFooter() {
+        const { lang } = this.props
         return (
             <div className="pg-landing-screen__footer">
                 <div className="pg-landing-screen__footer__wrap">
@@ -510,11 +511,11 @@ class Landing extends React.Component<Props> {
                     </div>
                     <div className="pg-landing-screen__footer__wrap__navigation">
                         <div className='footerList'>
-                            <div className="aboutUs">
+                            <div className="aboutUs" style={{ alignItems: lang === 'en' ? 'flex-start' : 'flex-end' }}>
                                 <h3>
                                     {this.translate('page.body.landing.footer.aboutUs')}
                                 </h3>
-                                <ul>
+                                <ul style={{ alignItems: lang === 'en' ? 'flex-start' : 'flex-end' }}>
                                     <li>
                                         <Link to="/">{this.translate('page.body.landing.footer.about')}</Link>
                                     </li>
@@ -532,21 +533,21 @@ class Landing extends React.Component<Props> {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="products">
+                            <div className="products" style={{ alignItems: lang === 'en' ? 'flex-start' : 'flex-end' }}>
                                 <h3>
                                     {this.translate('page.body.landing.footer.products')}
                                 </h3>
-                                <ul>
+                                <ul style={{ alignItems: lang === 'en' ? 'flex-start' : 'flex-end' }}>
                                     <li>
                                         <Link to="/trading/">{this.translate('page.body.landing.footer.exchange')}</Link>
                                     </li>
                                 </ul>
                             </div>
-                            <div className="service">
+                            <div className="service" style={{ alignItems: lang === 'en' ? 'flex-start' : 'flex-end' }}>
                                 <h3>
                                     {this.translate('page.body.landing.footer.service')}
                                 </h3>
-                                <ul>
+                                <ul style={{ alignItems: lang === 'en' ? 'flex-start' : 'flex-end' }}>
                                     <li>
                                         <Link to="/">{this.translate('page.body.landing.footer.downloads')}</Link>
                                     </li>
@@ -558,11 +559,11 @@ class Landing extends React.Component<Props> {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="support">
+                            <div className="support" style={{ alignItems: lang === 'en' ? 'flex-start' : 'flex-end' }}>
                                 <h3>
                                     {this.translate('page.body.landing.footer.support')}
                                 </h3>
-                                <ul>
+                                <ul style={{ alignItems: lang === 'en' ? 'flex-start' : 'flex-end' }}>
                                     <li>
                                         <Link to="/">{this.translate('page.body.landing.footer.fee')}</Link>
                                     </li>
@@ -587,6 +588,7 @@ class Landing extends React.Component<Props> {
                         </div> */}
                     </div>
                     <div className="pg-landing-screen__footer__wrap__social">
+                        <h3>{this.translate('page.body.landing.footer.social')}</h3>
                         <div className="pg-landing-screen__footer__wrap__social__row">
                             <img src={TelegramIcon} alt="Telegram" />
                             <img src={LinkedInIcon} alt="LinkedIn" />

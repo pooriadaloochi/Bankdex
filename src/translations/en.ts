@@ -162,6 +162,7 @@ export const en = {
     'page.body.landing.footer.products': 'Products',
     'page.body.landing.footer.service': 'Service',
     'page.body.landing.footer.businessContacts': 'Business Contacts',
+    'page.body.landing.footer.social': 'Social',
 
     'pagy.body.footer.powered_by': 'Powered by',
 

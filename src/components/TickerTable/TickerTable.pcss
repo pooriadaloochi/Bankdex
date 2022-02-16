@@ -12,7 +12,7 @@
   &__filter {
     align-items: center;
     background: var(--subheader-background-color);
-    border-bottom: 0.5px solid var(--table-border-color);
+    /* border-bottom: 0.5px solid var(--table-border-color); */
     display: flex;
     flex-direction: row;
     height: 57px;
@@ -138,8 +138,10 @@
         }
 
         th {
-          font-size: 12px;
+          font-size: 16px;
           line-height: 12px;
+          color: var(--primary-text-color) !important;
+          border-bottom: 0.5px solid var(--table-border-color);
         }
 
         td {
@@ -161,11 +163,12 @@
 
       tr {
         &:hover {
-          background: var(--table-row-selector-color);
+          /* background: var(--table-row-selector-color); */
           cursor: pointer;
 
           td {
-            color: var(--primary-text-color);
+              color: var(--primary-cta-color);
+              transition: .2s;
           }
         }
       }

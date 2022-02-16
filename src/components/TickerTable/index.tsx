@@ -68,7 +68,7 @@ export const TickerTable: React.FC<Props> = ({
 
     return (
         <div className="pg-ticker-table">
-            <div className="pg-ticker-table__filter">
+            {/* <div className="pg-ticker-table__filter">
                 <ul className="navigation" role="tablist">
                     {currentBidUnitsList.map((item, i) => (
                         <li
@@ -81,7 +81,7 @@ export const TickerTable: React.FC<Props> = ({
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div> */}
             <div className="pg-ticker-table__table-wrap">
                 <table className="pg-ticker-table__table">
                     <thead>
