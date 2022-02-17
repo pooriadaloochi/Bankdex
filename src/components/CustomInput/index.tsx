@@ -91,7 +91,12 @@ class CustomInput extends React.Component<Props> {
                             name={name}
                         />
                         {type === 'password' &&
-                            <InputGroup.Append>
+                            <InputGroup.Append
+                                style={{
+                                    right: flexDirection === 'flex-row-reverse' ? 'auto' : 0,
+                                    left: flexDirection === 'flex-row-reverse' ? 0 : 'auto'
+                                }}
+                            >
                                 <Button onClick={handleShowPassword} className={`eyePassword`}>
                                     {this.state.passwordEye ?
                                         <EyePasswordClose fillColor={'var(--icons)'} />
