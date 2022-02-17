@@ -46,7 +46,7 @@ class AlertComponent extends React.Component<Props> {
                                 variant={w.type === 'error' ? 'danger' : w.type}
                             >
                                 {this.translate(msg)}
-                                {w.code && ` ${w.code.toString(10)}`}
+                                {/* {w.code && ` ${w.code.toString(10)}`} */}
                             </Alert>
                         </div>
                     </FadeIn>
