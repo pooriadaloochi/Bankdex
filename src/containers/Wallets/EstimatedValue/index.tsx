@@ -120,7 +120,7 @@ class EstimatedValueContainer extends React.Component<Props> {
             markets,
             tickers,
         } = this.props;
-        const estimatedValueSecondary = estimateUnitValue(VALUATION_SECONDARY_CURRENCY, VALUATION_SECONDARY_CURRENCY_WALLETS, +estimatedValue, currencies, markets, tickers);
+        const estimatedValueSecondary = estimateUnitValue(VALUATION_SECONDARY_CURRENCY_WALLETS, VALUATION_PRIMARY_CURRENCY, +estimatedValue, currencies, markets, tickers);
 
         return (
             <span className="value-container">
