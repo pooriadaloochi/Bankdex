@@ -9,6 +9,7 @@ export const en = {
     'page.header.navbar.activity': 'My Activity',
     'page.header.navbar.markets': 'Market',
     'page.header.navbar.news': 'News',
+    'page.header.navbar.invite': 'Invite friends',
     'page.header.navbar.api': 'API Documentation',
 
     'page.header.navbar.profile': 'Profile',

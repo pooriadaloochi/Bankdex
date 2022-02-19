@@ -11,6 +11,7 @@ export const fa: LangType = {
     'page.header.navbar.activity': 'فعالیت های من',
     'page.header.navbar.markets': 'بازار',
     'page.header.navbar.news': 'اخبار',
+    'page.header.navbar.invite': 'دعوت دوستان',
 
     'page.header.navbar.profile': 'پروفایل',
     'page.header.navbar.logout': 'خروج',

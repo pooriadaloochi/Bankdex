@@ -109,6 +109,9 @@ class Landing extends React.Component<Props> {
                                 <Link to="/" className="">
                                     {this.translate('page.header.navbar.news')}
                                 </Link>
+                                <Link to="/" className="">
+                                    {this.translate('page.header.navbar.invite')}
+                                </Link>
                             </div>
                         </div>
                         <div className="pg-landing-screen__header__wrap__right">
@@ -140,7 +143,20 @@ class Landing extends React.Component<Props> {
                         {/* <LogoIcon /> */}
 
                         <img src='/images/logo_bankdex.png' alt='BankDex' />
-
+                        <div className="pg-landing-screen__header__wrap__left_menu">
+                            <Link to="/trade" >
+                                {this.translate('page.header.navbar.trade')}
+                            </Link>
+                            <Link to="/" >
+                                {this.translate('page.header.navbar.markets')}
+                            </Link>
+                            <Link to="/" className="">
+                                {this.translate('page.header.navbar.news')}
+                            </Link>
+                            <Link to="/" className="">
+                                {this.translate('page.header.navbar.invite')}
+                            </Link>
+                        </div>
                     </div>
                     <div className="pg-landing-screen__header__wrap__right">
                         <Link to="/signin" className="landing-button landing-button--simple">
