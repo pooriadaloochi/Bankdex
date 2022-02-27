@@ -29,7 +29,33 @@
     &__active {
       color: var(--base);
     }
+    &__buysell{
+      padding: calc(var(--gap) * 1) calc(var(--gap) *1) !important;
+    }
+    &__buysellActive{
+      background: var(--system-green) !important;
+      height: 30.5px !important;
+      svg{
+        fill: var(--system-green);
+        position: absolute;
+        right: -19px;
+        height: 38.5px;
+        top: 0;
+        transform: rotate(180deg);
+      }
+    }
+    &__sellActive{
+      background: var(--system-red) !important;
+      svg{
+        fill: var(--system-red);
+        position: absolute;
+        left: -19px;
+        height: 38.5px;
+        top: -8px;
+        transform: rotate(0deg);
+      }
 
+    }
     &__hidden {
       display: none;
     }
@@ -39,6 +65,7 @@
     }
 
     &__disabled {
+      color: var(--system-red) !important;
       opacity: 0.2;
     }
 

@@ -379,7 +379,6 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
             user,
             wallets,
         } = this.props;
-        // console.log(wallets);
         const { selectedWalletIndex } = this.state;
 
         const wallet: Wallet = (wallets[selectedWalletIndex] || defaultWallet);
@@ -391,9 +390,6 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
         const blurCryptoClassName = classnames('pg-blur-deposit-crypto', {
             'pg-blur-deposit-crypto--active': isAccountActivated,
         });
-        // console.log(currencies);
-        // console.log(user);
-        // console.log(wallets);
 
         const buttonLabel = `${this.translate('page.body.wallets.tabs.deposit.ccy.button.generate')} ${wallet.currency.toUpperCase()} ${this.translate('page.body.wallets.tabs.deposit.ccy.button.address')}`;
 
@@ -431,7 +427,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                     </div>
                     <div className='RialCoin_raiseOfwalletsHeader'>
                         <p>
-                            جهت افزایش اعتبار کیف پول ریالی خود با استفاده از کارت های بانکب عضو شبکه شتاب و از طریق درگاهپرداخت اینترنتی اقدام نمایید .
+                            جهت افزایش اعتبار کیف پول ریالی خود با استفاده از کارت های بانک عضو شبکه شتاب و از طریق درگاه پرداخت اینترنتی اقدام نمایید .
                         </p>
                         <br />
                         <p>
@@ -441,15 +437,15 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                     <ul className='RialCoin_raiseOfwalletsHeader'>
                         <li>حتمابه آدرس صفحه ی درگاه بانکی دقت نموده و تنها پس از اطمینان از حضور در سایت های سامانه شاپرک مشخصات کارت بانکی خود را وارد کنید .</li>
                         <li>در صفحه درگاه دقت کنید که حتما مبلغ نمایش داده شده درست باشد .</li>
-                        <li>در تعیین مبلغ واریزبه این موضوع دقت نمایید که حداقل مبلغ معامله در بازار نوبیتکس سیصدهزار تومان است .</li>
+                        <li>در تعیین مبلغ واریز به این موضوع دقت نمایید که حداقل مبلغ معامله در بازار بانکدکس سیصدهزار تومان است .</li>
                     </ul>
                     <div className='RialCoin_bottomInputs'>
                         <span>
-                            جهت واریز مجه ، حتما باید از کارت های بانکی به نام خودتان که در پروفایل تان ثبت و تایید شده است، استفاده نمایید .
+                            جهت واریز وجه ، حتما باید از کارت های بانکی به نام خودتان که در پروفایل تان ثبت و تایید شده است، استفاده نمایید .
                         </span>
                         <div className='RialCoin_bottomInputs_all'>
                             <div className='RialCoin_bottomInputs_all_dropdowns'>
-                                <div>
+                                <div className='RialCoin_bottomInputs_all_dropdowns_dropParent'>
                                     <span>
                                         کارت بانکی
                                     </span>
@@ -470,18 +466,25 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </div>
-
-                                <Button
-                                    // block={true}
-                                    type="button"
-                                    // onClick={handleGenerateAddress}
-                                    size="lg"
-                                    variant="primary"
-                                    className='addCart'
-                                >
-                                    افزودن کارت
-                                </Button>
+                                <div className='rialWithdraw_inputs_cost'>
+                                    <span>
+                                        شماره کارت را وارد کنید :
+                                    </span>
+                                    <input type='number' className='rialWithdraw_inputs_cost_inputCartNumber' />
+                                </div>
                             </div>
+                            <Button
+                                // block={true}
+                                type="button"
+                                // onClick={handleGenerateAddress}
+                                size="lg"
+                                variant="primary"
+                                className='addCart firstButton'
+                            >
+                                افزودن کارت
+                            </Button>
+                            <br />
+                            <br />
                             <div className='RialCoin_bottomInputs_all_seccondInput'>
                                 <div className='RialCoin_bottomInputs_all_seccondInput_right'>
                                     <span>

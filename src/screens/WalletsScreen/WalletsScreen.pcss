@@ -793,8 +793,14 @@
         align-items: center;
         .dropdown{
           width: 40rem;
-          margin: 1rem 0;
+          margin-top: 0.5rem;
         } 
+        &_dropParent{
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+
+        }
         button{
           display: flex;
           justify-content: space-between;
@@ -806,13 +812,17 @@
         .addCart{
           margin-top: 1.5rem;
           width: 20rem;
-          
           height: 30px;
-          justify-content: center;
         }
       }
+      .firstButton{
+        margin-top: 0.5rem;
+        float: left !important;
+        background: var(--system-green);
+
+      }
       &_seccondInput{
-        margin-top: 1rem 0;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
@@ -825,6 +835,7 @@
             border-radius: 5px;
             background: var(--primary-cta-color);
             padding-right: 10px;
+            font-size: 1.3rem;
           }
         }
         &_left{
@@ -837,7 +848,7 @@
             margin-left: 5px;
           }
           button:last-child{
-            background-color:green;
+            background-color:var(--system-green);
             margin-left: 0;
           }
         }
@@ -875,14 +886,27 @@
     margin: 2rem 0;
     &_cost{
       width: 80%;
+      height: 83.5px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: flex-end;
+      justify-content: center;
+      span{
+        margin-left: auto;
+        margin-right: 3.5rem;
+        justify-self: flex-start;
+      }
       input{
         width: 100%;
         background: var(--primary-cta-color);
         padding: 5px;
         border-radius: 5px;
+      }
+      &_inputCartNumber{
+        width: 90% !important;
+        height: 40px;
+        margin-top: 0.5rem;
+        font-size: 1.3rem;
       }
     }
     &_balance{

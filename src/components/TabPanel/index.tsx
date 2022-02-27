@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import { DropdownComponent } from '../Dropdown';
+import { ArrowBuySell } from '../../assets/images/ArrowBuySell'
 
 export enum HideMode {
     hide = 'hide',
@@ -75,7 +76,8 @@ export const TabPanel: React.FC<TabPanelProps> = ({
     onTabChange,
     lang,
     flexDirection,
-    langHistory
+    langHistory,
+    buySell
 }) => {
     const dropdownLabels = React.useCallback(() => {
         if (!panels.length) {
@@ -122,6 +124,9 @@ export const TabPanel: React.FC<TabPanelProps> = ({
                 'cr-tab__active': active,
                 'cr-tab__disabled': disabled,
                 'cr-tab__hidden': hidden,
+                'cr-tab__buysell': buySell,
+                'cr-tab__buysellActive': buySell && active,
+                'cr-tab__sellActive': buySell && active && label === 'Sell',
             });
 
             return (
@@ -132,11 +137,12 @@ export const TabPanel: React.FC<TabPanelProps> = ({
                     role="tab"
                     tabIndex={index}>
                     {label}
-                    {active && <span className="cr-tab__pointer" />}
+                    {(active && !buySell) && <span className="cr-tab__pointer" />}
+                    {(buySell && active) && <ArrowBuySell />}
                 </div>
             );
         },
-        [createOnTabChangeHandler, currentTabIndex]
+        [createOnTabChangeHandler, currentTabIndex, buySell]
     );
 
     const tabPanelRender = React.useCallback(() => {

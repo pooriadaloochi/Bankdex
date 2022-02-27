@@ -136,6 +136,7 @@ export class Order extends React.Component<OrderComponentProps, State> {
                         panels={this.getPanels()}
                         onTabChange={this.handleChangeTab}
                         currentTabIndex={this.state.index}
+                        buySell={true}
                     />
                 </div>
             );
@@ -233,7 +234,7 @@ export class Order extends React.Component<OrderComponentProps, State> {
 
     private handleChangeTab = (index: number, label?: string) => {
         if (this.props.handleSendType && label) {
-          this.props.handleSendType(index, label);
+            this.props.handleSendType(index, label);
         }
 
         this.setState({
