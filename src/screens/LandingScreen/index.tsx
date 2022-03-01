@@ -97,7 +97,6 @@ class Landing extends React.Component<Props> {
                     <div className="pg-landing-screen__header__wrap">
                         <div className="pg-landing-screen__header__wrap__left" style={{ cursor: 'pointer' }}
                             onClick={e => this.handleScrollTop()}>
-                            {/* <LogoIcon /> */}
 
                             <img src='/images/logo_bankdex.png' alt='BankDex' />
                             <div className="pg-landing-screen__header__wrap__left_menu">
@@ -542,9 +541,9 @@ class Landing extends React.Component<Props> {
                                     <li>
                                         <Link to="/">{this.translate('page.body.landing.footer.businessContacts')}</Link>
                                     </li>
-                                    <li>
+                                    {/* <li>
                                         <Link to="/trading/">{this.translate('page.body.landing.footer.terms')}</Link>
-                                    </li>
+                                    </li> */}
                                     <li>
                                         <Link to="/trading/">{this.translate('page.body.landing.footer.privacy')}</Link>
                                     </li>
