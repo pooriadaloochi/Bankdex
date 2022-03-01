@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import { DropdownComponent } from '../Dropdown';
-import { ArrowBuySell } from '../../assets/images/ArrowBuySell'
+// import { ArrowBuySell } from '../../assets/images/ArrowBuySell'
 
 export enum HideMode {
     hide = 'hide',
@@ -151,7 +151,7 @@ export const TabPanel: React.FC<TabPanelProps> = ({
                         style={{ background: active ? !sellActive ? 'var(--system-green)' : 'var(--system-red)' : 'none' }}
                         tabIndex={index}>
                         {label}
-                        {active && <ArrowBuySell />}
+                        {/* {active && <ArrowBuySell />} */}
                     </div>
                 );
             }
