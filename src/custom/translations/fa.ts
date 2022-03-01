@@ -4,7 +4,7 @@ import { LangType } from '../../translations';
 
 export const fa: LangType = {
     'page.header.navbar.signIn': 'ورود',
-    'page.header.navbar.trade': 'معامله',
+    'page.header.navbar.trade': 'معاملات',
     'page.header.navbar.wallets': '  کیف پول ',
     'page.header.navbar.openOrders': 'سفارشات',
     'page.header.navbar.history': 'تاریخچه',
@@ -55,14 +55,14 @@ export const fa: LangType = {
     'page.body.trade.header.marketDepths.content.cumulativeValue': 'مقدار تخمین زده شده:',
     /* Charts */
     'page.body.charts.tabs.chart': 'چارت',
-    'page.body.charts.tabs.depth': 'عمق',
+    'page.body.charts.tabs.depth': 'عمق بازار',
 
-    'page.body.trade.toolBar.lowest': 'کمترین در 24 ساعت',
+    'page.body.trade.toolBar.lowest': 'پایین ترین قیمت در 24 ساعت',
     'page.body.trade.toolBar.lastPrice': 'آخرین قیمت',
     'page.body.trade.toolBar.selectMarket': 'انتخاب بازار',
-    'page.body.trade.toolBar.highest': 'بیشترین در 24 ساعت',
+    'page.body.trade.toolBar.highest': 'بالاترین قیمت در 24 ساعت',
     'page.body.trade.toolBar.volume': 'حجم 24 ساعت',
-    'page.body.trade.toolBar.change': 'تغییر رمز',
+    'page.body.trade.toolBar.change': 'نوسان',
 
     'page.body.trade.header.asks': 'سفارش خرید',
     'page.body.trade.header.bids': 'سفارش فروش',
@@ -143,27 +143,26 @@ export const fa: LangType = {
     'page.body.landing.startTrading.button1': 'ثبت نام',
     'page.body.landing.startTrading.button2': 'شروع معامله',
 
-    'page.body.landing.footer.exchange': 'مبادله',
+    'page.body.landing.footer.exchange': 'پلتفرم معاملات',
     'page.body.landing.footer.wallets': 'کیف پول',
     'page.body.landing.footer.fees': 'کارمزد معاملات',
     'page.body.landing.footer.faq': 'سوالات متداول',
     'page.body.landing.footer.support': 'پشتیبانی',
-    'page.body.landing.footer.privacy': 'حریم خصوصی',
+    'page.body.landing.footer.privacy': 'قوانین و مقررات',
     'page.body.landing.footer.about': 'درباره ما',
     'page.body.landing.footer.aboutUs': 'درباره ما',
     'page.body.landing.footer.community': 'انجمن',
     'page.body.landing.footer.info': 'اطلاعات',
     'page.body.landing.footer.rights': 'تمامی حقوق بانکدکس محفوظ است.',
     // 
-    'page.body.landing.footer.terms': 'مقررات',
     'page.body.landing.footer.news': 'اخبار',
-    'page.body.landing.footer.downloads': 'دانلودها',
-    'page.body.landing.footer.buyCrypto': 'ارز دیجیتال بخر',
+    'page.body.landing.footer.downloads': 'خرید و فروش',
+    'page.body.landing.footer.buyCrypto': 'معرفی به دوستان',
     'page.body.landing.footer.fee': 'هزینه',
     'page.body.landing.footer.products': 'محصولات',
     'page.body.landing.footer.service': 'خدمات',
-    'page.body.landing.footer.referal': 'معرف',
-    'page.body.landing.footer.businessContacts': 'مخاطبین تجاری',
+    'page.body.landing.footer.referal': 'هزینه تراکنش ها',
+    'page.body.landing.footer.businessContacts': 'ارتباط با ما',
     'page.body.landing.footer.social': 'شبکه های اجتماعی',
 
     /* Wallets */
@@ -727,7 +726,7 @@ export const fa: LangType = {
     'authz.invalid_api_key_headers': '  وارد نشده استAPIعناوین کلید',
     'authz.permission_denied': ' در لیست سیاه قرار گرفته استPath',
     'authz.unexistent_apikey': ' معتبر نیستX-Auth-Apikey عنوان',
-    'authz.client_session_mismatch': 'نشست همخوانی ندارد',
+    'authz.client_session_mismatch': 'لطفا دوباره وارد شوید',
     'authz.csrf_token_mismatch': ' همخوانی نداردCSRFتوکن',
 
     // validation errors
