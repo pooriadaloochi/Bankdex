@@ -150,6 +150,7 @@ export class Order extends React.Component<OrderComponentProps, State> {
                         panels={[this.getPanel('buy')]}
                         onTabChange={this.handleChangeTab}
                         currentTabIndex={this.state.index}
+                        buySell={true}
                     />
                 </div>
                 <div className="cr-order--extended__sell">
@@ -158,6 +159,7 @@ export class Order extends React.Component<OrderComponentProps, State> {
                         panels={[this.getPanel('sell')]}
                         onTabChange={this.handleChangeTab}
                         currentTabIndex={this.state.index}
+                        buySell={true}
                     />
                 </div>
             </div>

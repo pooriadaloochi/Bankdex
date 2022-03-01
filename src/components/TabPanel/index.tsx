@@ -120,27 +120,41 @@ export const TabPanel: React.FC<TabPanelProps> = ({
             const { disabled, hidden, label } = tab;
 
             const active = currentTabIndex === index;
+            const sellActive = (label === 'Sell') || (label === 'فروش')
             const cn = classnames('cr-tab', {
-                'cr-tab__active': active,
-                'cr-tab__disabled': disabled,
-                'cr-tab__hidden': hidden,
+                'cr-tab__active': active && !buySell,
+                'cr-tab__disabled': disabled && !buySell,
+                'cr-tab__hidden': hidden && !buySell,
                 'cr-tab__buysell': buySell,
                 'cr-tab__buysellActive': buySell && active,
-                'cr-tab__sellActive': buySell && active && label === 'Sell',
+                'cr-tab__sellActive': buySell && active && sellActive,
             });
-
-            return (
-                <div
-                    className={cn}
-                    key={index}
-                    onClick={createOnTabChangeHandler(index, tab)}
-                    role="tab"
-                    tabIndex={index}>
-                    {label}
-                    {(active && !buySell) && <span className="cr-tab__pointer" />}
-                    {(buySell && active) && <ArrowBuySell />}
-                </div>
-            );
+            if (!buySell) {
+                return (
+                    <div
+                        className={cn}
+                        key={index}
+                        onClick={createOnTabChangeHandler(index, tab)}
+                        role="tab"
+                        tabIndex={index}>
+                        {label}
+                        {active && <span className="cr-tab__pointer" />}
+                    </div>
+                );
+            } else {
+                return (
+                    <div
+                        className={cn}
+                        key={index}
+                        onMouseDown={createOnTabChangeHandler(index, tab)}
+                        role="tab"
+                        style={{ background: active ? !sellActive ? 'var(--system-green)' : 'var(--system-red)' : 'none' }}
+                        tabIndex={index}>
+                        {label}
+                        {active && <ArrowBuySell />}
+                    </div>
+                );
+            }
         },
         [createOnTabChangeHandler, currentTabIndex, buySell]
     );

@@ -31,10 +31,15 @@
     }
     &__buysell{
       padding: calc(var(--gap) * 1) calc(var(--gap) *1) !important;
+      color: var(--text-primary) !important;
+      &:hover{
+        color: var(--primary-text-color);
+      }
     }
     &__buysellActive{
-      background: var(--system-green) !important;
+      /* background: var(--system-green) ; */
       height: 30.5px !important;
+      color: var(--primary-text-color) !important;
       svg{
         fill: var(--system-green);
         position: absolute;
@@ -45,7 +50,7 @@
       }
     }
     &__sellActive{
-      background: var(--system-red) !important;
+      /* background: var(--system-red) !important; */
       svg{
         fill: var(--system-red);
         position: absolute;
