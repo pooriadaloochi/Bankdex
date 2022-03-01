@@ -101,9 +101,9 @@ export const fa: LangType = {
     'page.body.landing.header.button2': 'ورود',
     'page.body.landing.header.button3': 'ثبت نام',
 
-    'page.body.landing.marketInfo.title.text1': 'به بانکدکس خوش آمدید',
+    'page.body.landing.marketInfo.title.text1': 'تو یک چشم به هم زدن ترید کن.',
     'page.body.landing.marketInfo.title.text2': 'خرید، فروش و معامله ارزهای دیجیتال.',
-    'page.body.landing.marketInfo.title.text3': 'به بزرگترین صرافی رمزارز جهان بپیوندید',
+    'page.body.landing.marketInfo.title.text3': 'بانکدکس , پلتفرم مبادلات ارزهای دیجیتال',
     'page.body.landing.marketInfo.title.button': 'شروع معاملات',
     'page.body.landing.marketInfo.title.exchange': 'روند بازار',
 

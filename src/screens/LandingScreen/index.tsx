@@ -32,13 +32,14 @@ const FeaturesCommunityIcon = require('../../assets/images/landing/features/Comm
 const FeaturesAPIIcon = require('../../assets/images/landing/features/API.svg');
 
 const TelegramIcon = require('../../assets/images/landing/social/Telegram.svg');
-const LinkedInIcon = require('../../assets/images/landing/social/LinkedIn.svg');
-const TwitterIcon = require('../../assets/images/landing/social/Twitter.svg');
-const YouTubeIcon = require('../../assets/images/landing/social/YouTube.svg');
-const RedditIcon = require('../../assets/images/landing/social/Reddit.svg');
-const FacebookIcon = require('../../assets/images/landing/social/Facebook.svg');
-const MediumIcon = require('../../assets/images/landing/social/Medium.svg');
-const CoinMarketIcon = require('../../assets/images/landing/social/CoinMarket.svg');
+// const LinkedInIcon = require('../../assets/images/landing/social/LinkedIn.svg');
+// const TwitterIcon = require('../../assets/images/landing/social/Twitter.svg');
+// const YouTubeIcon = require('../../assets/images/landing/social/YouTube.svg');
+// const RedditIcon = require('../../assets/images/landing/social/Reddit.svg');
+const Instagram = require('../../assets/images/landing/social/Instagram.svg');
+// const FacebookIcon = require('../../assets/images/landing/social/Facebook.svg');
+// const MediumIcon = require('../../assets/images/landing/social/Medium.svg');
+// const CoinMarketIcon = require('../../assets/images/landing/social/CoinMarket.svg');
 const enIcon = require('../../assets/images/sidebar/en.svg');
 const faIcon = require('../../assets/images/sidebar/fa.svg');
 
@@ -237,7 +238,10 @@ class Landing extends React.Component<Props> {
                             left: `${lang === 'fa' ? 'auto' : '8%'}`,
                             direction: `${lang === 'fa' ? 'rtl' : 'ltr'}`
                         }}>
-                        <h1>{this.translate('page.body.landing.marketInfo.title.text1')}{num}</h1>
+                        <h1>
+                            {this.translate('page.body.landing.marketInfo.title.text1')}
+                            {/* {num} */}
+                        </h1>
 
                         <span style={{ float: `${lang === 'fa' ? 'right' : 'left'}` }} >
                             {this.translate('page.body.landing.marketInfo.title.text3')}
@@ -607,16 +611,17 @@ class Landing extends React.Component<Props> {
                         <h3>{this.translate('page.body.landing.footer.social')}</h3>
                         <div className="pg-landing-screen__footer__wrap__social__row">
                             <img src={TelegramIcon} alt="Telegram" />
-                            <img src={LinkedInIcon} alt="LinkedIn" />
-                            <img src={TwitterIcon} alt="Twitter" />
-                            <img src={YouTubeIcon} alt="YouTube" />
+                            {/* <Instagram /> */}
+                            <img src={Instagram} alt="Instagram" />
+                            {/* <img src={TwitterIcon} alt="Twitter" /> */}
+                            {/* <img src={YouTubeIcon} alt="YouTube" /> */}
                         </div>
-                        <div className="pg-landing-screen__footer__wrap__social__row">
+                        {/* <div className="pg-landing-screen__footer__wrap__social__row">
                             <img src={RedditIcon} alt="Reddit" />
                             <img src={FacebookIcon} alt="Facebook" />
                             <img src={MediumIcon} alt="MediumIcon" />
                             <img src={CoinMarketIcon} alt="CoinMarket" />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <span className="pg-landing-screen__footer__rights">{this.translate('page.body.landing.footer.rights')}</span>

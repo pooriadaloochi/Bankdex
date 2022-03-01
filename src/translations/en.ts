@@ -100,9 +100,9 @@ export const en = {
     'page.body.landing.header.button2': 'log in',
     'page.body.landing.header.button3': 'register',
 
-    'page.body.landing.marketInfo.title.text1': 'Welcome to BankDex.',
+    'page.body.landing.marketInfo.title.text1': 'Trade in the blink of an eye',
     'page.body.landing.marketInfo.title.text2': 'Buy, sell and trade digital currency.',
-    'page.body.landing.marketInfo.title.text3': "Join the world's largest crypto exchange",
+    'page.body.landing.marketInfo.title.text3': "Bankdex, a cryptocurrencies exchange",
     'page.body.landing.marketInfo.title.button': 'start trading',
     'page.body.landing.marketInfo.title.exchange': 'Market trend',
 
