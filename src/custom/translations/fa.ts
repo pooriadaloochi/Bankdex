@@ -155,7 +155,7 @@ export const fa: LangType = {
     'page.body.landing.footer.info': 'اطلاعات',
     'page.body.landing.footer.rights': 'تمامی حقوق بانکدکس محفوظ است.',
     // 
-    'page.body.landing.footer.news': 'اخبار',
+    'page.body.landing.footer.news': 'بلاگ',
     'page.body.landing.footer.downloads': 'خرید و فروش',
     'page.body.landing.footer.buyCrypto': 'معرفی به دوستان',
     'page.body.landing.footer.fee': 'هزینه',

@@ -94,7 +94,8 @@ class CustomInput extends React.Component<Props> {
                             <InputGroup.Append
                                 style={{
                                     right: flexDirection === 'flex-row-reverse' ? 'auto' : 0,
-                                    left: flexDirection === 'flex-row-reverse' ? 0 : 'auto'
+                                    left: flexDirection === 'flex-row-reverse' ? 0 : 'auto',
+                                    position: type === 'password' ? "absolute" : "initial"
                                 }}
                             >
                                 <Button onClick={handleShowPassword} className={`eyePassword`}>
