@@ -18,208 +18,184 @@ React application to build a trading platform interface for use with OpenDAX: ht
 You can see an example of a live application running at: https://www.openfinex.io/
 If you need customization from the experts contact us: https://www.openware.com/
 
-## License
+## Overview
 
-Please note, that BaseApp license only allows Non-Commercial use of this component. To purchase the Commercial license, please contact us at hello@openware.com.
+The **Openware Base App** is a comprehensive platform that aims to provide a scalable foundation for cryptocurrency trading, finance management, and decentralized finance (DeFi) services. It includes integration with **Web3**, **Capacitor** for mobile support, and other essential tools to help you build a secure and feature-rich application.
 
-## Install dependencies
+## Features
 
+- **Cryptocurrency Integration**: Supports various cryptocurrencies, including Bitcoin Cash and Ethereum, using **ethers.js** and **bitcoincashjs**.
+- **Mobile Support**: Utilizes **Ionic** and **Capacitor** to enable hybrid mobile applications for both Android and iOS.
+- **Decentralized Integration**: Web3 support using **@web3-react/core** and **@web3-react/injected-connector** for decentralized wallet interactions.
+- **Multi-language Support**: Internationalization using **react-intl** and **FormatJS** libraries.
+- **Redux State Management**: State management using **Redux** and side effects handled by **Redux Saga**.
+- **Real-time Updates**: Real-time data updates using **WebSocket (ws)**.
+- **Advanced UI**: Built using **React** and **Bootstrap** with rich components for seamless user experiences, plus integration with **recharts** for data visualization.
+
+## Technologies Used
+
+- **Frontend**:
+  - [React.js](https://reactjs.org/): JavaScript library for building user interfaces.
+  - **Bootstrap** & **React-Bootstrap**: For responsive UI components.
+  - [Ionic](https://ionicframework.com/): Frontend framework to support hybrid mobile development.
+  - [Capacitor](https://capacitorjs.com/): Cross-platform runtime for hybrid mobile apps.
+  - **Web3-React**: Library for Ethereum wallet connections and blockchain interactions.
+  - **Redux & Redux Saga**: For state management and side-effect handling.
+  - **React-Intl** & **FormatJS**: For internationalization and supporting multiple languages.
+  - **Recharts**: Library used for creating visual data charts.
+
+- **Mobile Development**:
+  - **Capacitor**: To build cross-platform mobile apps that work on both Android and iOS devices.
+
+- **Security**:
+  - **Sentry**: For error tracking and monitoring.
+  - **JavaScript Obfuscator**: For code protection and obfuscation.
+
+- **Styling & Linting**:
+  - **Sass**: For writing maintainable and modular CSS.
+  - **Stylelint**: To maintain consistent styling practices.
+  - **PostCSS**: For transforming CSS with JavaScript plugins.
+
+- **Testing**:
+  - **Jest** & **React Testing Library**: For unit tests.
+  - **Cypress**: For end-to-end integration testing.
+  - **Sinon**: Mocking framework for testing.
+
+## Getting Started
+
+To get started with the **Openware Base App**, follow the instructions below.
+
+### Prerequisites
+
+- **Node.js** (v14 or above) and **npm** or **yarn** should be installed.
+- **Ionic CLI** installed globally for Capacitor support.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/pooriadaloochi/openware-base-app.git
+   ```
+2. Navigate to the project folder:
+   ```bash
+   cd openware-base-app
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+### Running the Project
+
+To run the development server:
 ```bash
-$ yarn install
+npm start
+# or
+yarn start
 ```
+The application should be available at `http://localhost:3000`.
 
-## Run in developement mode
+### Building for Production
 
+To create an optimized production build:
 ```bash
-$ yarn start-mock
-```
-This command will also start a fake api backend for helping development.
-Once you happy with the result, save, build an image and run it with OpenDAX docker compose system.
-
-## Execute tests
-
-In `<rootDir>`
-
-```bash
-$ yarn test
-```
-
-Check test coverage:
-```bash
-$ yarn test -- --coverage --watchAll
-```
-
-For more options for `jest` run `yarn test --help`.
-
-## Configuration documentation
-
-Configuration file is located in  `public/config/env.js`
-
-
-| Argument                 | Description                                                  |
-| --------------------- | ------------------------------------------------------------ |
-| `api`    | URLs of `barong`, `peatio`, `applogic` and `ranger` API endpoints. You can use mockserver (<https://github.com/openware/mockserver>) with default `env.js` values |
-| `minutesUntilAutoLogout`                |  Autologout time in minutes  |
-| `withCredentials`               |  `false` or `true` if you want to include cookies as part of the request(https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials)   |
-| `gaTrackerKey` |  Google Analytics tracker key  |
-| `rangerReconnectPeriod` |  Reconnection time for the Ranger WS service in minutes    |
-| `msAlertDisplayTime` |  Alert message display duration in milliseconds    |
-| `kycSteps` |  List of label names for KYC process    |
-
-## Available Docker build args
-
-While building a Docker image you can pass build-dependant arguments using `--build-arg`: 
-`docker build -t baseapp:latest
-  --build-arg BUILD_DOMAIN="example.com" .`
-
-| Argument       | Description                                            |
-| -------------- | ------------------------------------------------------ |
-| `BUILD_EXPIRE` | Unix Timestamp of the build expiration date in seconds |
-| `BUILD_DOMAIN` | Domain which you'd like to use during the deployment   |
-
-## Build mobile app
-Install dependencies using npm. Important for mobile app development.
-```bash
-npm install
-```
-Build frontend
-```bash
+npm run build
+# or
 yarn build
 ```
-Generate a native project (ios, android)
-```bash
-ionic capacitor add <platform>
-```
-To build a native app you should have Xcode or Android studio on your local machine.
 
-## Build IOS app
-**1. Install Xcode**
+### Running the Mobile Application
 
-Xcode is the IDE for creating native iOS apps. It includes the iOS SDK and Xcode command-line tools. Xcode can be downloaded for free with an Apple account or it can be installed through the App Store.
-Once Xcode is installed, make sure the command-line tools are selected for use:
-```bash
-xcode-select --install
-```
-**2. Set up a development team**
+To add Android or iOS platforms and run the mobile version of the app:
 
-All iOS apps must be code signed, even for development. Luckily, Xcode makes this easy with automatic code signing. The only prerequisite is an Apple ID.
+1. **Add Android/iOS**:
+   ```bash
+   npx cap add android
+   npx cap add ios
+   ```
+2. **Build the Web App**:
+   ```bash
+   npm run build
+   # or
+   yarn build
+   ```
+3. **Sync with Capacitor**:
+   ```bash
+   npx cap sync
+   ```
+4. **Run on a Device/Emulator**:
+   ```bash
+   npx cap open android
+   npx cap open ios
+   ```
 
-Open Xcode and navigate to **Xcode » Preferences » Accounts**. Add an Apple ID if none are listed. Once logged in, a Personal Team will appear in the team list of the Apple ID.
+## Folder Structure
 
-**3. Create an iOS Simulator**
+- **/src/components**: Reusable UI components used throughout the application.
+- **/src/pages**: Pages representing different routes of the application.
+- **/src/store**: Redux store configuration and sagas for state management.
+- **/mocks**: Mock APIs and WebSockets for testing during development.
+- **/styles**: Sass and PostCSS files for styling.
+- **/mobile**: Mobile platform-specific folders generated by Capacitor.
 
-You can test your mobile application with a connected Iphone device to the Mac or using IOS Simulator.
-Open Xcode and navigate to **Window » Devices and Simulators**. Create an **iPhone 11** simulator if one does not already exist.
+## Contributing
 
-**4. Set configs**
+Contributions are welcome! If you have suggestions for new features or improvements, feel free to open an issue or submit a pull request.
 
-Open the `capacitor.config.json` file and modify the `appId` property.
+## Scripts
 
-Put the name of BE server:
-```json
-  "server": {
-    "hostname": "example.openware.work"
-  }
-```
-
-**5. Open the project in Xcode.**
-
-Launch Xcode with a prepared app:
-```bash
-ionic capacitor run ios
-```
-
-**6. Check Xcode configuration**
-In Project navigator, select the project root to open the project editor. Under the **Identity section**, verify that the **Package ID** that was set matches the Bundle Identifier.
-
-In the same project editor, under the **Signing section**, ensure Automatically manage signing is enabled. Then, select a Development Team. Given a Development Team, Xcode will attempt to automatically prepare provisioning and signing.
-
-**7. Update native app with the changes**
-
-With each meaningful change, Ionic apps must be built into web assets before the change can appear on iOS simulators and devices. The web assets then must be copied into the native project:
-```bash
-ionic capacitor copy ios
-```
-
-**8. Build IOS app**
-
-To receive an executable app file run 'build' command on Xcode. You need to have an Apple Developer account to be able to extract an executable file from Xcode.
-
-## Build Android app
-**1. Install Android studio**
-
-Android Studio is IDE, that provides the fastest tools for building apps on every type of Android device.
-
-**2. Open the `capacitor.config.json` file and modify the `linuxAndroidStudioPath` property.**
-
-Run next command
-```bash
-whereis android-studio
-```
-
-**3. Build your android application**
-
-```bash
-ionic capacitor add android
-```
-
-**4. Launch android application with Android Studio**
-```bash
-ionic capacitor run android
-```
-
-**5. Android Studio configuration**
-
-Select connected android device or configure device simulator, which required
-
-**6. Update app with the changes**
-```bash
-ionic capacitor copy android [options]
-```
-
-**7. Set ANDROID_SDK_ROOT variale**
-
-Set android ask path to ANDROID_SDK_ROOT or write sdk.dir variable in android/local.properties file (it doesn't exist as a default)
-
-**8. Build android app**
-
-Build android app using Android Studio Build tab
-
-or you can build apk file with command line
-
-Debug build:
-
-```bash
-  ionic capacitor copy android && cd android && ./gradlew assembleDebug && cd ..
-```
-
-Release build:
-
-For release build you have to create keystore path and keystore alias and run next command:
-
-```bash
-  cd android &&
-  ./gradlew assembleRelease &&
-  cd app/build/outputs/apk/release &&
-  jarsigner -keystore YOUR_KEYSTORE_PATH -storepass YOUR_KEYSTORE_PASS app-release-unsigned.apk YOUR_KEYSTORE_ALIAS &&
-  zipalign 4 app-release-unsigned.apk app-release.apk
-```
-
-## Happy trading with OpenDAX BaseApp UI
-
-If you have designed something beautiful with it, we would love to see it!
-
-And if you have any comments, feedback and suggestions - we are happy to hear from you here at GitHub or at https://openware.com
+- **Start**: Runs the application in development mode.
+  ```bash
+  npm start
+  # or
+  yarn start
+  ```
+- **Build**: Creates an optimized production build.
+  ```bash
+  npm run build
+  # or
+  yarn build
+  ```
+- **Test**: Runs unit tests using Jest.
+  ```bash
+  npm test
+  # or
+  yarn test
+  ```
+- **Test Coverage**: Collects test coverage information.
+  ```bash
+  npm run test:coverage
+  ```
+- **Mobile Add**: Adds Android or iOS platforms.
+  ```bash
+  npx cap add android
+  npx cap add ios
+  ```
 
 ## Licensing
 
-This code is open for helping private modification and performing customer demonstration, you can use it for raising capital.
-You cannot use it for a live platform without getting a commercial license from us.
+This code is open for private modification and for use in customer demonstrations to raise capital. However, you cannot use it for a live platform without obtaining a commercial license from us.
 
-Contact us if you'd like to purchase a commercial license.
+If you need a commercial license, please contact us at hello@openware.com.
 
 ## Partners
 
-If you would like to fork, and modify this UI to create a BaseApp theme, we would be happy to setup a partnership program and sell your work provided a revenue sharing.
+If you would like to fork and modify this UI to create a BaseApp theme, we are happy to set up a partnership program and sell your work under a revenue-sharing model.
 
 Made with love from Paris and Kiev.
+
+## Contact
+
+Feel free to reach out if you have any questions or want to collaborate:
+- **LinkedIn**: [linkedin.com/in/pooriadaloochi](https://linkedin.com/in/pooriadaloochi)
+- **Email**: pooriadaloochi@gmail.com
+
+## License
+
+This project is open source and available under the [MIT License](./LICENSE).
+
+---
+
+Thank you for exploring the Openware Base App! We appreciate your interest and look forward to your contributions.
